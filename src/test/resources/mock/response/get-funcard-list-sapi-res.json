@@ -1,0 +1,156 @@
+{
+  "metadata": {
+    "resource": "account/funCard",
+    "recordCount": 4
+  },
+  "funCards": [
+    {
+      "funCardId": "ADA0B506-BE69-46DA-810B-445C046976C3",
+      "funCardNumber": "0000000008105541",
+      "funCardPin": "5578",
+      "funCardName": "TestCard003",
+      "statusText": "Disabled",
+      "status": 5,
+      "cashBalance": 0,
+      "funCardCredit": 0,
+      "bonusCashBalance": 0,
+      "pointBalance": 0,
+      "tokenBalance": 0,
+      "tokenBonusBalance": 0,
+      "firstUsedTimestamp": "2013-12-12T13:31:00",
+      "lastUsedTimestamp": "0001-01-01T00:00:00",
+      "todateCashIn": 0,
+      "todaysCashIn": 0,
+      "blockedAccess": null,
+      "discountRate": 0,
+      "timePlayStartTime": "0001-01-01T00:00:00",
+      "timePlayEndTime": "0001-01-01T00:00:00",
+      "timePlayDuration": 0,
+      "customerPicture": null,
+      "cardRegistered": false,
+      "cardCustomizations": [
+        {
+          "cardCustomizationId": "186",
+          "customType": "image",
+          "customValue": "https://help.mulesoft.com/resource/1578840551000/brMulesoftCommunityAssets/images/svg/logo-mulesoft.svg"
+        },
+        {
+          "cardCustomizationId": "187",
+          "customType": "bgColor",
+          "customValue": "#888"
+        }
+      ]
+    },
+    {
+      "funCardId": "419DE848-3BC7-47CD-97FC-6D4B0686856D",
+      "funCardNumber": "0700000031320212",
+      "funCardPin": "1207",
+      "funCardName": "Awesome card modified IV",
+      "statusText": "Active",
+      "status": 0,
+      "cashBalance": 23180,
+      "funCardCredit": 115900,
+      "bonusCashBalance": 1954,
+      "pointBalance": 32,
+      "tokenBalance": 0,
+      "tokenBonusBalance": 0,
+      "firstUsedTimestamp": "2019-11-17T20:49:00",
+      "lastUsedTimestamp": "0001-01-01T00:00:00",
+      "todateCashIn": 23268,
+      "todaysCashIn": 0,
+      "blockedAccess": null,
+      "discountRate": 0,
+      "timePlayStartTime": "0001-01-01T00:00:00",
+      "timePlayEndTime": "0001-01-01T00:00:00",
+      "timePlayDuration": 0,
+      "customerPicture": null,
+      "cardRegistered": false,
+      "cardCustomizations": [
+        {
+          "cardCustomizationId": "45",
+          "customType": "image",
+          "customValue": "https://bunny.com"
+        },
+        {
+          "cardCustomizationId": "46",
+          "customType": "bgColor",
+          "customValue": "gray"
+        }
+      ]
+    },
+    {
+      "funCardId": "B03626FC-DAE9-4AE5-9704-80F412159AAC",
+      "funCardNumber": "0000000008745148",
+      "funCardPin": "5931",
+      "funCardName": "My forth card",
+      "statusText": "Disabled",
+      "status": 5,
+      "cashBalance": 46,
+      "funCardCredit": 230,
+      "bonusCashBalance": 0,
+      "pointBalance": 0,
+      "tokenBalance": 0,
+      "tokenBonusBalance": 0,
+      "firstUsedTimestamp": "2014-05-14T19:44:00",
+      "lastUsedTimestamp": "0001-01-01T00:00:00",
+      "todateCashIn": 50,
+      "todaysCashIn": 0,
+      "blockedAccess": null,
+      "discountRate": 0,
+      "timePlayStartTime": "0001-01-01T00:00:00",
+      "timePlayEndTime": "0001-01-01T00:00:00",
+      "timePlayDuration": 0,
+      "customerPicture": null,
+      "cardRegistered": false,
+      "cardCustomizations": [
+        {
+          "cardCustomizationId": "144",
+          "customType": "image",
+          "customValue": "https://www.image.com/devrel-devsite/prod/v425077d6c7be97246d05a953898cb9591a173a3cef753a451b8729896196bc0a/apigee/images/lockup.svg"
+        },
+        {
+          "cardCustomizationId": "145",
+          "customType": "bgColor",
+          "customValue": "#ffffff"
+        }
+      ]
+    },
+    {
+      "funCardId": "635FAC5A-F432-4C68-A729-CF972C01759A",
+      "funCardNumber": "0700000031320214",
+      "funCardPin": "6748",
+      "funCardName": "TestCard002",
+      "statusText": "Active",
+      "status": 0,
+      "cashBalance": 281,
+      "funCardCredit": 1405,
+      "bonusCashBalance": 192,
+      "pointBalance": 0,
+      "tokenBalance": 0,
+      "tokenBonusBalance": 0,
+      "firstUsedTimestamp": "2019-11-17T20:49:00",
+      "lastUsedTimestamp": "0001-01-01T00:00:00",
+      "todateCashIn": 281,
+      "todaysCashIn": 0,
+      "blockedAccess": null,
+      "discountRate": 0,
+      "timePlayStartTime": "0001-01-01T00:00:00",
+      "timePlayEndTime": "0001-01-01T00:00:00",
+      "timePlayDuration": 0,
+      "customerPicture": null,
+      "cardRegistered": false,
+      "cardCustomizations": [
+        {
+          "cardCustomizationId": "112",
+          "customType": "image",
+          "customValue": "https://www.gstatic.com/devrel-devsite/prod/v425077d6c7be97246d05a953898cb9591a173a3cef753a451b8729896196bc0a/apigee/images/lockup.svg"
+        },
+        {
+          "cardCustomizationId": "113",
+          "customType": "bgColor",
+          "customValue": "#ef39dc"
+        }
+      ]
+    }
+  ]
+}

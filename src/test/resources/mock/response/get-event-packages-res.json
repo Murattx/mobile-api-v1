@@ -1,0 +1,665 @@
+{
+    "metadata": {
+        "resource": "events/packages",
+        "recordCount": 6
+    },
+    "packages": [
+        {
+            "packageName": "Birthday Your Way 1",
+            "pricing": "$15.99",
+            "subPackages": [
+                {
+                    "packageCode": "ltt6MWBkZKSIpy4W829Tt4G05lJvGRmuzOJIwjFkt1-IKpGOnPXdiooEZQzz22S9",
+                    "packageName": "Birthday Your Way 1",
+                    "packageNumber": "BYW1",
+                    "packageType": "Birthday Packages",
+                    "description": "*Choice of One Activity",
+                    "availableTimeFrom": "09:30 AM",
+                    "availableTimeTo": "07:30 PM",
+                    "pricingSummary": "$15.99",
+                    "maxNumOptionalFunctions": "3",
+                    "minNumOptionalFunctions": "1",
+                    "minAttendance": "1",
+                    "maxAttendance": "9999",
+                    "functions": [
+                        {
+                            "functionId": "ed6917f0-f525-4e8d-b6cd-97ca9570ad5e",
+                            "anchored": "false",
+                            "name": "Karaoke",
+                            "activityType": "Karaoke",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "30"
+                        },
+                        {
+                            "functionId": "0730f5bd-fd1d-4c6c-bfac-c3c2cec7e9c6",
+                            "anchored": "false",
+                            "name": "Bowling 1 Hour",
+                            "activityType": "Bowling 1 Hour",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "60"
+                        },
+                        {
+                            "functionId": "f667889d-cf71-4435-847a-3ad0c27e9162",
+                            "anchored": "false",
+                            "name": "Laser Tag",
+                            "activityType": "Laser Tag",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "15"
+                        },
+                        {
+                            "functionId": "826dd09d-7b3d-4144-910c-d65a5a988265",
+                            "anchored": "false",
+                            "name": "Bocce 1 Hour",
+                            "activityType": "Bocce 1 Hour",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "60"
+                        }
+                    ]
+                },
+                {
+                    "packageCode": "ltt6MWBkZKSIpy4W829Tt6f-ipvU9qq4BEENaUy704eIKpGOnPXdiooEZQzz22S9",
+                    "packageName": "Birthday Your Way 1 with Fun Card as Activity",
+                    "packageNumber": "BYW1FC",
+                    "packageType": "Birthday Packages",
+                    "description": "*Choice of One Activity",
+                    "availableTimeFrom": "09:30 AM",
+                    "availableTimeTo": "07:30 PM",
+                    "pricingSummary": "$15.99",
+                    "maxNumOptionalFunctions": "2",
+                    "minNumOptionalFunctions": "0",
+                    "minAttendance": "1",
+                    "maxAttendance": "9999",
+                    "functions": []
+                }
+            ]
+        },
+        {
+            "packageName": "Birthday Your Way 2",
+            "pricing": "$20.99",
+            "subPackages": [
+                {
+                    "packageCode": "ltt6MWBkZKSIpy4W829Tt3sixYv6ikoEOORh_Gjq1quIKpGOnPXdiooEZQzz22S9",
+                    "packageName": "Birthday Your Way 2",
+                    "packageNumber": "BYW2",
+                    "packageType": "Birthday Packages",
+                    "description": "*Choice of Two Activities",
+                    "availableTimeFrom": "09:30 AM",
+                    "availableTimeTo": "07:30 PM",
+                    "pricingSummary": "$20.99",
+                    "maxNumOptionalFunctions": "4",
+                    "minNumOptionalFunctions": "2",
+                    "minAttendance": "1",
+                    "maxAttendance": "9999",
+                    "functions": [
+                        {
+                            "functionId": "eb1ec676-9734-449a-ade9-7ddf884fb775",
+                            "anchored": "false",
+                            "name": "Karaoke",
+                            "activityType": "Karaoke",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "30"
+                        },
+                        {
+                            "functionId": "c770b291-acde-4f22-ab0f-b4d1a71d129c",
+                            "anchored": "false",
+                            "name": "Bowling 1 Hour",
+                            "activityType": "Bowling 1 Hour",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "60"
+                        },
+                        {
+                            "functionId": "6b34b84c-c4b4-4555-94df-4b22bad391e6",
+                            "anchored": "false",
+                            "name": "Laser Tag",
+                            "activityType": "Laser Tag",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "15"
+                        },
+                        {
+                            "functionId": "c0c8b9f2-004b-4fba-bf53-6e409080c3a1",
+                            "anchored": "false",
+                            "name": "Bocce 1 Hour",
+                            "activityType": "Bocce 1 Hour",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "60"
+                        }
+                    ]
+                },
+                {
+                    "packageCode": "ltt6MWBkZKSIpy4W829Ttw0s0Y9Lg8ZL4p5qbRr02BiIKpGOnPXdiooEZQzz22S9",
+                    "packageName": "Birthday Your Way 2 with Fun Card as One Activity",
+                    "packageNumber": "BYW2FC",
+                    "packageType": "Birthday Packages",
+                    "description": "*Choice of Two Activities",
+                    "availableTimeFrom": "09:30 AM",
+                    "availableTimeTo": "07:30 PM",
+                    "pricingSummary": "$20.99",
+                    "maxNumOptionalFunctions": "3",
+                    "minNumOptionalFunctions": "1",
+                    "minAttendance": "1",
+                    "maxAttendance": "9999",
+                    "functions": [
+                        {
+                            "functionId": "680db01b-38eb-42a7-953b-2c5faab6dc29",
+                            "anchored": "false",
+                            "name": "Bowling 1 Hour",
+                            "activityType": "Bowling 1 Hour",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "60"
+                        },
+                        {
+                            "functionId": "2d0507ac-0ec1-4eb0-b242-67d658cd7f43",
+                            "anchored": "false",
+                            "name": "Bocce 1 Hour",
+                            "activityType": "Bocce 1 Hour",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "60"
+                        },
+                        {
+                            "functionId": "96b21d7e-8177-4f7d-8e0c-81c5a425119e",
+                            "anchored": "false",
+                            "name": "Laser Tag",
+                            "activityType": "Laser Tag",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "15"
+                        },
+                        {
+                            "functionId": "14db6d6b-0419-4175-a21f-66cd8004b8fe",
+                            "anchored": "false",
+                            "name": "Karaoke",
+                            "activityType": "Karaoke",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "30"
+                        }
+                    ]
+                },
+                {
+                    "packageCode": "ltt6MWBkZKSIpy4W829TtwUWnMhniG9eIGVOfTyMfL2IKpGOnPXdiooEZQzz22S9",
+                    "packageName": "Birthday Your Way 2 with Fun Card as Two Activities",
+                    "packageNumber": "BYW2FC2",
+                    "packageType": "Birthday Packages",
+                    "description": "*Choice of Two Activities",
+                    "availableTimeFrom": "09:30 AM",
+                    "availableTimeTo": "07:30 PM",
+                    "pricingSummary": "$20.99",
+                    "maxNumOptionalFunctions": "2",
+                    "minNumOptionalFunctions": "0",
+                    "minAttendance": "1",
+                    "maxAttendance": "9999",
+                    "functions": []
+                }
+            ]
+        },
+        {
+            "packageName": "Birthday Your Way 3",
+            "pricing": "$25.99",
+            "subPackages": [
+                {
+                    "packageCode": "ltt6MWBkZKSIpy4W829Tt5o5iqXhEDQ_szNhxNO2PruIKpGOnPXdiooEZQzz22S9",
+                    "packageName": "Birthday Your Way 3",
+                    "packageNumber": "BYW3",
+                    "packageType": "Birthday Packages",
+                    "description": "*Choice of Three Activities",
+                    "availableTimeFrom": "09:30 AM",
+                    "availableTimeTo": "07:30 PM",
+                    "pricingSummary": "$25.99",
+                    "maxNumOptionalFunctions": "5",
+                    "minNumOptionalFunctions": "3",
+                    "minAttendance": "1",
+                    "maxAttendance": "9999",
+                    "functions": [
+                        {
+                            "functionId": "39746d8f-452a-4de2-95bf-7bc294354f5d",
+                            "anchored": "false",
+                            "name": "Bocce 1 Hour",
+                            "activityType": "Bocce 1 Hour",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "60"
+                        },
+                        {
+                            "functionId": "019a4afc-7341-43dd-9920-35ac989d2055",
+                            "anchored": "false",
+                            "name": "Bowling 1 Hour",
+                            "activityType": "Bowling 1 Hour",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "60"
+                        },
+                        {
+                            "functionId": "4527057e-9246-422a-9c77-8d1e08d35f94",
+                            "anchored": "false",
+                            "name": "Karaoke",
+                            "activityType": "Karaoke",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "30"
+                        },
+                        {
+                            "functionId": "c81732fc-e4d7-4fae-9903-e5419094cc81",
+                            "anchored": "false",
+                            "name": "Laser Tag",
+                            "activityType": "Laser Tag",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "15"
+                        }
+                    ]
+                },
+                {
+                    "packageCode": "ltt6MWBkZKSIpy4W829Tt5-JRp_PN7O67py06eC4l8WIKpGOnPXdiooEZQzz22S9",
+                    "packageName": "Birthday Your Way 3 with Fun Card as One Activity",
+                    "packageNumber": "BYW3FC",
+                    "packageType": "Birthday Packages",
+                    "description": "*Choice of Three Activities",
+                    "availableTimeFrom": "09:30 AM",
+                    "availableTimeTo": "07:30 PM",
+                    "pricingSummary": "$25.99",
+                    "maxNumOptionalFunctions": "4",
+                    "minNumOptionalFunctions": "2",
+                    "minAttendance": "1",
+                    "maxAttendance": "9999",
+                    "functions": [
+                        {
+                            "functionId": "55a01d19-b2b5-41b6-aeec-ceff68a136fa",
+                            "anchored": "false",
+                            "name": "Karaoke",
+                            "activityType": "Karaoke",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "30"
+                        },
+                        {
+                            "functionId": "737b6daf-9e81-43f3-be1a-5d074493f563",
+                            "anchored": "false",
+                            "name": "Bowling 1 Hour",
+                            "activityType": "Bowling 1 Hour",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "60"
+                        },
+                        {
+                            "functionId": "3f45c1e5-b831-4766-8f5d-4f2b6dc3a7f9",
+                            "anchored": "false",
+                            "name": "Laser Tag",
+                            "activityType": "Laser Tag",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "15"
+                        },
+                        {
+                            "functionId": "6ea54196-e115-487f-b61e-79685cff06a0",
+                            "anchored": "false",
+                            "name": "Bocce 1 Hour",
+                            "activityType": "Bocce 1 Hour",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "60"
+                        }
+                    ]
+                },
+                {
+                    "packageCode": "ltt6MWBkZKSIpy4W829Tt15x2rKpyE1iBTp7NP4h37SIKpGOnPXdiooEZQzz22S9",
+                    "packageName": "Birthday Your Way 3 with Fun Card as Two Activities",
+                    "packageNumber": "BYW3FC2",
+                    "packageType": "Birthday Packages",
+                    "description": "*Choice of Three Activities",
+                    "availableTimeFrom": "09:30 AM",
+                    "availableTimeTo": "07:30 PM",
+                    "pricingSummary": "$25.99",
+                    "maxNumOptionalFunctions": "3",
+                    "minNumOptionalFunctions": "1",
+                    "minAttendance": "1",
+                    "maxAttendance": "9999",
+                    "functions": [
+                        {
+                            "functionId": "4cbf2664-3ff0-4694-926c-64e85ebfb8e9",
+                            "anchored": "false",
+                            "name": "Karaoke",
+                            "activityType": "Karaoke",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "30"
+                        },
+                        {
+                            "functionId": "13c0da60-6277-4bfb-93ac-888c557d0352",
+                            "anchored": "false",
+                            "name": "Laser Tag",
+                            "activityType": "Laser Tag",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "15"
+                        },
+                        {
+                            "functionId": "10e79383-e027-4db8-94f0-8c62a232db8e",
+                            "anchored": "false",
+                            "name": "Bowling 1 Hour",
+                            "activityType": "Bowling 1 Hour",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "60"
+                        },
+                        {
+                            "functionId": "5ac50435-de43-4699-be1f-c571d1f3ff94",
+                            "anchored": "false",
+                            "name": "Bocce 1 Hour",
+                            "activityType": "Bocce 1 Hour",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "60"
+                        }
+                    ]
+                },
+                {
+                    "packageCode": "ltt6MWBkZKSIpy4W829TtyQfQaceGglUWoC8i0aCrieIKpGOnPXdiooEZQzz22S9",
+                    "packageName": "Birthday Your Way 3 with Fun Card as Three Activities",
+                    "packageNumber": "BYW3FC3",
+                    "packageType": "Birthday Packages",
+                    "description": "*Choice of Three Activities",
+                    "availableTimeFrom": "09:30 AM",
+                    "availableTimeTo": "07:30 PM",
+                    "pricingSummary": "$25.99",
+                    "maxNumOptionalFunctions": "2",
+                    "minNumOptionalFunctions": "0",
+                    "minAttendance": "1",
+                    "maxAttendance": "9999",
+                    "functions": []
+                }
+            ]
+        },
+        {
+            "packageName": "The Ultimate Gamer",
+            "pricing": "$24.99",
+            "subPackages": [
+                {
+                    "packageCode": "ltt6MWBkZKSIpy4W829Tt-btJZ9QLoClgZqPkWiP5omIKpGOnPXdiooEZQzz22S9",
+                    "packageName": "The Ultimate Gamer",
+                    "packageNumber": "UG",
+                    "packageType": "Birthday Packages",
+                    "description": null,
+                    "availableTimeFrom": "09:30 AM",
+                    "availableTimeTo": "07:30 PM",
+                    "pricingSummary": "$24.99",
+                    "maxNumOptionalFunctions": "3",
+                    "minNumOptionalFunctions": "0",
+                    "minAttendance": "1",
+                    "maxAttendance": "9999",
+                    "functions": [
+                        {
+                            "functionId": "b0d66ec3-c481-4060-89fa-276f64dcbef7",
+                            "anchored": "false",
+                            "name": "Laser Tag",
+                            "activityType": "Laser Tag",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "15"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "packageName": "The Main Event",
+            "pricing": "$29.99",
+            "subPackages": [
+                {
+                    "packageCode": "ltt6MWBkZKSIpy4W829Tt912CZANkIzxEh3Pl9288FeIKpGOnPXdiooEZQzz22S9",
+                    "packageName": "The Main Event",
+                    "packageNumber": "TME",
+                    "packageType": "Birthday Packages",
+                    "description": "*Choice of Four Activities",
+                    "availableTimeFrom": "09:30 AM",
+                    "availableTimeTo": "07:30 PM",
+                    "pricingSummary": "$29.99",
+                    "maxNumOptionalFunctions": "6",
+                    "minNumOptionalFunctions": "4",
+                    "minAttendance": "1",
+                    "maxAttendance": "9999",
+                    "functions": [
+                        {
+                            "functionId": "35464f69-7c14-4a6d-85ea-a5181feec254",
+                            "anchored": "false",
+                            "name": "Bocce 1 Hour",
+                            "activityType": "Bocce 1 Hour",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "60"
+                        },
+                        {
+                            "functionId": "0dcb6f4e-d611-4b41-adcd-25bcbf6fd1c0",
+                            "anchored": "false",
+                            "name": "Karaoke",
+                            "activityType": "Karaoke",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "30"
+                        },
+                        {
+                            "functionId": "bc603740-4846-4ac5-ab98-7c017f810d65",
+                            "anchored": "false",
+                            "name": "Bowling 1 Hour",
+                            "activityType": "Bowling 1 Hour",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "60"
+                        },
+                        {
+                            "functionId": "b31420b4-b7b0-4b19-88d1-b3a28671206b",
+                            "anchored": "false",
+                            "name": "Laser Tag",
+                            "activityType": "Laser Tag",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "15"
+                        }
+                    ]
+                },
+                {
+                    "packageCode": "ltt6MWBkZKSIpy4W829Tt2fyXK7MQ4NisSrcf6STapuIKpGOnPXdiooEZQzz22S9",
+                    "packageName": "The Main Event with Fun Card as One Activity",
+                    "packageNumber": "TMEFC",
+                    "packageType": "Birthday Packages",
+                    "description": "Choice of Four Activities",
+                    "availableTimeFrom": "09:30 AM",
+                    "availableTimeTo": "07:30 PM",
+                    "pricingSummary": "$29.99",
+                    "maxNumOptionalFunctions": "5",
+                    "minNumOptionalFunctions": "3",
+                    "minAttendance": "1",
+                    "maxAttendance": "9999",
+                    "functions": [
+                        {
+                            "functionId": "5c8990b8-3641-4c65-8c8e-811e948bed22",
+                            "anchored": "false",
+                            "name": "Karaoke",
+                            "activityType": "Karaoke",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "30"
+                        },
+                        {
+                            "functionId": "fb688ebc-44b3-4781-b56b-04fced73d1a8",
+                            "anchored": "false",
+                            "name": "Laser Tag",
+                            "activityType": "Laser Tag",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "15"
+                        },
+                        {
+                            "functionId": "696b117f-032d-4923-ba83-0bd04b68f348",
+                            "anchored": "false",
+                            "name": "Bowling 1 Hour",
+                            "activityType": "Bowling 1 Hour",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "60"
+                        }
+                    ]
+                },
+                {
+                    "packageCode": "ltt6MWBkZKSIpy4W829Ttw5uzV8Ert-Tly5zAl7Yu2uIKpGOnPXdiooEZQzz22S9",
+                    "packageName": "The Main Event with Fun Card as Two Activities",
+                    "packageNumber": "TMEFC2",
+                    "packageType": "Birthday Packages",
+                    "description": "Choice of Four Activities",
+                    "availableTimeFrom": "09:30 AM",
+                    "availableTimeTo": "07:30 PM",
+                    "pricingSummary": "$29.99",
+                    "maxNumOptionalFunctions": "4",
+                    "minNumOptionalFunctions": "2",
+                    "minAttendance": "1",
+                    "maxAttendance": "9999",
+                    "functions": [
+                        {
+                            "functionId": "f7e5ed4b-2d72-4da1-876a-7cdc247990a5",
+                            "anchored": "false",
+                            "name": "Laser Tag",
+                            "activityType": "Laser Tag",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "15"
+                        },
+                        {
+                            "functionId": "f85e3263-a898-4a79-ab6f-81a89f4eeefd",
+                            "anchored": "false",
+                            "name": "Karaoke",
+                            "activityType": "Karaoke",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "30"
+                        },
+                        {
+                            "functionId": "2d23d490-42cd-48be-804c-9ef032aa8fa6",
+                            "anchored": "false",
+                            "name": "Bowling 1 Hour",
+                            "activityType": "Bowling 1 Hour",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "60"
+                        },
+                        {
+                            "functionId": "8e5685e9-d71c-4a0a-8bb3-5b1cb55d45da",
+                            "anchored": "false",
+                            "name": "Bocce 1 Hour",
+                            "activityType": "Bocce 1 Hour",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "60"
+                        }
+                    ]
+                },
+                {
+                    "packageCode": "ltt6MWBkZKSIpy4W829Ttxisd4BbdRJCz3D2iJEzWnyIKpGOnPXdiooEZQzz22S9",
+                    "packageName": "The Main Event with Fun Card as Three Activities",
+                    "packageNumber": "TMEFC3",
+                    "packageType": "Birthday Packages",
+                    "description": "Choice of Four Activities",
+                    "availableTimeFrom": "09:30 AM",
+                    "availableTimeTo": "07:30 PM",
+                    "pricingSummary": "$29.99",
+                    "maxNumOptionalFunctions": "3",
+                    "minNumOptionalFunctions": "1",
+                    "minAttendance": "1",
+                    "maxAttendance": "9999",
+                    "functions": [
+                        {
+                            "functionId": "dd90e605-f21d-47ff-862a-911c8364f0ea",
+                            "anchored": "false",
+                            "name": "Bocce 1 Hour",
+                            "activityType": "Bocce 1 Hour",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "60"
+                        },
+                        {
+                            "functionId": "3786ea9b-11d6-4c5a-9223-55f1f8857fd7",
+                            "anchored": "false",
+                            "name": "Laser Tag",
+                            "activityType": "Laser Tag",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "15"
+                        },
+                        {
+                            "functionId": "b0991ea3-ddc0-4061-87dd-f4795320faca",
+                            "anchored": "false",
+                            "name": "Bowling 1 Hour",
+                            "activityType": "Bowling 1 Hour",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "60"
+                        },
+                        {
+                            "functionId": "0c768a83-5b30-46dd-a591-7dbce3efecc9",
+                            "anchored": "false",
+                            "name": "Karaoke",
+                            "activityType": "Karaoke",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "30"
+                        }
+                    ]
+                },
+                {
+                    "packageCode": "ltt6MWBkZKSIpy4W829Tt2X5w7oXDilNdqhPA0ituTaIKpGOnPXdiooEZQzz22S9",
+                    "packageName": "The Main Event with Fun Card as Four Activities",
+                    "packageNumber": "TMEFC4",
+                    "packageType": "Birthday Packages",
+                    "description": "Choice of Four Activities",
+                    "availableTimeFrom": "09:30 AM",
+                    "availableTimeTo": "07:30 PM",
+                    "pricingSummary": "$29.99",
+                    "maxNumOptionalFunctions": "2",
+                    "minNumOptionalFunctions": "0",
+                    "minAttendance": "1",
+                    "maxAttendance": "9999",
+                    "functions": []
+                }
+            ]
+        },
+        {
+            "packageName": "Teen All Access",
+            "pricing": "$27.99",
+            "subPackages": [
+                {
+                    "packageCode": "ltt6MWBkZKSIpy4W829TtxqeoFdoO3peYCRN1hD9BbGIKpGOnPXdiooEZQzz22S9",
+                    "packageName": "Teen All Access",
+                    "packageNumber": "TAA",
+                    "packageType": "Birthday Packages",
+                    "description": null,
+                    "availableTimeFrom": "09:30 AM",
+                    "availableTimeTo": "07:30 PM",
+                    "pricingSummary": "$27.99",
+                    "maxNumOptionalFunctions": "2",
+                    "minNumOptionalFunctions": "0",
+                    "minAttendance": "1",
+                    "maxAttendance": "9999",
+                    "functions": [
+                        {
+                            "functionId": "93d0b00e-0d56-4517-b668-8d2fca5bf93d",
+                            "anchored": "false",
+                            "name": "Bowling 1 Hour",
+                            "activityType": "Bowling 1 Hour",
+                            "locations": [],
+                            "startOffsetMinutes": "2147483647",
+                            "durationMinutes": "60"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

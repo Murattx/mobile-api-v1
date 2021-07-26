@@ -1,0 +1,437 @@
+  {
+  "metadata": {
+    "resource": "centers/products",
+    "recordCount": 4
+  },
+  "products": [
+    {
+      "id": 112,
+      "name": "$10 FUNCard Revalue",
+      "type": "digital",
+      "sku": "FCR-10",
+      "description": "<p>Add $10 to specified FUNCard</p>",
+      "price": 10,
+      "costPrice": 0,
+      "retailPrice": 0,
+      "salePrice": 0,
+      "mapPrice": 0,
+      "taxClassId": 0,
+      "productTaxCode": "",
+      "calculatedPrice": 10,
+      "categories": [
+        23
+      ],
+      "brandId": 0,
+      "optionSetId": 18,
+      "optionSetDisplay": "right",
+      "inventoryLevel": 0,
+      "inventoryWarningLevel": 0,
+      "inventoryTracking": "none",
+      "reviewsRatingSum": 0,
+      "reviewsCount": 0,
+      "totalSold": 0,
+      "fixedCostShippingPrice": 0,
+      "isFreeShipping": false,
+      "isVisible": true,
+      "isFeatured": false,
+      "relatedProducts": [
+        -1
+      ],
+      "searchKeywords": "",
+      "availability": "available",
+      "availabilityDescription": "",
+      "sortOrder": 0,
+      "pageTitle": "$10 FUNCard Revalue",
+      "metaKeywords": [
+        
+      ],
+      "metaDescription": "",
+      "dateCreated": "2020-09-04T14:27:06+00:00",
+      "dateModified": "2020-09-13T19:47:35+00:00",
+      "isPriceHidden": false,
+      "priceHiddenLabel": "",
+      "customUrl": {
+        "url": "/10-funcard-revalue/",
+        "isCustomized": false
+      },
+      "baseVariantId": 77,
+      "variants": [
+        {
+          "id": 77,
+          "productId": 112,
+          "sku": "FCR-10",
+          "skuId": null,
+          "price": 10,
+          "calculatedPrice": 10,
+          "salePrice": 0,
+          "retailPrice": 0,
+          "purchasingDisabled": false,
+          "purchasingDisabledMessage": "",
+          "imageUrl": "",
+          "costPrice": 0,
+          "optionValues": [
+            
+          ]
+        }
+      ],
+      "images": [
+        
+      ],
+      "primaryImage": null,
+      "videos": [
+        
+      ],
+      "customFields": [
+        
+      ],
+      "bulkPricingRules": [
+        
+      ],
+      "options": [
+        
+      ],
+      "modifiers": [
+        {
+          "id": 114,
+          "productId": 112,
+          "name": "funcard_revalue_input1600346070-112",
+          "displayName": "funcard_revalue_input",
+          "type": "text",
+          "required": true,
+          "sortOrder": 1,
+          "config": {
+            "defaultValue": "",
+            "textCharactersLimited": false,
+            "textMinLength": 0,
+            "textMaxLength": 0
+          },
+          "optionValues": [
+            
+          ]
+        }
+      ]
+    },
+    {
+      "id": 113,
+      "name": "Reservation",
+      "type": "digital",
+      "sku": "RESERVATION",
+      "description": "<p>Reservation product, depending on center venue availbilities and input requests types can potentially be used with bowling, laser tag, gravity ropes, billiards...etc.</p>\n<p>Currently Bowling reservation is available.</p>",
+      "price": 1,
+      "costPrice": 0,
+      "retailPrice": 0,
+      "salePrice": 0,
+      "mapPrice": 0,
+      "taxClassId": 4,
+      "productTaxCode": "",
+      "calculatedPrice": 1,
+      "categories": [
+        24
+      ],
+      "brandId": 0,
+      "optionSetId": 17,
+      "optionSetDisplay": "right",
+      "inventoryLevel": 0,
+      "inventoryWarningLevel": 0,
+      "inventoryTracking": "none",
+      "reviewsRatingSum": 0,
+      "reviewsCount": 0,
+      "totalSold": 2,
+      "fixedCostShippingPrice": 0,
+      "isFreeShipping": false,
+      "isVisible": true,
+      "isFeatured": false,
+      "relatedProducts": [
+        -1
+      ],
+      "searchKeywords": "",
+      "availability": "available",
+      "availabilityDescription": "",
+      "sortOrder": 0,
+      "pageTitle": "Reservation",
+      "metaKeywords": [
+        
+      ],
+      "metaDescription": "",
+      "dateCreated": "2020-09-09T18:25:33+00:00",
+      "dateModified": "2020-09-17T12:56:47+00:00",
+      "isPriceHidden": false,
+      "priceHiddenLabel": "",
+      "customUrl": {
+        "url": "/bowling-reservation/",
+        "isCustomized": false
+      },
+      "baseVariantId": 78,
+      "variants": [
+        {
+          "id": 78,
+          "productId": 113,
+          "sku": "RESERVATION",
+          "skuId": null,
+          "price": 1,
+          "calculatedPrice": 1,
+          "salePrice": 0,
+          "retailPrice": 0,
+          "mapPrice": 0,
+          "purchasingDisabled": false,
+          "purchasingDisabledMessage": "",
+          "imageUrl": "",
+          "costPrice": 0,
+          "optionValues": [
+            
+          ]
+        }
+      ],
+      "images": [
+        
+      ],
+      "primaryImage": null,
+      "videos": [
+        
+      ],
+      "customFields": [
+        
+      ],
+      "bulkPricingRules": [
+        
+      ],
+      "options": [
+        
+      ],
+      "modifiers": [
+        {
+          "id": 113,
+          "productId": 113,
+          "name": "reserve_payload1599675934-113",
+          "displayName": "reserve_payload",
+          "type": "text",
+          "required": false,
+          "sortOrder": 0,
+          "config": {
+            "defaultValue": "",
+            "textCharactersLimited": false,
+            "textMinLength": 0,
+            "textMaxLength": 0
+          },
+          "optionValues": [
+            
+          ]
+        }
+      ]
+    },
+    {
+      "id": 114,
+      "name": "FUNcard Add-On",
+      "type": "digital",
+      "sku": "RESERVATION-FUNCARD",
+      "description": "<p>Reservation add-on FunCards, price and quantity should be adjusted as needed before adding into cart based on request needs.</p>",
+      "price": 10,
+      "costPrice": 0,
+      "retailPrice": 0,
+      "salePrice": 0,
+      "mapPrice": 0,
+      "taxClassId": 0,
+      "productTaxCode": "",
+      "calculatedPrice": 10,
+      "categories": [
+        24
+      ],
+      "brandId": 0,
+      "optionSetId": 19,
+      "optionSetDisplay": "right",
+      "inventoryLevel": 0,
+      "inventoryWarningLevel": 0,
+      "inventoryTracking": "none",
+      "reviewsRatingSum": 0,
+      "reviewsCount": 0,
+      "totalSold": 0,
+      "fixedCostShippingPrice": 0,
+      "isFreeShipping": false,
+      "isVisible": true,
+      "isFeatured": false,
+      "relatedProducts": [
+        -1
+      ],
+      "searchKeywords": "",
+      "availability": "available",
+      "availabilityDescription": "",
+      "sortOrder": 0,
+      "pageTitle": "FUNcard Add-On",
+      "metaKeywords": [
+        
+      ],
+      "metaDescription": "",
+      "dateCreated": "2020-09-17T12:51:31+00:00",
+      "dateModified": "2020-09-17T12:58:39+00:00",
+      "isPriceHidden": false,
+      "priceHiddenLabel": "",
+      "customUrl": {
+        "url": "/reservation/funcard/",
+        "isCustomized": true
+      },
+      "baseVariantId": 79,
+      "variants": [
+        {
+          "id": 79,
+          "productId": 114,
+          "sku": "RESERVATION-FUNCARD",
+          "skuId": null,
+          "price": 10,
+          "calculatedPrice": 10,
+          "salePrice": 0,
+          "retailPrice": 0,
+          "mapPrice": 0,
+          "purchasingDisabled": false,
+          "purchasingDisabledMessage": "",
+          "imageUrl": "",
+          "costPrice": 0,
+          "optionValues": [
+            
+          ]
+        }
+      ],
+      "images": [
+        
+      ],
+      "primaryImage": null,
+      "videos": [
+        
+      ],
+      "customFields": [
+        
+      ],
+      "bulkPricingRules": [
+        
+      ],
+      "options": [
+        
+      ],
+      "modifiers": [
+        {
+          "id": 115,
+          "productId": 114,
+          "name": "reservation-funcard-addon-input1600347092-114",
+          "displayName": "reservation-funcard-addon-input",
+          "type": "text",
+          "required": true,
+          "sortOrder": 0,
+          "config": {
+            "defaultValue": "",
+            "textCharactersLimited": false,
+            "textMinLength": 0,
+            "textMaxLength": 0
+          },
+          "optionValues": [
+            
+          ]
+        }
+      ]
+    },
+    {
+      "id": 115,
+      "name": "Bowling Shoes Add-On",
+      "type": "digital",
+      "sku": "RESERVATION-BOWL-SHOES",
+      "description": "<p>Shoes add-on for a reservation. Depending on shoes types (adults or kids...etc.), price and quantity can be adjusted before adding into a cart.</p>",
+      "price": 4.25,
+      "costPrice": 0,
+      "retailPrice": 0,
+      "salePrice": 0,
+      "mapPrice": 0,
+      "taxClassId": 4,
+      "productTaxCode": "",
+      "calculatedPrice": 4.25,
+      "categories": [
+        24
+      ],
+      "brandId": 0,
+      "optionSetId": 20,
+      "optionSetDisplay": "right",
+      "inventoryLevel": 0,
+      "inventoryWarningLevel": 0,
+      "inventoryTracking": "none",
+      "reviewsRatingSum": 0,
+      "reviewsCount": 0,
+      "totalSold": 0,
+      "fixedCostShippingPrice": 0,
+      "isFreeShipping": false,
+      "isVisible": true,
+      "isFeatured": false,
+      "relatedProducts": [
+        -1
+      ],
+      "searchKeywords": "",
+      "availability": "available",
+      "availabilityDescription": "",
+      "sortOrder": 0,
+      "pageTitle": "Bowling Shoes Add-On",
+      "metaKeywords": [
+        
+      ],
+      "metaDescription": "",
+      "dateCreated": "2020-09-17T13:04:29+00:00",
+      "dateModified": "2020-09-17T13:04:29+00:00",
+      "isPriceHidden": false,
+      "priceHiddenLabel": "",
+      "customUrl": {
+        "url": "/reservation/bowling-shoes-add-on/",
+        "isCustomized": true
+      },
+      "baseVariantId": 80,
+      "variants": [
+        {
+          "id": 80,
+          "productId": 115,
+          "sku": "RESERVATION-BOWL-SHOES",
+          "skuId": null,
+          "price": 4.25,
+          "calculatedPrice": 4.25,
+          "salePrice": 0,
+          "retailPrice": 0,
+          "mapPrice": 0,
+          "purchasingDisabled": false,
+          "purchasingDisabledMessage": "",
+          "imageUrl": "",
+          "optionValues": [
+          ]
+        }
+      ],
+      "images": [
+        
+      ],
+      "primaryImage": null,
+      "videos": [
+        
+      ],
+      "customFields": [
+        
+      ],
+      "bulkPricingRules": [
+        
+      ],
+      "options": [
+        
+      ],
+      "modifiers": [
+        {
+          "id": 116,
+          "productId": 115,
+          "name": "shoes-addon-input1600347870-115",
+          "displayName": "shoes-addon-input",
+          "type": "text",
+          "required": true,
+          "sortOrder": 0,
+          "config": {
+            "defaultValue": "",
+            "textCharactersLimited": false,
+            "textMinLength": 0,
+            "textMaxLength": 0
+          },
+          "optionValues": [
+            
+          ]
+        }
+      ]
+    }
+  ]
+}

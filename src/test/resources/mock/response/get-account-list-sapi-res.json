@@ -1,0 +1,39 @@
+{
+  "metadata": {
+    "resource": "accounts",
+    "recordCount": 1
+  },
+  "accounts": [
+    {
+      "accountId": "0AE68621-2BEC-48CC-BCD0-E496A2E3337A",
+      "idpUid": "00u11qf0zJDCNW6cD1d6",
+      "customerId": null,
+      "username": "chishiuanlu@gmail.com",
+      "email": "chishiuanlu@gmail.com",
+      "firstName": "CHIWAWA",
+      "lastName": "LULILU",
+      "gender": "M",
+      "birthday": "09/04     ",
+      "emailVerified": true,
+      "phone1": "214-998-7856",
+      "phone1IsMobile": true,
+      "phone2": "214-554-1172",
+      "phone2IsMobile": true,
+      "addressLine1": "5445 Legacy Dr",
+      "addressLine2": "#400",
+      "city": "Plano",
+      "state": "TX",
+      "zipCode": "75070",
+      "country": "US",
+      "createdTimestamp": "2020-08-19T22:12:59",
+      "createdBy": "Okta",
+      "lastUpdatedTimestamp": "2020-12-07T01:54:16.677",
+      "lastUpdatedBy": "Patch transaction:e82e4a4d-b098-4df2-bbae-1cdfa3e89815",
+      "scopes": "apigw,openid,profile,email,address,phone,offline_access",
+      "claims": "sub,mid,eid",
+      "status": "ACTIVE",
+      "timezone": "America/Chicago",
+      "personalBarcode": "00u2jngd3stBK6Dz91d"
+    }
+  ]
+}

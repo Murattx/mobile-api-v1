@@ -1,0 +1,9 @@
+{
+  "accountId": "0AE68621-2BEC-48CC-BCD0-E496A2E3337A",
+  "smsOptIn": true,
+  "emailOptIn": true,
+  "pushNotificationOptIn": true,
+  "socialOptIn": false,
+  "favoriteVenue": "bowling",
+  "favoriteArcadeGame": "pacman"
+}

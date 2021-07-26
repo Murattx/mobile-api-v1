@@ -1,0 +1,419 @@
+{
+	"metadata": {
+		"resource": "booking-proc-events",
+		"recordCount": 2
+	},
+	"packages": [
+		{
+			"packageName": "Birthday Your Way 1",
+			"pricing": "$15.99",
+			"subPackages": [
+			    {
+			      "packageCode": "ltt6MWBkZKSIpy4W829Tt6yajZXlPBbBN-wr1HJVQeoMJSKNTcUiPAN3UZ97e4pF",
+			      "packageName": "Birthday Your Way 1",
+			      "packageNumber": "BYW1",
+			      "packageType": "Birthday Packages",
+			      "description": "*Choice of One Activity",
+			      "availableTimeFrom": "09:30 AM",
+			      "availableTimeTo": "07:30 PM",
+			      "pricingSummary": "$15.99",
+			      "maxNumOptionalFunctions": 3,
+			      "minNumOptionalFunctions": 1,
+			      "minAttendance": 1,
+			      "maxAttendance": 9999,
+			      "functions": [
+			        {
+			          "functionId": "57cf84e1-93e2-4df6-8e10-5cc0c1d91e93",
+			          "anchored": true,
+			          "name": "FunCard",
+			          "activityType": "",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 0,
+			          "durationMinutes": 60
+			        },
+			        {
+			          "functionId": "e17270b0-8075-4b51-b1ba-58d8fdbcd1a5",
+			          "anchored": true,
+			          "name": "Food Service in Party Street",
+			          "activityType": "Party/Meeting 1 Hour",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 60,
+			          "durationMinutes": 60
+			        },
+			        {
+			          "functionId": "ce170c9e-749d-4d59-8c9e-2339644b0b0d",
+			          "anchored": false,
+			          "name": "Mini Golf",
+			          "activityType": "Mini Golf",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 2147483647,
+			          "durationMinutes": 30
+			        },
+			        {
+			          "functionId": "c20a618f-07cf-44a5-9765-1ac5942ed0e3",
+			          "anchored": false,
+			          "name": "Laser Tag",
+			          "activityType": "Laser Tag",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 2147483647,
+			          "durationMinutes": 15
+			        },
+			        {
+			          "functionId": "5f019243-b4c6-4e56-84b8-d79fc3868022",
+			          "anchored": false,
+			          "name": "Gravity Ropes",
+			          "activityType": "Gravity Ropes",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 2147483647,
+			          "durationMinutes": 20
+			        },
+			        {
+			          "functionId": "577a299c-23b7-4f42-a9f8-dc824b81e524",
+			          "anchored": false,
+			          "name": "Bowling 1 Hour",
+			          "activityType": "Bowling 1 Hour",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 2147483647,
+			          "durationMinutes": 60
+			        },
+			        {
+			          "functionId": "ed627f67-5a0f-4e70-8061-095240bb13b2",
+			          "anchored": false,
+			          "name": "Karaoke",
+			          "activityType": "Karaoke",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 2147483647,
+			          "durationMinutes": 60
+			        }
+			      ]
+			    },
+			    {
+			      "packageCode": "ltt6MWBkZKSIpy4W829Tt9OhWAP3-zPSqBL746rf0AkMJSKNTcUiPAN3UZ97e4pF",
+			      "packageName": "Birthday Your Way 1 with Fun Card as Activity",
+			      "packageNumber": "BYW1FC",
+			      "packageType": "Birthday Packages",
+			      "description": "*Choice of One Activity",
+			      "availableTimeFrom": "09:30 AM",
+			      "availableTimeTo": "07:30 PM",
+			      "pricingSummary": "$15.99",
+			      "maxNumOptionalFunctions": 2,
+			      "minNumOptionalFunctions": 0,
+			      "minAttendance": 1,
+			      "maxAttendance": 9999,
+			      "functions": [
+			        {
+			          "functionId": "d0ea3fd5-98d5-4762-9188-7774981341d8",
+			          "anchored": true,
+			          "name": "FunCard",
+			          "activityType": "",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 0,
+			          "durationMinutes": 60
+			        },
+			        {
+			          "functionId": "3689b392-b711-4c31-a2ba-68e9d6b47430",
+			          "anchored": true,
+			          "name": "FunCard",
+			          "activityType": "",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 0,
+			          "durationMinutes": 60
+			        },
+			        {
+			          "functionId": "ae362a15-e0b2-4819-b0f3-478fdea75945",
+			          "anchored": true,
+			          "name": "Food Service in Party Street",
+			          "activityType": "Party/Meeting 1 Hour",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 60,
+			          "durationMinutes": 60
+			        }
+			      ]
+				}
+			]
+		},
+		{
+			"packageName": "Birthday Your Way 2",
+			"pricing": "$20.99",
+			"subPackages": [
+				{
+			      "packageCode": "ltt6MWBkZKSIpy4W829Tt09jrI0hkgw-zQtzCIj-JpgMJSKNTcUiPAN3UZ97e4pF",
+			      "packageName": "Birthday Your Way 2",
+			      "packageNumber": "BYW2",
+			      "packageType": "Birthday Packages",
+			      "description": "*Choice of Two Activities",
+			      "availableTimeFrom": "09:30 AM",
+			      "availableTimeTo": "07:30 PM",
+			      "pricingSummary": "$20.99",
+			      "maxNumOptionalFunctions": 4,
+			      "minNumOptionalFunctions": 2,
+			      "minAttendance": 1,
+			      "maxAttendance": 9999,
+			      "functions": [
+			        {
+			          "functionId": "d05bc088-5179-4f46-ac19-64ce8745a810",
+			          "anchored": true,
+			          "name": "FunCard",
+			          "activityType": "",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 0,
+			          "durationMinutes": 60
+			        },
+			        {
+			          "functionId": "ea594e05-7869-46b0-93fb-f0c71d7683e8",
+			          "anchored": true,
+			          "name": "Food Service in Party Street",
+			          "activityType": "Party/Meeting 1 Hour",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 60,
+			          "durationMinutes": 60
+			        },
+			        {
+			          "functionId": "becbe2c1-ea3f-4f9b-b785-5aeded94fbb5",
+			          "anchored": false,
+			          "name": "Laser Tag",
+			          "activityType": "Laser Tag",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 2147483647,
+			          "durationMinutes": 15
+			        },
+			        {
+			          "functionId": "95b4b024-2e3f-4fdc-a3a4-7e53e2fd495b",
+			          "anchored": false,
+			          "name": "Mini Golf",
+			          "activityType": "Mini Golf",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 2147483647,
+			          "durationMinutes": 30
+			        },
+			        {
+			          "functionId": "3d6b77f8-6633-47ec-9899-bb48ddf2d530",
+			          "anchored": false,
+			          "name": "Karaoke",
+			          "activityType": "Karaoke",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 2147483647,
+			          "durationMinutes": 60
+			        },
+			        {
+			          "functionId": "70582482-06c3-49e8-9a6f-0db891c71f3c",
+			          "anchored": false,
+			          "name": "Bowling 1 Hour",
+			          "activityType": "Bowling 1 Hour",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 2147483647,
+			          "durationMinutes": 60
+			        },
+			        {
+			          "functionId": "f558fa74-eb12-48bf-8c83-a712ee7f470f",
+			          "anchored": false,
+			          "name": "Gravity Ropes",
+			          "activityType": "Gravity Ropes",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 2147483647,
+			          "durationMinutes": 20
+			        }
+			      ]
+			    },
+			    {
+			      "packageCode": "ltt6MWBkZKSIpy4W829Tt3Xs-iRg-LkCQgZ9IjTdfKIMJSKNTcUiPAN3UZ97e4pF",
+			      "packageName": "Birthday Your Way 2 with Fun Card as One Activity",
+			      "packageNumber": "BYW2FC",
+			      "packageType": "Birthday Packages",
+			      "description": "*Choice of Two Activities",
+			      "availableTimeFrom": "09:30 AM",
+			      "availableTimeTo": "07:30 PM",
+			      "pricingSummary": "$20.99",
+			      "maxNumOptionalFunctions": 3,
+			      "minNumOptionalFunctions": 1,
+			      "minAttendance": 1,
+			      "maxAttendance": 9999,
+			      "functions": [
+			        {
+			          "functionId": "4f04b093-66a3-4f8b-9536-0398ab48c0e6",
+			          "anchored": true,
+			          "name": "FunCard",
+			          "activityType": "",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 0,
+			          "durationMinutes": 60
+			        },
+			        {
+			          "functionId": "50477543-6300-4339-aab4-90efb421054d",
+			          "anchored": true,
+			          "name": "FunCard",
+			          "activityType": "",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 0,
+			          "durationMinutes": 60
+			        },
+			        {
+			          "functionId": "9265f331-a83c-4fa8-affb-dc5119eb232e",
+			          "anchored": true,
+			          "name": "Food Service in Party Street",
+			          "activityType": "Party/Meeting 1 Hour",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 60,
+			          "durationMinutes": 60
+			        },
+			        {
+			          "functionId": "973ed68d-03af-40d6-bb90-bcc6264cde53",
+			          "anchored": false,
+			          "name": "Bowling 1 Hour",
+			          "activityType": "Bowling 1 Hour",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 2147483647,
+			          "durationMinutes": 60
+			        },
+			        {
+			          "functionId": "fc89e026-f85b-49a1-abb9-df7101baa7bd",
+			          "anchored": false,
+			          "name": "Karaoke",
+			          "activityType": "Karaoke",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 2147483647,
+			          "durationMinutes": 60
+			        },
+			        {
+			          "functionId": "97d4cd0c-8c4e-4657-9d8d-a17792aa5a3e",
+			          "anchored": false,
+			          "name": "Mini Golf",
+			          "activityType": "Mini Golf",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 2147483647,
+			          "durationMinutes": 30
+			        },
+			        {
+			          "functionId": "7557b77e-e50a-4d7d-854a-828734d04461",
+			          "anchored": false,
+			          "name": "Laser Tag",
+			          "activityType": "Laser Tag",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 2147483647,
+			          "durationMinutes": 15
+			        },
+			        {
+			          "functionId": "b872dd99-c78b-49aa-948f-5dac6f54742b",
+			          "anchored": false,
+			          "name": "Gravity Ropes",
+			          "activityType": "Gravity Ropes",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 2147483647,
+			          "durationMinutes": 20
+			        }
+			      ]
+			    },
+			    {
+			      "packageCode": "ltt6MWBkZKSIpy4W829Tt_fIephFDuEwN3MsxBN5c-EMJSKNTcUiPAN3UZ97e4pF",
+			      "packageName": "Birthday Your Way 2 with Fun Card as Two Activities",
+			      "packageNumber": "BYW2FC2",
+			      "packageType": "Birthday Packages",
+			      "description": "*Choice of Two Activities",
+			      "availableTimeFrom": "09:30 AM",
+			      "availableTimeTo": "07:30 PM",
+			      "pricingSummary": "$20.99",
+			      "maxNumOptionalFunctions": 2,
+			      "minNumOptionalFunctions": 0,
+			      "minAttendance": 1,
+			      "maxAttendance": 9999,
+			      "functions": [
+			        {
+			          "functionId": "1c04fd79-fd4f-4cd3-a9d4-4659417d7789",
+			          "anchored": true,
+			          "name": "FunCard",
+			          "activityType": "",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 0,
+			          "durationMinutes": 60
+			        },
+			        {
+			          "functionId": "46a636d8-c7f6-44c7-8dac-8b86875a9952",
+			          "anchored": true,
+			          "name": "FunCard",
+			          "activityType": "",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 0,
+			          "durationMinutes": 60
+			        },
+			        {
+			          "functionId": "f55d739d-c308-4c7b-ba3f-a99e1af70cf1",
+			          "anchored": true,
+			          "name": "Food Service in Party Street",
+			          "activityType": "Party/Meeting 1 Hour",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 60,
+			          "durationMinutes": 60
+			        },
+			        {
+			          "functionId": "753685e3-27b8-4ad8-a3df-0145089573f0",
+			          "anchored": true,
+			          "name": "FunCard",
+			          "activityType": "",
+			          "locations": [
+			            
+			          ],
+			          "startOffsetMinutes": 0,
+			          "durationMinutes": 60
+			        }
+			      ]
+			    }
+			]
+		}
+	]
+}

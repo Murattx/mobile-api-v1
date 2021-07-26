@@ -1,0 +1,18 @@
+{
+    "cartItems": [
+        {
+            "productId": 112,
+            "sku": "FUNCARD-REVALUE",
+            "optionSelections": [
+                {
+                    "optionId": 114,
+                    "optionValue": "{\n  \"cash\": 100.00,\n  \"cashBonus\": 0,\n  \"tokens\": 0,\n  \"tokenBonus\": 0,\n  \"points\": 0,\n  \"funCardNumber\": \"0000000008105541\",\n  \"funCardName\": \"FUNCard Revalue\",\n  \"pin\": \"5578\"\n}"
+                }
+            ],
+            "name": "FUNCard Revalue",
+            "cartItemType": "FUNCARD-REVALUE",
+            "quantity": 1,
+            "listPrice": 100.00
+        }
+    ]
+}

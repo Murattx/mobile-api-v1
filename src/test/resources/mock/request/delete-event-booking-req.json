@@ -1,0 +1,15 @@
+{
+  "confirmationNumber": "387809-1",
+  "lastName": "",
+  "bookingDate": "",
+  "cancellationReason": "Booked at different Main Event Center",
+  "cancellationComment": "Event cancelled",
+  "payment": {
+    "date": "20200713",
+    "transactionDate": "20200713",
+    "method": "Credit Card External",
+    "amount": 100,
+    "datails": "",
+    "description": ""
+  }
+}

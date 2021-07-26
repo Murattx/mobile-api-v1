@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:center-process-api="http://www.mulesoft.org/schema/mule/center-process-api" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/center-process-api http://www.mulesoft.org/schema/mule/center-process-api/current/mule-center-process-api.xsd">
+	<center-process-api:config name="Center_Process_API_Config" doc:name="Center Process API Config" doc:id="6558f99b-22ac-4a62-a5e4-72f2e8b18c33" property_host="${secure::center_proc.host}" property_port="${secure::center_proc.port}" property_protocol="${secure::center_proc.protocol}" property_username="${secure::center_proc.client_id}" property_password="${secure::center_proc.client_secret}" property_basePath="${secure::center_proc.basepath}" property_responseTimeout="${secure::center_proc.request_timeout}" />
+	<flow name="getCentersList" doc:id="b43e1a2a-7f70-4a46-aaa9-621644470388" >
+		<center-process-api:getcenterslist doc:name="GetCentersList" doc:id="09720349-3ad2-4c3f-83f5-3a514a25e853" config-ref="Center_Process_API_Config"/>
+	</flow>
+	<flow name="getCenterByCenterId" doc:id="56bc5669-cc19-40f4-9fb6-33fec1286dc2" >
+		<center-process-api:getcenteritem doc:name="GetCenterItem" doc:id="162b6af3-c9fc-431b-85f0-334b05a24d49" config-ref="Center_Process_API_Config" center-id="#[attributes.uriParams.centerId]" include-hours="#[attributes.queryParams.includeHours]" include-venues="#[attributes.queryParams.includeVenues]" include-events="#[attributes.queryParams.includeEvents]"/>
+	</flow>
+	<flow name="getCenterByCenterIdVenues" doc:id="f87341b8-029a-4cbf-91f3-d64dd153ecbb" >
+		<center-process-api:get-venues-by-center-id doc:name="Get venues by center id" doc:id="1e9d4f58-3ceb-4c64-ad8f-0673e76be569" config-ref="Center_Process_API_Config" center-id="#[attributes.uriParams.centerId]"/>
+	</flow>
+	<flow name="getCenterByCenterIdHours" doc:id="7c6352de-cadd-4679-a8e9-9e2369a672ac" >
+		<center-process-api:get-hours-by-center-id doc:name="Get hours by center id" doc:id="9a5c2b4c-f5cb-46ad-8089-49dbbadbf7c9" config-ref="Center_Process_API_Config" center-id="#[attributes.uriParams.centerId]"/>
+	</flow>
+	<flow name="getCenterByCenterIdRentalEvents" doc:id="d405bec8-ae6b-472d-b70e-1f0260aea71c" >
+		<center-process-api:get-rental-events-by-center-id doc:name="Get rental events by center id" doc:id="e2a73068-9f6f-464f-baef-c8f6f572edfb" config-ref="Center_Process_API_Config" center-id="#[attributes.uriParams.centerId]"/>
+	</flow>
+	<flow name="get-products-by-ceneterId" doc:id="7ca4b4aa-6319-4256-adc0-cf36dd7e30e9" >
+		<center-process-api:get-center-products doc:name="Get Center Products" doc:id="6c545989-d373-44e0-ad84-7f0f8c33dbaf" config-ref="Center_Process_API_Config" center-id="#[attributes.uriParams.centerId]"/>
+	</flow>
+</mule>

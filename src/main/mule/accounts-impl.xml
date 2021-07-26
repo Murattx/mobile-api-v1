@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:customer-account-process-api="http://www.mulesoft.org/schema/mule/customer-account-process-api" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:play-process-api="http://www.mulesoft.org/schema/mule/play-process-api" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/play-process-api http://www.mulesoft.org/schema/mule/play-process-api/current/mule-play-process-api.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/customer-account-process-api http://www.mulesoft.org/schema/mule/customer-account-process-api/current/mule-customer-account-process-api.xsd">
+	<flow name="getFunCardsList" doc:id="f7f687d0-fd52-4185-9109-6a04e213b825" >
+        <ee:transform doc:name="DW map as Get Request Params">
+            <ee:variables>
+                <ee:set-variable variableName="accountId">attributes.uriParams.'accountId'</ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+		<play-process-api:getfuncardlist doc:name="GetFunCardList" doc:id="c6beb302-a470-40b9-aed4-6a14bc7fb3cb" config-ref="Play_Process_API_Config" account-id="#[vars.accountId]"/>
+	</flow>
+	<flow name="postFunCards" doc:id="d154a3c6-08f9-4357-adc0-b5597cc6ef0d" >
+		<ee:transform doc:name="DW map as Get Request Params">
+            <ee:variables>
+                <ee:set-variable variableName="accountId">attributes.uriParams.'accountId'</ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+		<play-process-api:addfuncard doc:name="AddFunCard" doc:id="3c31e59f-8e5e-46d8-a3ce-3bdff6b68e4c" config-ref="Play_Process_API_Config" account-id="#[vars.accountId]">
+		</play-process-api:addfuncard>
+	</flow>
+	<flow name="getFunCardbyId" doc:id="8a9c1991-1c86-44aa-978a-757c07fa3a9d" >
+		<ee:transform doc:name="DW map as Get Request Params">
+            <ee:variables>
+                <ee:set-variable variableName="accountId">attributes.uriParams.'accountId'</ee:set-variable>
+                <ee:set-variable variableName="funCardId">attributes.uriParams.'funCardId'</ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+		<play-process-api:getfuncard doc:name="GetFunCard" doc:id="1f35872d-2c7c-4858-b9cd-9e2417bdba70" config-ref="Play_Process_API_Config" fun-card-id="#[vars.funCardId]" account-id="#[vars.accountId]"/>
+	</flow>
+	<flow name="patchFunCard" doc:id="135c76cc-7898-4be7-b93c-3de33244f9e3" >
+        <ee:transform doc:name="DW map as Get Request Params">
+            <ee:variables>
+                <ee:set-variable variableName="accountId">attributes.uriParams.'accountId'</ee:set-variable>
+                <ee:set-variable variableName="funCardId">attributes.uriParams.'funCardId'</ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+		<play-process-api:updatefuncardfield doc:name="UpdateFunCardField" doc:id="c2e53c5d-bf13-4916-a830-21a53a22d1c4" config-ref="Play_Process_API_Config" account-id="#[vars.accountId]" fun-card-id="#[vars.funCardId]"/>
+	</flow>
+	<flow name="deleteFunCard" doc:id="75713fa1-393a-4bdd-8358-4852d3fc2341" >
+        <ee:transform doc:name="DW map as Get Request Params">
+            <ee:variables>
+                <ee:set-variable variableName="accountId">attributes.uriParams.'accountId'</ee:set-variable>
+                <ee:set-variable variableName="funCardId">attributes.uriParams.'funCardId'</ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+		<play-process-api:removefuncard doc:name="RemoveFunCard" doc:id="c30fe52c-f6d3-4019-a206-cf3344bd2740" config-ref="Play_Process_API_Config" account-id="#[vars	.accountId]" fun-card-id="#[vars.funCardId]"/>
+	</flow>
+	<flow name="getFunCardHistory" doc:id="c031ce41-35e2-48d8-b08a-8d183572f1be" >
+		<ee:transform doc:name="DW map as Get Request Params" doc:id="86ce3b6d-b49e-47fa-a0b8-cb2b4fb6fab6" >
+			<ee:message />
+			<ee:variables >
+				<ee:set-variable variableName="accountId"><![CDATA[attributes.uriParams.'accountId']]></ee:set-variable>
+                <ee:set-variable variableName="funCardId"><![CDATA[attributes.uriParams.'funCardId']]></ee:set-variable>
+				<ee:set-variable variableName="historyFromDate" ><![CDATA[%dw 2.0
+output application/java
+---
+attributes.queryParams.fromDate default (now() - |P7D|) as String {format: "YYYY-MM-dd"}]]></ee:set-variable>
+				<ee:set-variable variableName="historyToDate" ><![CDATA[%dw 2.0
+output application/java
+---
+attributes.queryParams.toDate default (now() + |P1D|) as String {format: "YYYY-MM-dd"}]]></ee:set-variable>
+			</ee:variables>
+		</ee:transform>
+		<play-process-api:getfuncardhistory doc:name="GetFunCardHistory" doc:id="ea747d15-b3b9-4854-a779-b39e678767ee" config-ref="Play_Process_API_Config" from-date="#[vars.historyFromDate]" to-date="#[vars.historyToDate]" account-id="#[vars	.accountId]" fun-card-id="#[vars.funCardId]"/>
+	</flow>
+	<flow name="putFunCardStatus" doc:id="1f7571dd-0db2-4594-b1dd-7e054d4bffa7" >
+		<http:request method="PUT" doc:name="DinnerBellRequest" doc:id="86cfff84-30e3-4865-b0f8-471ea6ade8a1" config-ref="Play-PAPI-HTTP_Request_configuration" path="${secure::play_proc.dinnerBellPath}" sendCorrelationId="AUTO" correlationId="#[vars.correlationId]">
+			<http:uri-params ><![CDATA[#[{
+	"accountId": vars.accountId,
+	"funCardId": vars.funCardId
+}]]]></http:uri-params>
+		</http:request>
+	</flow>
+	<flow name="postFunCardValue" doc:id="1d1a866b-45e8-4108-b576-8f2ff8cb7bab" >
+		<ee:transform doc:name="DW map as Get Request Params">
+            <ee:variables>
+                <ee:set-variable variableName="accountId">attributes.uriParams.'accountId'</ee:set-variable>
+                <ee:set-variable variableName="funCardId">attributes.uriParams.'funCardId'</ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+		<play-process-api:funcardrevalue doc:name="FunCardRevalue" doc:id="37dc0f7b-3ada-4d37-b776-311e70460fee" config-ref="Play_Process_API_Config" account-id="#[vars.accountId]" fun-card-id="#[vars.funCardId]">
+			<play-process-api:funcardrevalue-request-data ><![CDATA[#[%dw 2.0
+---
+payload]]]></play-process-api:funcardrevalue-request-data>
+		</play-process-api:funcardrevalue>
+	</flow>
+	<flow name="getFunCardBalance" doc:id="32fe1158-e618-4b9f-8d92-ac59f3916f97" >
+		<http:request method="GET" doc:name="GetFUNcardBalanceRequest" doc:id="3a8597a4-bfe9-4b88-bbae-b2a89024ff74" config-ref="Play-PAPI-HTTP_Request_configuration" path="${secure::play_proc.funcardBalancePath}" sendCorrelationId="AUTO" correlationId="#[vars.correlationId]" >
+			<http:uri-params ><![CDATA[#[{
+	"funCardNumber": attributes.uriParams.funcardNumber
+}]]]></http:uri-params>
+			<http:query-params ><![CDATA[#[{
+	"pin": attributes.queryParams.pin
+}]]]></http:query-params>
+		</http:request>
+	</flow>
+	<flow name="createContact" doc:id="0d4f4cb9-55d0-4346-91b3-72439451dcfb" >
+		<http:request method="POST" doc:name="CreateContactRequest" doc:id="51e37210-e7e2-460a-9f6f-12d98530f237" config-ref="Play-PAPI-HTTP_Request_configuration" path="/contacts" sendCorrelationId="AUTO" correlationId="#[vars.correlationId]" >
+			<http:body ><![CDATA[#[%dw 2.0
+var key = vars.authSource as String
+output application/json
+---
+{
+  ("firstName" : payload.firstName) if (!isEmpty(payload.firstName)),
+  ("lastName": payload.lastName) if (!isEmpty(payload.lastName)),
+  "emailAddress": if (!isEmpty(vars.authEmail)) vars.authEmail else payload.emailAddress,
+  ("profileId": if (!isEmpty(vars.authAccountId)) vars.authAccountId else payload.profileId) if (!isEmpty(vars.authAccountId) or !isEmpty(payload.profileId)),
+  ("mobilePhone": payload.mobilePhone) if (!isEmpty(payload.mobilePhone)),
+  "emailOptIn" : payload.emailOptIn default null,
+  "smsOptIn" : payload.smsOptIn default null,
+  ("barcode": payload.barcode) if (!isEmpty(payload.barcode)),
+  "source": if (key == Mule::p('secure::clientid.andriod.id')) Mule::p('secure::clientid.andriod.value') 
+  		else if (key == Mule::p('secure::clientid.ios.id')) Mule::p('secure::clientid.ios.value') 
+	  	else if (key == Mule::p('secure::clientid.web.id')) Mule::p('secure::clientid.web.value')
+	  	else ""
+}]]]></http:body>
+		</http:request>
+	</flow>
+	<flow name="accounts-reservation-list-impl-flow" doc:id="3e19dc53-2c17-4416-8534-abdc6f4b0fba" >
+		<customer-account-process-api:get-reservations-by-account-id doc:name="Get reservations by account id" doc:id="dd027135-e398-4c2d-89d1-b4d9c60529a5" config-ref="Customer_Account_Process_API_Config"  account-id="#[attributes.uriParams.accountId]" center-id="#[attributes.queryParams.centerId]" limit="#[attributes.queryParams.limit]" offset="#[attributes.queryParams.offset]" grouping="#[attributes.queryParams.grouping]" confirmation-number="#[attributes.queryParams.confirmationNumber]" reservation-date-start="#[attributes.queryParams.reservationDateStart]" reservation-date-end="#[attributes.queryParams.reservationDateEnd]"/>
+	</flow>
+	<flow name="accounts-reservation-impl-flow" doc:id="91ecc962-01d7-49ed-8034-f55b82af7b7a" >
+		<customer-account-process-api:get-reservation-by-account-id-reservation-id doc:name="Get reservation by account id reservation id" doc:id="b991fae6-a095-4d3f-b937-16dc942404ff" config-ref="Customer_Account_Process_API_Config" account-id="#[attributes.uriParams.accountId]" reservation-id="#[attributes.uriParams.reservationId]" center-id="#[attributes.queryParams.centerId]"/>
+	</flow>
+	<flow name="accounts-event-list-impl-flow" doc:id="cad2d168-518e-4fd8-b5ec-95bc5f3478b4" >
+		<customer-account-process-api:get-event-list doc:name="Get Event List" doc:id="25a49b43-4bcd-4359-9855-27973f992aa0" config-ref="Customer_Account_Process_API_Config" account-id="#[attributes.uriParams.accountId]" center-id="#[attributes.queryParams.centerId]" limit="#[attributes.queryParams.limit]" offset="#[attributes.queryParams.offset]" grouping="#[attributes.queryParams.grouping]" event-date-start="#[attributes.queryParams.eventDateStart]" event-date-end="#[attributes.queryParams.eventDateEnd]"/>
+	</flow>
+	<flow name="accounts-event-impl-flow" doc:id="4443eb01-d455-43e6-8190-56f748c96c96" >
+		<customer-account-process-api:get-event-by-event-id-and-account-id doc:name="Get Event By Event Id and Account Id" doc:id="6583d731-c1fb-4311-9cb8-778ec79b9beb" config-ref="Customer_Account_Process_API_Config" account-id="#[attributes.uriParams.accountId]" event-id="#[attributes.uriParams.eventId]"  center-id="#[attributes.queryParams.centerId]"/>
+	</flow>
+	<flow name="accounts-event-lead-list-impl-flow" doc:id="795ff8c1-ac1f-47b6-ab75-583f94696b6c" >
+		<customer-account-process-api:get-event-lead-list doc:name="Get Event Lead List" doc:id="a6da4d4c-386e-4481-b54c-c241ebf113c5" config-ref="Customer_Account_Process_API_Config"  account-id="#[attributes.uriParams.accountId]" center-id="#[attributes.queryParams.centerId]" limit="#[attributes.queryParams.limit]" offset="#[attributes.queryParams.offset]" grouping="#[attributes.queryParams.grouping]" event-lead-date-start="#[attributes.queryParams.eventLeadDateStart]" event-lead-date-end="#[attributes.queryParams.eventLeadDateEnd]"/>
+	</flow>
+	<flow name="accounts-event-lead-impl-flow" doc:id="e23bc602-f676-443a-bf7d-cf3b2fa806e7" >
+		<customer-account-process-api:get-event-lead-by-account-id-and-event-lead-id doc:name="Get Event Lead By Account Id and Event Lead Id" doc:id="738c640f-8cfe-4ea9-a976-64ef52f7ed7b" config-ref="Customer_Account_Process_API_Config"  account-id="#[attributes.uriParams.accountId]" event-lead-id="#[attributes.uriParams.eventLeadId]" center-id="#[attributes.queryParams.centerId]"/>
+	</flow>
+</mule>

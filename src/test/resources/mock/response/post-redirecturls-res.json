@@ -1,0 +1,5 @@
+{
+  "cartUrl": "https://main-event.mybigcommerce.com/cart.php?action=load&id=3e8491cc-4e9f-4e13-b3a1-d925b9c665e9&token=2756a73b5d05aa3c4c6edd0eadcd57a0dce9370e2766d518f7e0e71bfb0c5163",
+  "checkoutUrl": "https://main-event.mybigcommerce.com/cart.php?action=loadInCheckout&id=3e8491cc-4e9f-4e13-b3a1-d925b9c665e9&token=2756a73b5d05aa3c4c6edd0eadcd57a0dce9370e2766d518f7e0e71bfb0c5163",
+  "embeddedCheckoutUrl": "https://main-event.mybigcommerce.com/cart.php?embedded=1&action=loadInCheckout&id=3e8491cc-4e9f-4e13-b3a1-d925b9c665e9&token=2756a73b5d05aa3c4c6edd0eadcd57a0dce9370e2766d518f7e0e71bfb0c5163"
+}

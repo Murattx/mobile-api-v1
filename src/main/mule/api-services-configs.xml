@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:api-gateway="http://www.mulesoft.org/schema/mule/api-gateway" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:play-process-api="http://www.mulesoft.org/schema/mule/play-process-api" xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties" xmlns:tls="http://www.mulesoft.org/schema/mule/tls" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation=" http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd  http://www.mulesoft.org/schema/mule/play-process-api http://www.mulesoft.org/schema/mule/play-process-api/current/mule-play-process-api.xsd http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/current/mule-tls.xsd  http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd  http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+    <http:listener-config name="mobile-api-v1-httpListenerConfig">
+        <http:listener-connection host="${secure::mobile_api.host}" port="${secure::mobile_api.port}" protocol="${secure::mobile_api.protocol}">
+            <tls:context>
+                <tls:key-store type="jks" path="server.jks" alias="${secure::mobile_api.key_alias}" keyPassword="${secure::mobile_api.key_pass}" password="${secure::mobile_api.store_pass}" />
+            </tls:context>
+        </http:listener-connection>
+    </http:listener-config>
+    <apikit:config name="mobile-api-v1-config" api="resource::80f98b50-2cc5-4888-8fd7-14b6f680de7f:mobile-api-v1:1.1.44:raml:zip:mobile-api-v1.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+    <api-gateway:autodiscovery apiId="${secure::mobile_api.api_id}" ignoreBasePath="true" doc:name="API Autodiscovery" doc:id="b1b5f117-6888-4bda-8843-54a897d902fc" flowRef="mobile-api-v1-main" />
+    <secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="6bf87489-fa7b-4c48-8cb3-349fcb4390a7" file="properties/${env}-config.sec.yaml" key="${runtime.securePropKey}">
+        <secure-properties:encrypt algorithm="Blowfish" />
+    </secure-properties:config>
+    <http:request-config name="Play-PAPI-HTTP_Request_configuration" doc:name="HTTP Request configuration" doc:id="bff21938-22a5-4043-a8bb-ec616ef286d1" basePath="${secure::play_proc.basepath}">
+        <http:request-connection host="${secure::play_proc.host}" port="${secure::play_proc.port}" connectionIdleTimeout="${secure::play_proc.request_timeout}" protocol="${secure::play_proc.protocol}">
+            <reconnection>
+                <reconnect count="3" />
+            </reconnection>
+            <http:authentication>
+                <http:basic-authentication username="${secure::play_proc.client_id}" password="${secure::play_proc.client_secret}" />
+            </http:authentication>
+        </http:request-connection>
+    </http:request-config>
+    <play-process-api:config name="Play_Process_API_Config" doc:name="Play Process API Config" doc:id="0fa7218e-a7e5-42dc-afea-5fc1b652bdd8" property_username="${secure::play_proc.client_id}" property_password="${secure::play_proc.client_secret}" property_host="${secure::play_proc.host}" property_port="${secure::play_proc.port}" property_basePath="${secure::play_proc.basepath}" property_protocol="${secure::play_proc.protocol}" property_responseTimeout="${secure::play_proc.request_timeout}" />
+    <configuration-properties doc:name="Configuration properties" doc:id="02ebbfc0-440b-43f0-8484-b81409cdf577" file="properties/${env}-config.sec.yaml" />
+    <sub-flow name="Pre-Set-Variables-Sub-Flow" doc:id="7faf50b9-27cb-4ea3-9ada-c7424424fbaa">
+        <ee:transform doc:name="Pre-set variables" doc:id="71af58c9-dd75-4647-86b7-13324deca4a1">
+            <ee:message />
+            <ee:variables>
+                <ee:set-variable variableName="correlationId"><![CDATA[%dw 2.0
+output application/java
+---
+if (message.attributes.headers.'cf-request-id' != null) message.attributes.headers.'cf-request-id' 
+else if (message.attributes.headers.'X-Correlation-ID' != null) message.attributes.headers.'X-Correlation-ID' 
+else uuid() ++ "-" ++ (now() as LocalDateTime {format:"yyyyMMddHHmmss"} ++ |+00:00|) as Number {unit: "milliseconds"}]]></ee:set-variable>
+                <ee:set-variable variableName="authentication"><![CDATA[%dw 2.0
+output application/java
+---
+authentication]]></ee:set-variable>
+                <ee:set-variable variableName="authAccountId"><![CDATA[%dw 2.0
+output application/java
+---
+authentication.properties.userProperties.mid default ""]]></ee:set-variable>
+                <ee:set-variable variableName="authEmail"><![CDATA[%dw 2.0
+output application/java
+---
+if (!isEmpty(authentication.properties.userProperties.username)) 
+	authentication.properties.userProperties.username
+else if (!isEmpty(authentication.properties.userProperties.sub)) 
+	authentication.properties.userProperties.sub 
+else ""]]></ee:set-variable>
+                <ee:set-variable variableName="authUsername"><![CDATA[%dw 2.0
+output application/java
+---
+if (!isEmpty(authentication.properties.userProperties.username)) 
+	authentication.properties.userProperties.username
+else if (!isEmpty(authentication.properties.userProperties.sub)) 
+	authentication.properties.userProperties.sub 
+else ""]]></ee:set-variable>
+                <ee:set-variable variableName="authEid"><![CDATA[%dw 2.0
+output application/java
+---
+authentication.properties.userProperties.eid default ""]]></ee:set-variable>
+                <ee:set-variable variableName="authIdpUid"><![CDATA[%dw 2.0
+output application/java
+---
+authentication.properties.userProperties.uid default ""]]></ee:set-variable>
+                <ee:set-variable variableName="authSource"><![CDATA[%dw 2.0
+output application/java
+---
+attributes.headers['client_id']]]></ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+    </sub-flow>
+    <sub-flow name="Account-Authz-SubFlow" doc:id="067f78c1-4340-4608-93d6-960116d8b0ec">
+        <choice doc:name="Choice" doc:id="b449d732-4359-44fe-8707-7e4ac05fce70">
+            <when expression="#[(vars.authAccountId != attributes.uriParams.accountId) and !(Mule::p(&quot;authentication_test.enabled&quot;) as Boolean)]">
+                <raise-error doc:name="AUTHCHECK Raise error" doc:id="6859978c-b6a4-4fcb-8a81-d798fabf4cfb" type="AUTHCHECK:FORBIDDEN" description="Resource Forbidden" />
+            </when>
+            <otherwise>
+                <logger level="INFO" doc:name="Authz_Pass_Logger" doc:id="571deca6-566f-494d-8f43-3e1b38f9bece" message="#[&quot;authAccountId=&quot; ++ vars.authAccountId as String default &quot;Null&quot; ++ &quot;,requestAccountId=&quot; ++ attributes.uriParams.accountId as String default &quot;Null&quot;]" />
+            </otherwise>
+        </choice>
+    </sub-flow>
+</mule>

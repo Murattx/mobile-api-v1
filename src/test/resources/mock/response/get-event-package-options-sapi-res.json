@@ -1,0 +1,46 @@
+{
+  "siteName": "Main Event - Plano",
+  "siteCode": "PLA",
+  "siteUniqueId": "673032aa-672d-41a2-8ebd-b73f1feb2da8",
+  "packageTypes": [
+    "Birthday Packages"
+  ],
+  "cancellationReasons": [
+    "Booked at different Main Event Center",
+    "Date not available",
+    "Didnâ€™t like menu",
+    "Didnâ€™t like room",
+    "Event Canceled",
+    "Family emergency",
+    "Injury/illness",
+    "Practice/Training",
+    "Prices too high",
+    "Went to competition"
+  ],
+  "paymentMethods": [
+    "Booked at different Main Event Center",
+    "Date not available",
+    "Didnâ€™t like menu",
+    "Didnâ€™t like room",
+    "Event Canceled",
+    "Family emergency",
+    "Injury/illness",
+    "Practice/Training",
+    "Prices too high",
+    "Went to competition"
+  ],
+  "paymentTypes": [
+    "Deposit",
+    "Final Payment",
+    "Micros Refund"
+  ],
+  "creditCardBrands": [
+    "American Express",
+    "Diners Club",
+    "Discover",
+    "Jcb",
+    "Master Card",
+    "Visa",
+    "Other"
+  ]
+}

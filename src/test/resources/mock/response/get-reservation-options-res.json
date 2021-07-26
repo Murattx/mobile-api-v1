@@ -1,0 +1,158 @@
+{
+  "centerName": "Main Event - Frisco",
+  "centerId": "FRS",
+  "centerUuid": "88b3d380-3f17-482d-8b99-3774305a9a76",
+  "cancellationReasons": [
+    "Booked at Another Main Event Center",
+    "Decided on different restaurant",
+    "Entered in Practice/Error",
+    "Illness",
+    "No Show",
+    "Not Enough Time"
+  ],
+  "reservationTypes": [
+    
+  ],
+  "serviceDetails": [
+    "Booster Seat",
+    "High Chair",
+    "Wheelchair Access"
+  ],
+  "serviceOptions": [
+    
+  ],
+  "specialOccasions": [
+    "Anniversary",
+    "Birthday: Adult",
+    "Birthday: Child",
+    "Graduation",
+    "Newlywed",
+    "Other Celebration",
+    "Surprise"
+  ],
+  "assetDetailTypes": [
+    "Bumpers",
+    "Player"
+  ],
+  "requests": [
+    "Billiards",
+    "Billiards ½  Hour",
+    "Billiards 1 Hour",
+    "Billiards 2 Hours",
+    "Billiards 3 Hours",
+    "Billiards 4 Hours",
+    "Bowling",
+    "Bowling 1.5 Hours",
+    "Bowling 1 Hour",
+    "Bowling 2 Hours",
+    "Bowling 3 Hours",
+    "Bowling 4 Hours",
+    "Dining",
+    "Gravity Ropes",
+    "Karaoke",
+    "Laser Tag",
+    "Mini Golf",
+    "Patio",
+    "Shuffleboard"
+  ],
+  "referralTypes": [
+    "All/Half Day Meeting",
+    "Bar/Bat Mitzvah",
+    "Corporate Thank You Q4 2017",
+    "Holiday Campaign 2017",
+    "Home of Champions",
+    "Normal Business Flow",
+    "NYE -2017",
+    "Quince'",
+    "Summer Camper Thank You 2017",
+    "Super Admin 2017"
+  ],
+  "paymentMethods": [
+    "Credit Card External"
+  ],
+  "paymentTypes": [
+    "Cash",
+    "Credit Card",
+    "Internal"
+  ],
+  "confirmationStatuses": [
+    "Confirmed",
+    "Incomplete",
+    "Left Message",
+    "No Answer",
+    "Not Confirmed",
+    "Paid",
+    "Wrong Number"
+  ],
+  "creditCardBrands": [
+    "American Express",
+    "Diners Club",
+    "Discover",
+    "Jcb",
+    "Master Card",
+    "Visa",
+    "Other"
+  ],
+  "referralTypesWithSubOptions": [
+    {
+      "name": "All/Half Day Meeting",
+      "subOptions": [
+        
+      ]
+    },
+    {
+      "name": "Bar/Bat Mitzvah",
+      "subOptions": [
+        
+      ]
+    },
+    {
+      "name": "Corporate Thank You Q4 2017",
+      "subOptions": [
+        
+      ]
+    },
+    {
+      "name": "Holiday Campaign 2017",
+      "subOptions": [
+        
+      ]
+    },
+    {
+      "name": "Home of Champions",
+      "subOptions": [
+        
+      ]
+    },
+    {
+      "name": "Normal Business Flow",
+      "subOptions": [
+        
+      ]
+    },
+    {
+      "name": "NYE -2017",
+      "subOptions": [
+        
+      ]
+    },
+    {
+      "name": "Quince'",
+      "subOptions": [
+        
+      ]
+    },
+    {
+      "name": "Summer Camper Thank You 2017",
+      "subOptions": [
+        
+      ]
+    },
+    {
+      "name": "Super Admin 2017",
+      "subOptions": [
+        
+      ]
+    }
+  ]
+}

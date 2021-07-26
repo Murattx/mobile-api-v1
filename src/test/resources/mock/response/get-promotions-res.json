@@ -1,0 +1,55 @@
+{
+	"metadata": {
+		"recordCount": 2,
+		"resource": "promotion"
+	},
+	"promotions": [{
+			"allowCombination": true,
+			"amount": "$5",
+			"appliesTo": "0",
+			"capAmount": 5,
+			"code": "FIVE_DOLLAR_OFF",
+			"createDateTime": "2020-09-27 13:42:29.983",
+			"customScript": "",
+			"enabled": true,
+			"endDateTime": "2020-12-31 13:42:29.983",
+			"excludeDates": "12/25/2020,07/04/2021",
+			"maximumUses": 4,
+			"maximumUsesPerCustomer": 2,
+			"minimumPurchase": "20",
+			"name": "FIVE_DOLLAR_OFF",
+			"numberUses": 1,
+			"promotionId": 1,
+			"startDateTime": "2020-09-27 13:42:29.983",
+			"targetCustomerGroup": "group id1,group id2",
+			"targetHours": "13:00-19:00",
+			"targetProductSkus": "sku1, sku2",
+			"targetWeekDays": "Mon,Tue,Wed,Thu",
+			"type": "promotion"
+		},
+		{
+			"allowCombination": false,
+			"amount": "200%",
+			"appliesTo": "0",
+			"capAmount": 50,
+			"code": "FUNCARD_DOUBLE_VALUE",
+			"createDateTime": "2020-09-27 13:42:29.983",
+			"customScript": "",
+			"enabled": true,
+			"endDateTime": "2020-12-31 13:42:29.983",
+			"excludeDates": "12/25/2020,07/04/2021",
+			"maximumUses": 5,
+			"maximumUsesPerCustomer": 1,
+			"minimumPurchase": "1",
+			"name": "FUNCARD_DOUBLE_VALUE",
+			"numberUses": 0,
+			"promotionId": 2,
+			"startDateTime": "2020-09-27 13:42:29.983",
+			"targetCustomerGroup": "group id1,group id2",
+			"targetHours": "13:00-19:00",
+			"targetProductSkus": "sku1, sku2",
+			"targetWeekDays": "Mon,Tue,Wed,Thu",
+			"type": "promotion"
+		}
+	]
+}

@@ -1,0 +1,34 @@
+{
+    "funCardId": "ADA0B506-BE69-46DA-810B-445C046976C3",
+    "funCardNumber": "0000000008105541",
+    "funCardPin": "5578",
+    "funCardName": "TestCard003",
+    "statusText": "Disabled",
+    "status": 5,
+    "cashBalance": 0,
+    "funCardCredit": 0,
+    "bonusCashBalance": 0,
+    "pointBalance": 0,
+    "tokenBalance": 0,
+    "tokenBonusBalance": 0,
+    "firstUsed": "2013-12-12T13:31:00Z",
+    "lastUsed": "0001-01-01T00:00:00Z",
+    "todateCashIn": 0,
+    "todayCashIn": 0,
+    "blockedAccess": null,
+    "timePlayStartTime": "0001-01-01T00:00:00Z",
+    "timePlayEndTime": "0001-01-01T00:00:00Z",
+    "timePlayDuration": 0,
+    "cardCustomizations": [
+        {
+            "cardCustomizationId": "186",
+            "customizationType": "image",
+            "customValue": "https://help.mulesoft.com/resource/1578840551000/brMulesoftCommunityAssets/images/svg/logo-mulesoft.svg"
+        },
+        {
+            "cardCustomizationId": "187",
+            "customizationType": "bgColor",
+            "customValue": "#888"
+        }
+    ]
+}

@@ -1,0 +1,72 @@
+{
+    "monday": {
+        "openIntervals": [
+            {
+                "start": "11:00",
+                "end": "01:00"
+            }
+        ],
+        "isClosed": false,
+        "isClosedWholeDay": false
+    },
+    "tuesday": {
+        "openIntervals": [
+            {
+                "start": "10:00",
+                "end": "01:00"
+            }
+        ],
+        "isClosed": true,
+        "isClosedWholeDay": false
+    },
+    "wednesday": {
+        "openIntervals": [
+            {
+                "start": "10:00",
+                "end": "01:00"
+            }
+        ],
+        "isClosed": false,
+        "isClosedWholeDay": false
+    },
+    "thursday": {
+        "openIntervals": [
+            {
+                "start": "10:00",
+                "end": "01:00"
+            }
+        ],
+        "isClosed": false,
+        "isClosedWholeDay": false
+    },
+    "friday": {
+        "openIntervals": [
+            {
+                "start": "10:00",
+                "end": "02:00"
+            }
+        ],
+        "isClosed": false,
+        "isClosedWholeDay": false
+    },
+    "saturday": {
+        "openIntervals": [
+            {
+                "start": "09:00",
+                "end": "02:00"
+            }
+        ],
+        "isClosed": false,
+        "isClosedWholeDay": false
+    },
+    "sunday": {
+        "openIntervals": [
+            {
+                "start": "11:00",
+                "end": "00:00"
+            }
+        ],
+        "isClosed": false,
+        "isClosedWholeDay": false
+    }
+}

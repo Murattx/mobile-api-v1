@@ -1,0 +1,18 @@
+{
+  "cartItems": [
+    {
+      "productId": 5,
+      "sku": "FUNCARD-REVALUE",
+      "optionSelections":[
+        {
+          "optionId": 3,
+          "optionValue": "{\"funCardId\":\"ADA0B506-BE69-46DA-810B-445C046976C3\",\"funCardNumber\":\"0000000008105541\",\"funCardPin\":\"5578\",\"amount\":20.00}"
+        }
+      ],
+      "name": "Card Revalue $20",
+      "cartItemType": "FUNCARD-REVALUE",
+      "quantity": 1,
+      "listPrice": 20
+    } 
+  ]
+}

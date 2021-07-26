@@ -1,0 +1,242 @@
+{
+  "metadata": {
+    "resource": "reservation/availability",
+    "recordCount": 27
+  },
+  "reservationAvailabilities": [
+    {
+      "availability": true,
+      "reservationStartTime": "11:00 AM",
+      "reservations": [
+        {
+          "reservationCode": "rfzlZuQCZrm3v8YG8c8%2B9Vhbb%2BDqsnBcWgfq2PEbWcodlGaz1nv8ISqFt5Ug/uIOOxeQTlosDQVc%2BwJUnebnYnm8HCxuOq8YEEvF5d/dtkM6gHzfZNFOUBufQFz1YPfplXxih9PQ8JrZadUPV9zwiOdrzVwS5Vlx9qupv4tqTpzaVAbJWfXaDhfMIojuEKASdC4y0is8UK9Vo1FhdSS0ij9r4uqMSg7Z%2BSENHlGTkJs3EHJewGePiHuanBgNbdXDs1JlK8ueVGUjL0CTPvvlq%2B6r14rvAK1r7CI4W693tCvgQBMhYQEluORlFo%2BE4UJt",
+          "startTime": "11:00 AM",
+          "endTime": "12:00 PM",
+          "partySize": "4",
+          "assetNames": [
+            "Lane 1"
+          ],
+          "attributes": "Bowling, Bowling 1 Hour, Bowling 1.5 Hours, Bowling 2 Hours, Bowling 2.5 Hours, Bowling 3 Hours, Bowling 4 Hours",
+          "activityType": "Bowling 1 Hour",
+          "centerName": "Main Event - Frisco",
+          "centerId": "FRS",
+          "centerUuId": "88b3d380-3f17-482d-8b99-3774305a9a76",
+          "servicePeriod": null,
+          "pricingSummary": "$72.00"
+        }
+      ]
+    },
+    {
+      "availability": false,
+      "reservationStartTime": "11:30 AM",
+      "reservations": [
+        
+      ]
+    },
+    {
+      "availability": true,
+      "reservationStartTime": "12:00 PM",
+      "reservations": [
+        {
+          "reservationCode": "rfzlZuQCZrm3v8YG8c8%2B9Vhbb%2BDqsnBcWgfq2PEbWcodlGaz1nv8ISqFt5Ug/uIOOxeQTlosDQVc%2BwJUnebnYnm8HCxuOq8YEEvF5d/dtkM6gHzfZNFOUBufQFz1YPfplXxih9PQ8JrZadUPV9zwiOdrzVwS5Vlx9qupv4tqTpzaVAbJWfXaDhfMIojuEKASdC4y0is8UK9Vo1FhdSS0ij9r4uqMSg7Z%2BSENHlGTkJs3EHJewGePiHuanBgNbdXDs1JlK8ueVGUjL0CTPvvlq%2B6r14rvAK1r7CI4W693tCvgQBMhYQEluORlFo%2BE4UJt",
+          "startTime": "12:00 PM",
+          "endTime": "01:00 PM",
+          "partySize": "4",
+          "assetNames": [
+            "Lane 1"
+          ],
+          "attributes": "Bowling, Bowling 1 Hour, Bowling 1.5 Hours, Bowling 2 Hours, Bowling 2.5 Hours, Bowling 3 Hours, Bowling 4 Hours",
+          "activityType": "Bowling 1 Hour",
+          "centerName": "Main Event - Frisco",
+          "centerId": "FRS",
+          "centerUuId": "88b3d380-3f17-482d-8b99-3774305a9a76",
+          "servicePeriod": null,
+          "pricingSummary": "$72.00"
+        }
+      ]
+    },
+    {
+      "availability": false,
+      "reservationStartTime": "12:30 PM",
+      "reservations": [
+        
+      ]
+    },
+    {
+      "availability": true,
+      "reservationStartTime": "01:00 PM",
+      "reservations": [
+        {
+          "reservationCode": "rfzlZuQCZrm3v8YG8c8%2B9Vhbb%2BDqsnBcWgfq2PEbWcodlGaz1nv8ISqFt5Ug/uIOOxeQTlosDQVc%2BwJUnebnYnm8HCxuOq8YEEvF5d/dtkM6gHzfZNFOUBufQFz1YPfplXxih9PQ8JrZadUPV9zwiOdrzVwS5Vlx9qupv4tqTpzaVAbJWfXaDhfMIojuEKASdC4y0is8UK9Vo1FhdSS0ij9r4uqMSg7Z%2BSENHlGTkJs3EHJewGePiHuanBgNbdXDs1JlK8ueVGUjL0CTPvvlq%2B6r14rvAK1r7CI4W693tCvgQBMhYQEluORlFo%2BE4UJt",
+          "startTime": "01:00 AM",
+          "endTime": "02:00 PM",
+          "partySize": "4",
+          "assetNames": [
+            "Lane 1"
+          ],
+          "attributes": "Bowling, Bowling 1 Hour, Bowling 1.5 Hours, Bowling 2 Hours, Bowling 2.5 Hours, Bowling 3 Hours, Bowling 4 Hours",
+          "activityType": "Bowling 1 Hour",
+          "centerName": "Main Event - Frisco",
+          "centerId": "FRS",
+          "centerUuId": "88b3d380-3f17-482d-8b99-3774305a9a76",
+          "servicePeriod": null,
+          "pricingSummary": "$72.00"
+        }
+      ]
+    },
+    {
+      "availability": false,
+      "reservationStartTime": "01:30 PM",
+      "reservations": [
+        
+      ]
+    },
+    {
+      "availability": false,
+      "reservationStartTime": "02:00 PM",
+      "reservations": [
+        
+      ]
+    },
+    {
+      "availability": false,
+      "reservationStartTime": "02:30 PM",
+      "reservations": [
+        
+      ]
+    },
+    {
+      "availability": false,
+      "reservationStartTime": "03:00 PM",
+      "reservations": [
+        
+      ]
+    },
+    {
+      "availability": false,
+      "reservationStartTime": "03:30 PM",
+      "reservations": [
+        
+      ]
+    },
+    {
+      "availability": false,
+      "reservationStartTime": "04:00 PM",
+      "reservations": [
+        
+      ]
+    },
+    {
+      "availability": false,
+      "reservationStartTime": "04:30 PM",
+      "reservations": [
+        
+      ]
+    },
+    {
+      "availability": false,
+      "reservationStartTime": "05:00 PM",
+      "reservations": [
+        
+      ]
+    },
+    {
+      "availability": false,
+      "reservationStartTime": "05:30 PM",
+      "reservations": [
+        
+      ]
+    },
+    {
+      "availability": false,
+      "reservationStartTime": "06:00 PM",
+      "reservations": [
+        
+      ]
+    },
+    {
+      "availability": false,
+      "reservationStartTime": "06:30 PM",
+      "reservations": [
+        
+      ]
+    },
+    {
+      "availability": false,
+      "reservationStartTime": "07:00 PM",
+      "reservations": [
+        
+      ]
+    },
+    {
+      "availability": false,
+      "reservationStartTime": "07:30 PM",
+      "reservations": [
+        
+      ]
+    },
+    {
+      "availability": false,
+      "reservationStartTime": "08:00 PM",
+      "reservations": [
+        
+      ]
+    },
+    {
+      "availability": false,
+      "reservationStartTime": "08:30 PM",
+      "reservations": [
+        
+      ]
+    },
+    {
+      "availability": false,
+      "reservationStartTime": "09:00 PM",
+      "reservations": [
+        
+      ]
+    },
+    {
+      "availability": false,
+      "reservationStartTime": "09:30 PM",
+      "reservations": [
+        
+      ]
+    },
+    {
+      "availability": false,
+      "reservationStartTime": "10:00 PM",
+      "reservations": [
+        
+      ]
+    },
+    {
+      "availability": false,
+      "reservationStartTime": "10:30 PM",
+      "reservations": [
+        
+      ]
+    },
+    {
+      "availability": false,
+      "reservationStartTime": "11:00 PM",
+      "reservations": [
+        
+      ]
+    },
+    {
+      "availability": false,
+      "reservationStartTime": "11:30 PM",
+      "reservations": [
+        
+      ]
+    },
+    {
+      "availability": false,
+      "reservationStartTime": "12:00 PM",
+      "reservations": [
+        
+      ]
+    }
+  ]
+}

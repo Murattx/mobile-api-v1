@@ -1,0 +1,142 @@
+{
+    "centerId": "PLA",
+    "centerKey": 3,
+    "centerName": " Plano",
+    "centerCode": "PL",
+    "centerLongName": "MAIN EVENT PLANO",
+    "centerGroup": 4,
+    "centerDescription": "Main Event Entertainment -  Plano the most FUN you can have under one roof.\nMain Event is THE dining and entertainment destination that offers more ways to have family FUN than you can pack into one visit! No matter what your age, there’s something for everyone at Main Event! Attractions include state-of-the-art bowling, multi-level laser tag, an arcade games gallery featuring more than 100 of the latest interactive video games and more! Savor our chef-inspired casual dining experience – with delicious shareables like wings, loaded nachos or oven-baked artisan pizza in a full-service American-fare grill – or enjoy handcrafted cocktails, craft beers, expansive variety of wines in a high-energy bar surrounded by big screen TVs.\n \nWith our hassle-free birthday parties, Main Event offers epic FUN that will leave you with lasting memories.  We offer customized packages that include state-of-the-art bowling, multi-level laser tag and an arcade games gallery featuring more than 100 of the latest interactive video game. We have multiple packages to fit any budget and each package includes a dedicated party host that takes cares of it all, so you can relax. Heart-pounding FUN for kids, Stress-Free party for you for non-stop FUN.\n \nAt Main Event, we create customized group experiences, not just events. From team building, corporate events & parties and meeting space, our corporate and group packages are designed to combine FUN and food, creating the ultimate experience for you and your group.",
+    "yearEstablished": 1998,
+    "qubicaCenterId": "3354",
+    "googlePlaceId": "ChIJP1RaabEZTIYRdFSbhHfESEE",
+    "locationId": "10003",
+    "enabled": true,
+    "latitude": 33.04886026423957,
+    "longitude": -96.70048852055714,
+    "timezone": "America/Chicago",
+    "timeZoneUtcOffset": "-06:00",
+    "address": "3941 Central Expressway",
+    "city": "Plano",
+    "state": "TX",
+    "zipcode": "75023",
+    "telephone": "+19728818181",
+    "emails": [
+        "feedback@mainevent.com"
+    ],
+    "websiteUrl": "http://www.mainevent.com/locations/texas/plano",
+    "paymentOptions": [
+        "AMERICANEXPRESS",
+        "CASH",
+        "CHECK",
+        "DINERSCLUB",
+        "DISCOVER",
+        "INVOICE",
+        "MASTERCARD",
+        "TRAVELERSCHECK",
+        "VISA"
+    ],
+    "paymentGatewayId": "1417056",
+    "paymentAPILoginId": "8f7R6QPjfT",
+    "ecommStoreHash": "6193z2vwvc",
+    "ecommStoreId": "1000962395",
+    "intercardTaxRate": 0.0,
+    "taxRate": 0.0825,
+    "serviceCharge": 0.0000,
+    "logo": {
+        "image": {
+            "alternateText": "Main Event",
+            "width": 400,
+            "thumbnails": [
+                {
+                    "width": 150,
+                    "url": "http://a.mktgcdn.com/p/6wHlfzubIdA5Onq4m5eeNLh5BKEWRUAwieGpNhyf-4o/150x150.jpg",
+                    "height": 150
+                },
+                {
+                    "width": 94,
+                    "url": "http://a.mktgcdn.com/p/6wHlfzubIdA5Onq4m5eeNLh5BKEWRUAwieGpNhyf-4o/94x94.jpg",
+                    "height": 94
+                }
+            ],
+            "url": "http://a.mktgcdn.com/p/6wHlfzubIdA5Onq4m5eeNLh5BKEWRUAwieGpNhyf-4o/400x400.jpg",
+            "height": 400
+        },
+        "clickthroughUrl": "http://mainevent.com",
+        "description": "Together We Play."
+    },
+    "featuredMessage": {
+        "description": "Main Event, THE family entertainment destination",
+        "url": "http://www.mainevent.com"
+    },
+    "facebookInfo": {
+        "facebookCoverPhoto": {
+            "width": 820,
+            "thumbnails": [
+                {
+                    "width": 619,
+                    "url": "http://a.mktgcdn.com/p/kp1ii7BZ-l33CYcqpdcKsLYGaCd_MXNV6uErNh9V4SY/619x235.jpg",
+                    "height": 235
+                },
+                {
+                    "width": 600,
+                    "url": "http://a.mktgcdn.com/p/kp1ii7BZ-l33CYcqpdcKsLYGaCd_MXNV6uErNh9V4SY/600x228.jpg",
+                    "height": 228
+                },
+                {
+                    "width": 196,
+                    "url": "http://a.mktgcdn.com/p/kp1ii7BZ-l33CYcqpdcKsLYGaCd_MXNV6uErNh9V4SY/196x74.jpg",
+                    "height": 74
+                }
+            ],
+            "url": "http://a.mktgcdn.com/p/kp1ii7BZ-l33CYcqpdcKsLYGaCd_MXNV6uErNh9V4SY/820x312.jpg",
+            "height": 312
+        },
+        "facebookPageUrl": "https://www.facebook.com/209985999020917",
+        "facebookVanityUrl": "MainEventPlano",
+        "facebookProfilePhoto": {
+            "width": 400,
+            "thumbnails": [
+                {
+                    "width": 196,
+                    "url": "http://a.mktgcdn.com/p/6wHlfzubIdA5Onq4m5eeNLh5BKEWRUAwieGpNhyf-4o/196x196.jpg",
+                    "height": 196
+                }
+            ],
+            "url": "http://a.mktgcdn.com/p/6wHlfzubIdA5Onq4m5eeNLh5BKEWRUAwieGpNhyf-4o/400x400.jpg",
+            "height": 400
+        },
+        "facebookStoreId": "[[entityId]]",
+        "facebookParentPageId": "228391483870730",
+        "facebookName": "Main Event"
+    },
+    "googleInfo": {
+        "googleAttributes": {
+            "welcomesFamilies": true,
+            "hasWheelchairAccessibleRestroom": true,
+            "hasWheelchairAccessibleEntrance": true,
+            "wifi": [
+                "free_wi_fi"
+            ],
+            "hasRestaurant": true,
+            "hasLivePerformances": false,
+            "hasWheelchairAccessibleParking": true,
+            "hasRestroom": true,
+            "hasWheelchairAccessibleElevator": false,
+            "welcomesChildren": true
+        },
+        "googleWebsiteOverride": null,
+        "googleCoverPhoto": {
+            "sourceUrl": null,
+            "width": null,
+            "url": null,
+            "height": null
+        },
+        "googleProfilePhoto": {
+            "width": 400,
+            "url": "http://a.mktgcdn.com/p/6wHlfzubIdA5Onq4m5eeNLh5BKEWRUAwieGpNhyf-4o/400x400.jpg",
+            "height": 400
+        }
+    },
+    "reviewGenerationUrl": "https://www.locationrater.com/tp/JDb5DB",
+    "firstPartyReviewPage": "https://www.locationrater.com/survey/bWFpbi1ldmVudC1lbnRlcnRhaW5tZW50LXBsYW5vLXRleGFzLXVzLWZmMjIzMA=="
+}

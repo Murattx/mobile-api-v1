@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:booking-proc-api="http://www.mulesoft.org/schema/mule/booking-proc-api" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/booking-proc-api http://www.mulesoft.org/schema/mule/booking-proc-api/current/mule-booking-proc-api.xsd">
+	<booking-proc-api:config name="Booking_proc_api_Config" doc:name="Booking-proc-api Config" doc:id="4306253a-39bd-4fb4-9802-dbae9e99830d" property_username="${secure::booking_proc.client_id}" property_password="${secure::booking_proc.client_secret}" property_host="${secure::booking_proc.host}" property_port="${secure::booking_proc.port}" property_basePath="${secure::booking_proc.basepath}" property_protocol="${secure::booking_proc.protocol}" property_responseTimeout="${secure::booking_proc.request_timeout}" />
+	<flow name="get-reservation-by-Id-Flow" doc:id="799f4cc7-7395-4b0a-ba3c-3259b3eb6e51" >
+		<booking-proc-api:get-reservation-by-id doc:name="Get Reservation by Id" doc:id="47f51d6e-4dd1-41e3-b90c-1308e18e6542" config-ref="Booking_proc_api_Config" reservation-id="#[vars.reservationId]"/>
+	</flow>
+	<flow name="post-create-reservation" doc:id="63da3690-53f1-42b3-a39f-fe3efda13f24" >
+		<booking-proc-api:createbook-reservation doc:name="Create/Book Reservation" doc:id="9a2f7ccf-dc25-479f-a025-a85ac1919ecd" config-ref="Booking_proc_api_Config"/>
+	</flow>
+	<flow name="get-reservation-availabilities-flow" doc:id="465c5bc2-440d-451c-9c99-617784fcc6dc" >
+		<booking-proc-api:get-reservations-availability doc:name="Get Reservations Availability" doc:id="583e3fac-071a-4e47-907c-4a991a125eeb" config-ref="Booking_proc_api_Config" center-id="#[attributes.queryParams.centerId]" reservation-date="#[attributes.queryParams.reservationDate]" party-size="#[attributes.queryParams.partySize]" from-time="#[attributes.queryParams.fromTime]" to-time="#[attributes.queryParams.toTime]" requests="#[attributes.queryParams.requests]" number-of-assets="#[attributes.queryParams.numberOfAssets]"/>
+	</flow>
+	<flow name="get-reservation-options-flow" doc:id="701922dd-18b5-4d93-972b-fda0ef9758be" >
+		<booking-proc-api:get-reservation-options doc:name="Get Reservation Options" doc:id="ff0131fb-ef4a-4edf-a4a3-1514388f67be" config-ref="Booking_proc_api_Config" center-id="#[attributes.queryParams.centerId]"/>
+	</flow>
+	<flow name="get-reservation-addOn-flow" doc:id="77375828-adea-4684-a997-0d01e5437c43" >
+		<booking-proc-api:get-reservation-add-ons doc:name="Get Reservation Add Ons" doc:id="04d208a9-8f39-4acf-8077-248d6ada51cd" config-ref="Booking_proc_api_Config" reservation-code="#[attributes.queryParams.reservationCode]"/>
+	</flow>
+</mule>

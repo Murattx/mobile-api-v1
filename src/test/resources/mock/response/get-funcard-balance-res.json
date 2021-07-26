@@ -1,0 +1,18 @@
+{
+    "funCardNumber": "8105541",
+    "statusText": "Disabled",
+    "status": "5",
+    "cashBalance": 0.0000,
+    "funCardCredit": 0.0000,
+    "bonusCashBalance": 0.0000,
+    "pointBalance": 0,
+    "tokenBalance": 0,
+    "tokenBonusBalance": 0,
+    "firstUsed": null,
+    "lastUsed": null,
+    "todateCashIn": 0.0000,
+    "todayCashIn": null,
+    "blockedAccess": null,
+    "timePlayStartTime": null,
+    "timePlayEndTime": null
+}

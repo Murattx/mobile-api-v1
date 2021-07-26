@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:customer-order-proc-api="http://www.mulesoft.org/schema/mule/customer-order-proc-api"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/customer-order-proc-api http://www.mulesoft.org/schema/mule/customer-order-proc-api/current/mule-customer-order-proc-api.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<customer-order-proc-api:config name="Customer_order_proc_api_Config" doc:name="Customer-order-proc-api Config" doc:id="2dea9516-d410-402b-be0c-ac6c9349a422" property_username="${secure::order_proc.client_id}" property_password="${secure::order_proc.client_secret}" property_host="${secure::order_proc.host}" property_port="${secure::order_proc.port}" property_basePath="${secure::order_proc.basepath}" property_protocol="${secure::order_proc.protocol}" property_responseTimeout="${secure::order_proc.request_timeout}" />
+	<flow name="postCreateCart" doc:id="3ec6ed70-0b64-43f3-8bf7-253ad58cc63e" >
+        <ee:transform doc:name="DW map Get Request Params">
+            <ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+import * from dw::util::Values
+output application/java
+---
+if (!isEmpty(vars.authAccountId) or !isEmpty(attributes.uriParams.accountId)) (
+	if (!isEmpty(payload.'customerProfileId'))
+		payload update "customerProfileId" with attributes.uriParams.accountId
+	else
+		{"customerProfileId": attributes.uriParams.accountId} ++ payload		
+)
+else
+	payload]]></ee:set-payload>
+			</ee:message>
+			<ee:variables>
+                <ee:set-variable variableName="accountId"><![CDATA[attributes.uriParams.'accountId']]></ee:set-variable>
+                <ee:set-variable variableName="centerId"><![CDATA[attributes.uriParams.'centerId']]></ee:set-variable>
+				<ee:set-variable variableName="include" ><![CDATA[%dw 2.0
+output application/java
+---
+attributes.queryParams.'include']]></ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+		<customer-order-proc-api:createacart doc:name="CreateACart" doc:id="3bb7e3bd-cfda-4e6c-babe-d302568b2404" config-ref="Customer_order_proc_api_Config" center-id="#[vars.centerId]" include="#[vars.include]"/>
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="DW map as Set Response">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+
+---
+{
+  id: payload.id,
+  (customerId: payload.customerId?),
+  channelId: payload.channelId,
+  email: payload.email,
+  currency: payload.currency,
+  taxIncluded: payload.taxIncluded,
+  baseAmount: payload.baseAmount,
+  discountAmount: payload.discountAmount,
+  cartAmount: payload.cartAmount,
+  coupons: payload.coupons,
+  cartItems: payload.cartItems,
+  createdTime: payload.createdTime,
+  updatedTime: payload.updatedTime,
+  redirectUrls: payload.redirectUrls
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+	</flow>
+	<flow name="getCartByCartId" doc:id="8411e554-9b8f-4dfc-b17a-c28565414c3a" >
+		<ee:transform doc:name="DW map as Get Request Params">
+            <ee:variables>
+                <ee:set-variable variableName="accountId"><![CDATA[attributes.uriParams.'accountId']]></ee:set-variable>
+                <ee:set-variable variableName="centerId"><![CDATA[attributes.uriParams.'centerId']]></ee:set-variable>
+                <ee:set-variable variableName="cartId"><![CDATA[attributes.uriParams.'cartId']]></ee:set-variable>
+				<ee:set-variable variableName="include" ><![CDATA[%dw 2.0
+output application/java
+---
+attributes.queryParams.'include']]></ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+		<customer-order-proc-api:getacart doc:name="GetACart" doc:id="68877831-0ab8-4ae8-87c0-cdef3490a2cd" config-ref="Customer_order_proc_api_Config" center-id="#[vars.centerId]" cart-id="#[vars	.cartId]" include="#[vars.include]" customer-profile-id="#[if (!isEmpty(vars.authAccountId)) vars.authAccountId else vars.accountId]"/>
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="DW map as Set Response">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  id: payload.id,
+  (parentId: payload.parentId) if (payload.parentId?),
+  customerId: payload.customerId,
+  channelId: payload.channelId,
+  email: payload.email,
+  currency: payload.currency,
+  taxIncluded: payload.taxIncluded,
+  baseAmount: payload.baseAmount,
+  discountAmount: payload.discountAmount,
+  discounts: payload.discounts default [],
+  cartAmount: payload.cartAmount,
+  coupons: payload.coupons,
+  cartItems: payload.cartItems,
+  createdTime: payload.createdTime,
+  updatedTime: payload.updatedTime,
+  (redirectUrls: payload.redirectUrls) if (payload.redirectUrls?)
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+	</flow>
+	<flow name="putUpdateCart" doc:id="080da773-b66d-4234-8d08-52b72d23d627" >
+        <ee:transform doc:name="DW map as Get Reques Params">
+            <ee:variables>
+                <ee:set-variable variableName="accountId"><![CDATA[attributes.uriParams.'accountId']]></ee:set-variable>
+                <ee:set-variable variableName="centerId"><![CDATA[attributes.uriParams.'centerId']]></ee:set-variable>
+                <ee:set-variable variableName="cartId"><![CDATA[attributes.uriParams.'cartId']]></ee:set-variable>
+				<ee:set-variable variableName="include" ><![CDATA[%dw 2.0
+output application/java
+---
+attributes.queryParams.'include']]></ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+		<customer-order-proc-api:updateacart doc:name="UpdateACart" doc:id="49aca38e-c90b-472c-8f61-33cfb9d2a66a" config-ref="Customer_order_proc_api_Config" center-id="#[vars.centerId]" cart-id="#[vars.cartId]" include="#[vars.include]"/>
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="DW map as Set Response">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  code: 200,
+  message: "The resource was successfully updated.",
+  status: "Success",
+  transactionId: vars.correlationId,
+  timeStamp: now()
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+	</flow>
+	<flow name="deleteDeleteACart" doc:id="fbffb6d4-82de-455b-8f7f-ec53914f301e" >
+		<ee:transform doc:name="DW map as Get Request Params" doc:id="c335a97c-96f8-4a92-809b-ef768fbafdcf">
+            <ee:variables>
+                <ee:set-variable variableName="centerId"><![CDATA[attributes.uriParams.'centerId']]></ee:set-variable>
+                <ee:set-variable variableName="cartId"><![CDATA[attributes.uriParams.'cartId']]></ee:set-variable>
+				<ee:set-variable variableName="accountId" ><![CDATA[attributes.uriParams.'accountId']]></ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+		<customer-order-proc-api:deleteacart doc:name="DeleteACart" doc:id="3c0a9195-dd7b-4683-942b-0a7561a2c7f7" config-ref="Customer_order_proc_api_Config" center-id="#[attributes.uriParams.centerId]" cart-id="#[attributes.uriParams.cartId]"/>
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="DW map as Set Response">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  code: 204,
+  status: "No Content",
+  message: "Resource deleted successfully.",
+  timestamp: now()
+}]]></ee:set-payload>
+            </ee:message>
+			<ee:variables >
+				<ee:set-variable variableName="httpStatus" ><![CDATA[%dw 2.0
+output application/java
+---
+204]]></ee:set-variable>
+			</ee:variables>
+        </ee:transform>
+	</flow>
+	<flow name="postAddCartLineItem" doc:id="d43d35bb-c28f-4c87-b7de-cffbed3c21c5" >
+        <ee:transform doc:name="DW map as Get Request Params">
+            <ee:variables>
+                <ee:set-variable variableName="accountId"><![CDATA[attributes.uriParams.'accountId']]></ee:set-variable>
+                <ee:set-variable variableName="centerId"><![CDATA[attributes.uriParams.'centerId']]></ee:set-variable>
+                <ee:set-variable variableName="cartId"><![CDATA[attributes.uriParams.'cartId']]></ee:set-variable>
+				<ee:set-variable variableName="include" ><![CDATA[%dw 2.0
+output application/java
+---
+attributes.queryParams.include]]></ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+		<customer-order-proc-api:addcartlineitem doc:name="AddCartLineItem" doc:id="6095ea97-14c1-46bd-ae07-d92289e7fba1" config-ref="Customer_order_proc_api_Config" center-id="#[vars.centerId]" cart-id="#[vars.cartId]" include="#[vars.include]"/>
+		<ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="DW map as Set Response">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  id: payload.id,
+  (parentId: payload.parentId) if (payload.parentId?),
+  (customerId: payload.customerId) if (payload.customerId?),
+  channelId: payload.channelId,
+  email: payload.email,
+  currency: payload.currency,
+  taxIncluded: payload.taxIncluded,
+  baseAmount: payload.baseAmount,
+  discountAmount: payload.discountAmount,
+  discounts: payload.discounts default [],
+  cartAmount: payload.cartAmount,
+  coupons: payload.coupons,
+  cartItems: payload.cartItems,
+  createdTime: payload.createdTime,
+  updatedTime: payload.updatedTime,
+  (redirectUrls: payload.redirectUrls) if (payload.redirectUrls?)
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+	</flow>
+	<flow name="putUpdateCartLineItem" doc:id="303e7c84-4351-4734-9bf4-8a95003346ff" >
+		<ee:transform doc:name="DW map as Get Req Params">
+            <ee:variables>
+                <ee:set-variable variableName="accountId"><![CDATA[attributes.uriParams.'accountId']]></ee:set-variable>
+                <ee:set-variable variableName="centerId"><![CDATA[attributes.uriParams.'centerId']]></ee:set-variable>
+                <ee:set-variable variableName="cartId"><![CDATA[attributes.uriParams.'cartId']]></ee:set-variable>
+                <ee:set-variable variableName="cartItemId"><![CDATA[attributes.uriParams.'cartItemId']]></ee:set-variable>
+				<ee:set-variable variableName="include" ><![CDATA[%dw 2.0
+output application/java
+---
+attributes.queryParams.'include']]></ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+		<customer-order-proc-api:updatecartlineitemtype doc:name="UpdateCartLineItemType" doc:id="2c41ca4f-ca8d-4ae5-8d36-b713209d60b4" config-ref="Customer_order_proc_api_Config" center-id="#[vars.centerId]" cart-id="#[vars.cartid]" item-id="#[vars.itemId]" include="#[vars.include]"/>
+		<ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="DW map as Set Response">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  id: payload.id,
+  (parentId: payload.parentId) if (payload.parentId?),
+  (customerId: payload.customerId) if (payload.customerId?),
+  channelId: payload.channelId,
+  email: payload.email,
+  currency: payload.currency,
+  taxIncluded: payload.taxIncluded,
+  baseAmount: payload.baseAmount,
+  discountAmount: payload.discountAmount,
+  discounts: payload.discounts default [],
+  cartAmount: payload.cartAmount,
+  coupons: payload.coupons,
+  cartItems: payload.cartItems,
+  createdTime: payload.createdTime,
+  updatedTime: payload.updatedTime,
+  (redirectUrls: payload.redirectUrls) if (payload.redirectUrls?)
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+	</flow>
+	<flow name="deleteCartLineItem" doc:id="6445c843-da6b-4b62-936f-6f18d4047d29" >
+		<ee:transform doc:name="DW map as Get Req Vars" doc:id="dd757b66-5c7f-4aac-ace4-d7ddf6abfb41" >
+			<ee:message >
+			</ee:message>
+			<ee:variables >
+				<ee:set-variable variableName="cartItemId" ><![CDATA[%dw 2.0
+output application/java
+---
+attributes.uriParams.cartItemId]]></ee:set-variable>
+				<ee:set-variable variableName="cartId" ><![CDATA[%dw 2.0
+output application/java
+---
+attributes.uriParams.cartId]]></ee:set-variable>
+				<ee:set-variable variableName="centerId" ><![CDATA[%dw 2.0
+output application/java
+---
+attributes.uriParams.centerId]]></ee:set-variable>
+				<ee:set-variable variableName="include" ><![CDATA[%dw 2.0
+output application/java
+---
+attributes.queryParams.include]]></ee:set-variable>
+			</ee:variables>
+		</ee:transform>
+		<customer-order-proc-api:deletecartlineitem doc:name="DeleteCartLineItem" doc:id="ea1bd02a-5743-4bbd-a1a2-f7a27dec4b9b" config-ref="Customer_order_proc_api_Config" center-id="#[vars.centerId]" cart-id="#[vars.cartId]" item-id="#[vars.cartItemId]" include="#[vars.include]"/>
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="DW map as Set Response">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  code: 204,
+  status: "No Content",
+  message: "Cart item " ++ (vars.cartItemId as String default "") ++ " removed successfully.",
+  timestamp: now()
+}]]></ee:set-payload>
+            </ee:message>
+			<ee:variables >
+				<ee:set-variable variableName="httpStatus" ><![CDATA[%dw 2.0
+output application/java
+---
+204]]></ee:set-variable>
+			</ee:variables>
+        </ee:transform>
+	</flow>
+	<flow name="order-carts-create-cart-redirect-urls-flow" doc:id="ea8e3ed2-1b4c-4a0e-9ea8-9f439d1ed459" >
+        <ee:transform doc:name="DW map as Get Request Params">
+            <ee:variables>
+                <ee:set-variable variableName="accountId">attributes.uriParams.'accountId'</ee:set-variable>
+                <ee:set-variable variableName="centerId">attributes.uriParams.'centerId'</ee:set-variable>
+                <ee:set-variable variableName="cartId">attributes.uriParams.'cartId'</ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+		<until-successful maxRetries="5" doc:name="Until Successful" doc:id="c0683fbf-a977-4a95-b05e-9d8714558d18" >
+			<customer-order-proc-api:createcartredirecturl doc:name="CreateCartRedirectURL" doc:id="534e9ec2-e286-46ab-9a2f-15dd7371df00" config-ref="Customer_order_proc_api_Config" uri-paramcenter-id="#[vars.centerId]" cart-id="#[vars.cartId]" customer-id="#[vars.accountId]" query-paramcenter-id="#[vars.centerId]"/>
+		</until-successful>
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="DW map as Set Response">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+  cartUrl: payload.redirectUrls.cartUrl,
+  checkoutUrl: payload.redirectUrls.checkoutUrl,
+  embeddedCheckoutUrl: payload.redirectUrls.embeddedCheckoutUrl
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+	</flow>
+	<flow name="order-carts-promotionsFlow" doc:id="f94048bf-57c0-444b-8f26-3d34274b437f" >
+		<ee:transform doc:name="DW map Get Request Params" doc:id="074dfbda-5b15-49ba-8986-0567aa4d8ff2" >
+			<ee:variables >
+				<ee:set-variable variableName="centerId" ><![CDATA[attributes.uriParams.'centerId']]></ee:set-variable>
+				<ee:set-variable variableName="cartId" ><![CDATA[attributes.uriParams.'cartId']]></ee:set-variable>
+			</ee:variables>
+		</ee:transform>
+		<customer-order-proc-api:add-promotion-to-the-cart doc:name="Add promotion to the cart" doc:id="192e5e22-bf87-4569-bd68-e751bdc4cfbf" config-ref="Customer_order_proc_api_Config" center-id="#[vars.centerId]" cart-id="#[vars.cartId]">
+		</customer-order-proc-api:add-promotion-to-the-cart>
+		<ee:transform doc:name="DW map as Set Response" doc:id="81680393-b876-446c-8339-c0c4239b8418" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

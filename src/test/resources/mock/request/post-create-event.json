@@ -1,0 +1,27 @@
+ {
+      "centerId": "JAX",
+      "ownerFirstName": "ownerTest",
+      "ownerLastName": "OT",
+      "salespersonFirstName": "salesPersonTest",
+      "salespersonLastName": "ST",
+      "leadName": "T - Youth Birthday",
+      "eventType": "Birthday",
+      "contact" : {
+	    "firstName": "Test",
+      "lastName": "T",
+      "mobile": "555-555-1234",
+      "email": "TestT@email.com",
+      "optIn": true
+	                },
+      "eventDate": "02/28/2021",
+      "eventTime": "04:30 PM",
+      "estimatedAttendance": 8,
+      "budget": "$200",
+      "package": "Birthday Your Way 1",
+      "description": "02/08/2021 -- Would like to come in and celebrate her Father's birthday. No additional information at this time. Max 2048.",
+      "leadNote": {
+        "acceptTerms": true,
+        "multiLocation": false,
+        "freeTour": false
+    }
+ }

@@ -1,0 +1,21 @@
+{
+    "hasBowl": true,
+    "hasLaserTag": true,
+    "hasBilliards": true,
+    "hasGolf": false,
+    "hasKaraoke": true,
+    "hasBESX": true,
+    "hasEM": false,
+    "hasTablets": true,
+    "hasGravity": false,
+    "hasRockClimbing": false,
+    "numberOfLanes": 34,
+    "numberOfVests": 30,
+    "numberOfPoolTables": null,
+    "numberOfGames": null,
+    "numberOfReaders": 0,
+    "numberOfTellers": 6,
+    "numberOfRooms": 10,
+    "headcountEnabled": true,
+    "qubicaEnabled": true
+}

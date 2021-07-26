@@ -1,0 +1,12 @@
+[
+  {
+    "promotionRedemptionId": 25,
+    "customerProfileId": "1775EC9A-88EC-41C2-B19F-0FD6D1468D0E",
+    "promotionId": 1,
+    "redemptionDateTime": "2020-12-03T05:51:22.317",
+    "customerNumUses": null,
+    "unit": null,
+    "amount": 150.0000,
+    "note": "additional cash amount:$50"
+  }
+]

@@ -1,0 +1,51 @@
+{
+  "partyMix": [
+      {
+          "partyMixType": "Adults",
+          "perPersonPrice": "N/A"
+      },
+      {
+          "partyMixType": "Children",
+          "perPersonPrice": "N/A"
+      }
+  ],
+  "perAssetPrice": "$44.00",
+  "reservationServices": [
+    {
+        "serviceItemPriceId": "Rrg4y",
+        "name": "$10 FUNcard for $10.00",
+        "description": "",
+        "price": "$10.00",
+        "pricingModel": "Charge Per Quantity",
+        "quantity": null,
+        "quantityEditable": "true"
+    },
+    {
+        "serviceItemPriceId": "EAygK",
+        "name": "$5 FUNcard for $5.00",
+        "description": "",
+        "price": "$5.00",
+        "pricingModel": "Charge Per Quantity",
+        "quantity": null,
+        "quantityEditable": "true"
+    },
+    {
+        "serviceItemPriceId": "4Ab74",
+        "name": "Adult Shoe Rental for $4.25",
+        "description": "",
+        "price": "$4.25",
+        "pricingModel": "Charge Per Quantity",
+        "quantity": null,
+        "quantityEditable": "true"
+    },
+    {
+        "serviceItemPriceId": "g4786",
+        "name": "Child Shoe Rental for $3.25",
+        "description": "",
+        "price": "$3.25",
+        "pricingModel": "Charge Per Quantity",
+        "quantity": null,
+        "quantityEditable": "true"
+    }
+  ]
+}

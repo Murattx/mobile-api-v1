@@ -1,0 +1,65 @@
+{
+  "reservationCode": "rfzlZuQCZrm3v8YG8c8%2B9Wms/wmjBK1PxtodywQPDgYD79E%2BSS8e064fc5aeU%2B8VfeZ9CcM0tetRDYK1qQ/OiYUBdrniLowyxJEpO2bmfGQUzOE7B553AJLcvKZl2LjI/jwIQOoI/wABHoHnNkUrdq5kld7luVxaqKl70NNZLrEhgkfmMenCVZ1YsFIFzKMFFMw1tZQ7CJ5UXbFiMQyUVMXfDgGusecdxeF4FMhqnXtASuSz66XCApXg8pNC9h%2BSJsZMpa0AXFlgTclS9ZcHJDOZaz3mGLH9ucC83xIS3YypZi4URtUR9J%2BIxoaafxQu",
+  "firstName": "FName",
+  "lastName": "LName",
+  "email": "fName.lName@gmail.com",
+  "mobilePhone": "469-576-8121",
+  "comments": "bowling reservation",
+  "referralType": "Home of Champions",
+  "reservationType": "string",
+  "serviceDetail": "Booster Seat",
+  "specialOccasion": "Birthday: Child",
+  "name": "Bowling 1 Hour - Main Event - Frisco",
+  "pricingSummary": "$72.00",
+  "centerId": "FRS",
+  "assetDetails": [
+    {
+      "assetName":"Lane 1",
+      "assetDetailType": "Bumpers",
+      "description": "Need bumpers for kids"
+    },
+    {
+      "assetName":"Lane 2",
+      "assetDetailType": "Player",
+      "description": "Players"
+    }
+  ],
+  "reservationServices": [
+    {
+      "serviceItemPriceId" : "RrgXL",
+      "name": "$10 FUNcard for $10.00",
+      "description": "",
+      "price": "$10.00",
+      "pricingModel": "Charge Per Quantity", 
+      "quantity": 2
+    },
+    {
+      "serviceItemPriceId": "g4786",
+      "name": "Child Shoe Rental for $3.25",
+      "description": "",
+      "price": "$3.25",
+      "pricingModel": "Charge Per Quantity",
+      "quantity": 2
+    },
+    {
+      "serviceItemPriceId": "4Ab74",
+      "name": "Adult Shoe Rental for $4.25",
+      "description": "",
+      "price": "$4.25",
+      "pricingModel": "Charge Per Quantity", 
+      "quantity": 3
+    }
+  ],
+  "partyMix": [
+    {
+      "partyMixType": "Adults",
+      "size": "3",
+      "perPersonPrice": "N/A"
+    },
+    {
+      "partyMixType": "Children",
+      "size": "2",
+      "perPersonPrice": "N/A"
+    }
+  ]
+}

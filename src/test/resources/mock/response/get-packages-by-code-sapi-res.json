@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "resource": "serviceTypes",
+    "recordCount": 5
+  },
+  "menuOptions": [
+    {
+      "functionName": "Food Service in Party Street",
+      "menuName": "Birthday Your Way 2",
+      "menuPricingType": "Package Pricing",
+      "addOnMenu": false,
+      "serviceTypes": [
+        {
+          "serviceTypeName": "Menu",
+          "maxNumSelections": 0,
+          "autoAddAllItems": false,
+          "serviceItems": [
+            {
+              "serviceItemCode": "ltt6MWBkZKSIpy4W829TtxZOcTnVgJ9bL172lgEcXxW3tXirhXu7DqxesMTfrZpPjEvVLpcdwXMRcWpRqgzJ7dPmLMCMU2YIEFSpsdpn-brjoilalCGMLlrBigZCdpzuGKKnDB5CFAS0TrVn4HhIcbA8EwKjl8XX_2PA9haJyEhIhkkA9xNCG0U2Vrku5z5UoqXZ0Qxeu4KtSiMYSudI9A==",
+              "serviceItemDescription": "Pepperoni Pizza",
+              "quantityEditable": false,
+              "aLaCartePrice": "$0.00",
+              "addOnPrice": "$0.00",
+              "numberRequired": "1.00",
+              "perNumberOfGuests": 5,
+              "itemNumber": "PIZ 101"
+            },
+            {
+              "serviceItemCode": "ltt6MWBkZKSIpy4W829TtxZOcTnVgJ9bL172lgEcXxW3tXirhXu7DqxesMTfrZpPjEvVLpcdwXMRcWpRqgzJ7dPmLMCMU2YIEFSpsdpn-brjoilalCGMLlrBigZCdpzuGKKnDB5CFAS0TrVn4HhIcbA8EwKjl8XX_2PA9haJyEgclX6ct9R6V4sC5rPLeyKRoqXZ0Qxeu4KtSiMYSudI9A==",
+              "serviceItemDescription": "Cheese Pizza",
+              "quantityEditable": false,
+              "aLaCartePrice": "$0.00",
+              "addOnPrice": "$0.00",
+              "numberRequired": "1.00",
+              "perNumberOfGuests": 5,
+              "itemNumber": "PIZ 100"
+            },
+            {
+              "serviceItemCode": "ltt6MWBkZKSIpy4W829TtxZOcTnVgJ9bL172lgEcXxW3tXirhXu7DqxesMTfrZpPjEvVLpcdwXMRcWpRqgzJ7dPmLMCMU2YIEFSpsdpn-brjoilalCGMLlrBigZCdpzuGKKnDB5CFAS0TrVn4HhIcbA8EwKjl8XX_2PA9haJyEhUmg4zhvMQvhw5y_rxgZb_oqXZ0Qxeu4KtSiMYSudI9A==",
+              "serviceItemDescription": "Pepperoni and Cheese Pizza",
+              "quantityEditable": false,
+              "aLaCartePrice": "$0.00",
+              "addOnPrice": "$0.00",
+              "numberRequired": "1.00",
+              "perNumberOfGuests": 5,
+              "itemNumber": "PIZ 102"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

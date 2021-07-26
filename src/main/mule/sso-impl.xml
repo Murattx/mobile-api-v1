@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:play-process-api="http://www.mulesoft.org/schema/mule/play-process-api" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/play-process-api http://www.mulesoft.org/schema/mule/play-process-api/current/mule-play-process-api.xsd">
+	<flow name="createZendeskSSOJWTFlow" doc:id="24f24fb4-8b11-4cb0-b13e-0131b3927cc4" >
+		<play-process-api:create-jwt doc:name="Create jwt" doc:id="2477b1d2-0bc5-444f-b7da-926a60606376" config-ref="Play_Process_API_Config" platform="#[attributes.queryParams.platform]"/>
+		<ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+	</flow>
+</mule>

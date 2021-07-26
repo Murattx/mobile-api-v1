@@ -1,0 +1,122 @@
+{
+    "packageDetails": {
+        "functionName": "Food Service in Party Street",
+        "menuName": "Birthday Your Way 2",
+        "menuPricingType": "Package Pricing",
+        "addOnMenu": false,
+        "menu": {
+            "serviceTypeName": "Menu",
+            "maxNumSelections": 0,
+            "autoAddAllItems": false,
+            "menuItems": [
+                {
+                    "serviceItemCode": "ltt6MWBkZKSIpy4W829TtxZOcTnVgJ9bL172lgEcXxW3tXirhXu7DqxesMTfrZpPjEvVLpcdwXMRcWpRqgzJ7dPmLMCMU2YIEFSpsdpn-brjoilalCGMLlrBigZCdpzuGKKnDB5CFAS0TrVn4HhIcbA8EwKjl8XX_2PA9haJyEhIhkkA9xNCG0U2Vrku5z5UoqXZ0Qxeu4KtSiMYSudI9A==",
+                    "serviceItemDescription": "Pepperoni Pizza",
+                    "quantityEditable": false,
+                    "aLaCartePrice": "$0.00",
+                    "addOnPrice": "$0.00",
+                    "numberRequired": "1.00",
+                    "perNumberOfGuests": 5,
+                    "itemNumber": "PIZ 101"
+                },
+                {
+                    "serviceItemCode": "ltt6MWBkZKSIpy4W829TtxZOcTnVgJ9bL172lgEcXxW3tXirhXu7DqxesMTfrZpPjEvVLpcdwXMRcWpRqgzJ7dPmLMCMU2YIEFSpsdpn-brjoilalCGMLlrBigZCdpzuGKKnDB5CFAS0TrVn4HhIcbA8EwKjl8XX_2PA9haJyEgclX6ct9R6V4sC5rPLeyKRoqXZ0Qxeu4KtSiMYSudI9A==",
+                    "serviceItemDescription": "Cheese Pizza",
+                    "quantityEditable": false,
+                    "aLaCartePrice": "$0.00",
+                    "addOnPrice": "$0.00",
+                    "numberRequired": "1.00",
+                    "perNumberOfGuests": 5,
+                    "itemNumber": "PIZ 100"
+                },
+                {
+                    "serviceItemCode": "ltt6MWBkZKSIpy4W829TtxZOcTnVgJ9bL172lgEcXxW3tXirhXu7DqxesMTfrZpPjEvVLpcdwXMRcWpRqgzJ7dPmLMCMU2YIEFSpsdpn-brjoilalCGMLlrBigZCdpzuGKKnDB5CFAS0TrVn4HhIcbA8EwKjl8XX_2PA9haJyEhUmg4zhvMQvhw5y_rxgZb_oqXZ0Qxeu4KtSiMYSudI9A==",
+                    "serviceItemDescription": "Pepperoni and Cheese Pizza",
+                    "quantityEditable": false,
+                    "aLaCartePrice": "$0.00",
+                    "addOnPrice": "$0.00",
+                    "numberRequired": "1.00",
+                    "perNumberOfGuests": 5,
+                    "itemNumber": "PIZ 102"
+                },
+                {
+                    "serviceItemCode": "ltt6MWBkZKSIpy4W829TtxZOcTnVgJ9bL172lgEcXxW3tXirhXu7DqxesMTfrZpPjEvVLpcdwXMRcWpRqgzJ7dPmLMCMU2YIEFSpsdpn-brjoilalCGMLlrBigZCdpzuGKKnDB5CFAS0TrVn4HhIcYLa9wG-rsh-pp99YXzr1ma12zPz1Y5s564Ah8u2W7CRoqXZ0Qxeu4KtSiMYSudI9A==",
+                    "serviceItemDescription": "Pepperoni Pizza (Gluten Friendly Cauliflower Crust)",
+                    "quantityEditable": false,
+                    "aLaCartePrice": "$0.00",
+                    "addOnPrice": "$0.00",
+                    "numberRequired": "1.00",
+                    "perNumberOfGuests": 2,
+                    "itemNumber": "PIZ 104"
+                },
+                {
+                    "serviceItemCode": "ltt6MWBkZKSIpy4W829TtxZOcTnVgJ9bL172lgEcXxW3tXirhXu7DqxesMTfrZpPjEvVLpcdwXMRcWpRqgzJ7dPmLMCMU2YIEFSpsdpn-brjoilalCGMLlrBigZCdpzuGKKnDB5CFAS0TrVn4HhIcYLa9wG-rsh-pp99YXzr1maZzOicr9PxKsFDvBlot6dLoqXZ0Qxeu4KtSiMYSudI9A==",
+                    "serviceItemDescription": "Cheese Pizza (Gluten Friendly Cauliflower Crust)",
+                    "quantityEditable": false,
+                    "aLaCartePrice": "$0.00",
+                    "addOnPrice": "$0.00",
+                    "numberRequired": "1.00",
+                    "perNumberOfGuests": 2,
+                    "itemNumber": "PIZ 103"
+                },
+                {
+                    "serviceItemCode": "ltt6MWBkZKSIpy4W829TtxZOcTnVgJ9bL172lgEcXxW3tXirhXu7DqxesMTfrZpPjEvVLpcdwXMRcWpRqgzJ7dPmLMCMU2YIEFSpsdpn-brjoilalCGMLlrBigZCdpzuGKKnDB5CFAS0TrVn4HhIcYLa9wG-rsh-pp99YXzr1mb7OCAWHaJurbfxHUZ3GccGoqXZ0Qxeu4KtSiMYSudI9A==",
+                    "serviceItemDescription": "Pepperoni and Cheese Pizza (Gluten Friendly Cauliflower Crust)",
+                    "quantityEditable": false,
+                    "aLaCartePrice": "$0.00",
+                    "addOnPrice": "$0.00",
+                    "numberRequired": "1.00",
+                    "perNumberOfGuests": 2,
+                    "itemNumber": "PIZ 105"
+                },
+                {
+                    "serviceItemCode": "ltt6MWBkZKSIpy4W829TtxZOcTnVgJ9bL172lgEcXxW3tXirhXu7DqxesMTfrZpPjEvVLpcdwXMRcWpRqgzJ7dPmLMCMU2YIEFSpsdpn-brjoilalCGMLlrBigZCdpzuGKKnDB5CFAS0TrVn4HhIcYLa9wG-rsh-pp99YXzr1mblxVz0Eb3R8xxeea8oBxUNoqXZ0Qxeu4KtSiMYSudI9A==",
+                    "serviceItemDescription": "Super Sliders",
+                    "quantityEditable": false,
+                    "aLaCartePrice": "$0.00",
+                    "addOnPrice": "$0.00",
+                    "numberRequired": "1.00",
+                    "perNumberOfGuests": 1,
+                    "itemNumber": "FOOD 200"
+                }
+            ]
+   		},
+   		"menuAddOns": {
+            "serviceTypeName": "Menu Additions",
+            "maxNumSelections": 0,
+            "autoAddAllItems": false,
+            "addOnItems": [
+                {
+                    "serviceItemCode": "ltt6MWBkZKSIpy4W829TtxZOcTnVgJ9bL172lgEcXxW3tXirhXu7DqxesMTfrZpPjEvVLpcdwXMRcWpRqgzJ7dPmLMCMU2YIEFSpsdpn-brjoilalCGMLlrBigZCdpzurlUCXZ5bj75s5ELqsHiMzoLa9wG-rsh-pp99YXzr1mYclX6ct9R6V4sC5rPLeyKRoqXZ0Qxeu4KtSiMYSudI9A==",
+                    "serviceItemDescription": "Big Fun Super Sundae",
+                    "quantityEditable": false,
+                    "aLaCartePrice": "$15.00",
+                    "addOnPrice": "$15.00",
+                    "numberRequired": "1.00",
+                    "perNumberOfGuests": 0,
+                    "itemNumber": "FOOD 216"
+                },
+                {
+                    "serviceItemCode": "ltt6MWBkZKSIpy4W829TtxZOcTnVgJ9bL172lgEcXxW3tXirhXu7DqxesMTfrZpPjEvVLpcdwXMRcWpRqgzJ7dPmLMCMU2YIEFSpsdpn-brjoilalCGMLlrBigZCdpzurlUCXZ5bj75s5ELqsHiMzoLa9wG-rsh-pp99YXzr1mZUmg4zhvMQvhw5y_rxgZb_oqXZ0Qxeu4KtSiMYSudI9A==",
+                    "serviceItemDescription": "Party FUN Sundae",
+                    "quantityEditable": false,
+                    "aLaCartePrice": "$5.00",
+                    "addOnPrice": "$5.00",
+                    "numberRequired": "1.00",
+                    "perNumberOfGuests": 1,
+                    "itemNumber": "FOOD 217"
+                },
+                {
+                    "serviceItemCode": "ltt6MWBkZKSIpy4W829TtxZOcTnVgJ9bL172lgEcXxW3tXirhXu7DqxesMTfrZpPjEvVLpcdwXMRcWpRqgzJ7dPmLMCMU2YIEFSpsdpn-brjoilalCGMLlrBigZCdpzurlUCXZ5bj75s5ELqsHiMzs0IlTBe4T1POTs0BMrfcjFz0XWqRlGXUwC9a1li1wA8oqXZ0Qxeu4KtSiMYSudI9A==",
+                    "serviceItemDescription": "Unlimited Soft Drink Fountain Service",
+                    "quantityEditable": false,
+                    "aLaCartePrice": "$3.29",
+                    "addOnPrice": "$3.29",
+                    "numberRequired": "1.00",
+                    "perNumberOfGuests": 1,
+                    "itemNumber": null
+                }
+            ]
+    	}
+	}
+}

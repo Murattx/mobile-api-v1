@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:account-system-api="http://www.mulesoft.org/schema/mule/account-system-api" xmlns:customer-order-proc-api="http://www.mulesoft.org/schema/mule/customer-order-proc-api"
+	xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns:customer-account-process-api="http://www.mulesoft.org/schema/mule/customer-account-process-api" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/customer-account-process-api http://www.mulesoft.org/schema/mule/customer-account-process-api/current/mule-customer-account-process-api.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/customer-order-proc-api http://www.mulesoft.org/schema/mule/customer-order-proc-api/current/mule-customer-order-proc-api.xsd
+http://www.mulesoft.org/schema/mule/account-system-api http://www.mulesoft.org/schema/mule/account-system-api/current/mule-account-system-api.xsd">
+	<customer-account-process-api:config name="Customer_Account_Process_API_Config" doc:name="Customer Account Process API Config" doc:id="5f268b50-edc7-4d64-871f-a72b83eb9dcd" property_username="${secure::customer_proc.client_id}" property_password="${secure::customer_proc.client_secret}" property_host="${secure::customer_proc.host}" property_port="${secure::customer_proc.port}" property_basePath="${secure::customer_proc.basepath}" property_protocol="${secure::customer_proc.protocol}" property_responseTimeout="${secure::customer_proc.request_timeout}" />
+	<flow name="getAccountList" doc:id="b74bf1af-caba-432c-a211-41fce8445771" >
+		<customer-account-process-api:getaccountlist doc:name="GetAccountList" doc:id="b157e261-9d50-4b29-ad82-0f5c3051b96b" config-ref="Customer_Account_Process_API_Config" account-id='#[if (Mule::p("authentication_test.enabled") as Boolean)
+	attributes.queryParams.accountId
+else
+	vars.authAccountId]'/>
+	</flow>
+	<flow name="getAccountByAccountId" doc:id="bd83c4c1-ae12-4041-96c8-8e5ec74872d4" >
+		<customer-account-process-api:getaccount doc:name="GetAccount" doc:id="58f9ddd8-cd16-4946-ab6b-f1bc8475c83e" config-ref="Customer_Account_Process_API_Config" account-id="#[attributes.uriParams.accountId]"/>
+	</flow>
+	<flow name="patchUpdateAccount" doc:id="ee1992c8-de90-4248-bd2c-c21651540425" >
+		<customer-account-process-api:updateaccount doc:name="UpdateAccount" doc:id="deecdee9-4098-487d-a671-252e7f9bb53c" config-ref="Customer_Account_Process_API_Config" account-id="#[attributes.uriParams.accountId]"/>
+	</flow>
+	<flow name="getAccountPrefs" doc:id="7e782fe6-7109-44fa-9da1-2f83505a25dc" >
+		<customer-account-process-api:getaccountpreferences doc:name="GetAccountPreferences" doc:id="5ab46517-8dee-4e7a-8278-ea8e26460432" config-ref="Customer_Account_Process_API_Config" account-id="#[attributes.uriParams.accountId]"/>
+	</flow>
+	<flow name="patchUpdateAccountPrefs" doc:id="c3810c20-9783-49bd-afac-8db478b48a71" >
+		<customer-account-process-api:updateaccountpreferences doc:name="UpdateAccountPreferences" doc:id="3cabdc10-902e-42c8-a95d-2a35255bb0e1" config-ref="Customer_Account_Process_API_Config" account-id="#[attributes.uriParams.accountId]"/>
+	</flow>
+	<flow name="customer-implFlow" doc:id="88514967-6876-4148-b526-6dc5bc5a713f" >
+		<ee:transform doc:name="getRequestParams" doc:id="63327f0e-857b-4b03-b3f4-03e3cdd6c606" >
+			<ee:variables >
+				<ee:set-variable variableName="accountId" ><![CDATA[attributes.uriParams.'accountId']]></ee:set-variable>
+				<ee:set-variable variableName="centerId" ><![CDATA[attributes.uriParams.'centerId']]></ee:set-variable>
+				<ee:set-variable variableName="cartId" ><![CDATA[attributes.uriParams.'cartId']]></ee:set-variable>
+			</ee:variables>
+		</ee:transform>
+		<customer-order-proc-api:add-promotion-to-the-cart doc:name="Add promotion to the cart" doc:id="1c3668f9-8b1c-4449-a483-03618fcf1089" config-ref="Customer_order_proc_api_Config" center-id="#[vars.centerId]" cart-id="#[vars.cartId]">
+			<customer-order-proc-api:add-promotion-to-the-cart-request-data ><![CDATA[#[%dw 2.0
+output application/json
+---
+{
+  "couponCode": payload.couponCode,
+  "customerProfileId": vars.accountId
+}]]]></customer-order-proc-api:add-promotion-to-the-cart-request-data>
+		</customer-order-proc-api:add-promotion-to-the-cart>
+		<ee:transform doc:name="SetResponse" doc:id="8a0ca65e-37db-472c-9f2d-0f138caed52b" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>

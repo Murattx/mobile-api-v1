@@ -1,0 +1,16 @@
+{
+  "funCardNumber": "0700000031320212",
+  "statusText": "Active",
+  "status": 0,
+  "cashBalance": 175,
+  "bonusCashBalance": 70,
+  "pointBalance": 0,
+  "tokenBalance": 0,
+  "tokenBonusBalance": 0,
+  "firstUsed": "2019-11-17T20:49:00",
+  "todateCashIn": 842.0000,
+  "todayCashIn": 0.0000,
+  "blockedAccess": null,
+  "timePlayStartTime": "0001-01-01T00:00:00",
+  "timePlayEndTime": "0001-01-01T00:00:00"
+}

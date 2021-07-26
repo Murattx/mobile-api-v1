@@ -1,0 +1,16 @@
+{
+  "promotionId": 1,
+  "type": "promotion",
+  "createDateTime": "2020-10-07T00:00:00",
+  "startDateTime": "2020-10-07T00:00:00",
+  "endDateTime": "2020-12-31T00:00:00",
+  "enabled": true,
+  "numberUses": 30,
+  "maximumUses": 0,
+  "maximumUsesPerCustomer": 1,
+  "amount": "200%",
+  "code": "DOUBLE_VALUE",
+  "minimumPurchase": "$1",
+  "appliesTo": "0",
+  "capAmount": 50
+}

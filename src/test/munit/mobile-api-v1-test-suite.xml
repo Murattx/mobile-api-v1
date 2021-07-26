@@ -1,0 +1,1787 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="mobile-api-v1-test-suite.xml" />
+	<munit:test name="mobile-api-v1-test-suite-get:\accounts\(accountId):mobile-api-v1-configTest" doc:id="a2f7dd71-9225-4751-bbe2-bc989ea6016f" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Account By AccountId" doc:id="1fde729a-a9ee-4f14-9d8b-55e403cf3c19" processor="customer-account-process-api:getaccount">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="GetAccount" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="58f9ddd8-cd16-4946-ab6b-f1bc8475c83e" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-account-profile-sapi-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="9f592e78-d18a-48ab-a132-bcf1d4110410" >
+				<munit:attributes value='#[{uriParams: {"accountId" : "1775EC9A-88EC-41C2-B19F-0FD6D1468D0E"}}]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="1775EC9A-88EC-41C2-B19F-0FD6D1468D0E" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\accounts\(accountId):mobile-api-v1-config" doc:id="306998e2-690e-4b86-96d2-1ca7194068ae" name="get:\accounts\(accountId):mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="e6e9c306-eaca-4678-95e2-219f767f44d6" expression="#[payload]" is="#[MunitTools::equalTo(read(MunitTools::getResourceAsString('mock/response/get-account-profile-sapi-res.json'), &quot;application/json&quot;))]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\accounts:mobile-api-v1-configTest" doc:id="fb9f5ed5-9e55-479a-aeae-02cd52f3163e" description="Test">
+		<munit:behavior>
+			<munit-tools:mock-when doc:name="Mock Get Account List" doc:id="78cb7487-608a-4ecb-974e-183be47e53ed" processor="customer-account-process-api:getaccountlist">
+				<munit-tools:with-attributes>
+					<munit-tools:with-attribute whereValue="GetAccountList" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="b157e261-9d50-4b29-ad82-0f5c3051b96b" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return>
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-account-list-sapi-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<munit:set-event doc:name="Set Event" doc:id="6de13554-6b00-405e-b1d1-b6e1207f4ab9">
+				<munit:attributes value='#[{uriParams: {"accountId" : "1775EC9A-88EC-41C2-B19F-0FD6D1468D0E"}}]' />
+				<munit:variables>
+					<munit:variable key="authAccountId" value="1775EC9A-88EC-41C2-B19F-0FD6D1468D0E" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\accounts:mobile-api-v1-config" doc:id="ece802e7-5b43-4216-8850-367c5cb99617" name="get:\accounts:mobile-api-v1-config" />
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:assert-that doc:name="Assert that Payload is not null" doc:id="5b948949-ddc4-460b-96c1-d7072f1e09e3" expression="#[payload]" is="#[MunitTools::equalTo(read(MunitTools::getResourceAsString('mock/response/get-account-list-sapi-res.json'), &quot;application/json&quot;))]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\accounts\(accountId)\funCards:mobile-api-v1-configTest" doc:id="0dd0af6a-02e7-48ff-976b-f1b927462a6d" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Get FunCard List" doc:id="1e3a3dfc-4167-4191-a1d3-ee3421ab0964" processor="play-process-api:getfuncardlist">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="GetFunCardList" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="c6beb302-a470-40b9-aed4-6a14bc7fb3cb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-funcard-list-sapi-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="06189b52-9ea8-4e7b-bfdf-c33924a7dcbc" >
+				<munit:attributes value='#[{uriParams: {"accountId" : "1775EC9A-88EC-41C2-B19F-0FD6D1468D0E"}}]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="1775EC9A-88EC-41C2-B19F-0FD6D1468D0E" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\accounts\(accountId)\funCards:mobile-api-v1-config" doc:id="37dd7e59-87b8-421e-a65f-a3b3c6ae6156" name="get:\accounts\(accountId)\funCards:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="226d91b4-e935-4774-a23d-4ccb27cd4c4d" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\accounts\(accountId)\funCards-PLAY-PROCESS-API:NOT_FOUND" doc:id="ca626039-5ab8-4221-9edc-f54a82561a40" description="Test">
+			<munit:behavior>
+				<munit-tools:mock-when doc:name="Mock Get FunCard List" doc:id="22226afe-89a5-4990-a006-8db895f9da8b" processor="play-process-api:getfuncardlist">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="c6beb302-a470-40b9-aed4-6a14bc7fb3cb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="PLAY-PROCESS-API:NOT_FOUND" />
+				</munit-tools:then-return>
+				</munit-tools:mock-when>
+			</munit:behavior>
+			<munit:execution>
+				<munit:set-event doc:name="Set Event" doc:id="ae5d223f-1b08-4f83-b8ff-3bbb2d7560c9">
+				<munit:attributes value='#[{uriParams: {"accountId" : "1775EC9A-88EC-41C2-B19F-0FD6D1468D0E"}}]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="1775EC9A-88EC-41C2-B19F-0FD6D1468D0E" />
+				</munit:variables>
+				</munit:set-event>
+				<flow-ref doc:name="Flow-ref to get:\accounts\(accountId)\funCards:mobile-api-v1-config" doc:id="1cd451a0-42ad-4133-9f42-2d3e85f75946" name="get:\accounts\(accountId)\funCards:mobile-api-v1-config" />
+			</munit:execution>
+			<munit:validation>
+				<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="83617a10-c852-41de-8a31-5e87e9bee382" expression="#[payload.funCards]" is="#[MunitTools::equalTo([])]" />
+			</munit:validation>
+		</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\accounts\(accountId)\funCards-HTTP:BAD_REQUEST" doc:id="e97018f4-997f-4d31-b7de-b9a6442ede8d" description="Test" expectedErrorType="HTTP:BAD_REQUEST">
+			<munit:behavior>
+				<munit-tools:mock-when doc:name="Mock Get FunCard List" doc:id="dabce0f5-4b8d-4bb0-a3ee-db55f2aceee9" processor="play-process-api:getfuncardlist">
+					<munit-tools:with-attributes>
+						<munit-tools:with-attribute whereValue="GetFunCardList" attributeName="doc:name" />
+						<munit-tools:with-attribute whereValue="c6beb302-a470-40b9-aed4-6a14bc7fb3cb" attributeName="doc:id" />
+					</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="HTTP:BAD_REQUEST" />
+				</munit-tools:then-return>
+				</munit-tools:mock-when>
+			</munit:behavior>
+			<munit:execution>
+				<munit:set-event doc:name="Set Event" doc:id="b105b8d4-c8d5-4b2e-b081-7774cf0aa4f1">
+				<munit:attributes value='#[{uriParams: {"accountId" : "1775EC9A-88EC-41C2-B19F-0FD6D1468D0E"}}]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="1775EC9A-88EC-41C2-B19F-0FD6D1468D0E" />
+				</munit:variables>
+				</munit:set-event>
+				<flow-ref doc:name="Flow-ref to get:\accounts\(accountId)\funCards:mobile-api-v1-config" doc:id="9076d3ab-8017-4e70-8b0b-b12fa7857da7" name="get:\accounts\(accountId)\funCards:mobile-api-v1-config" />
+			</munit:execution>
+			<munit:validation>
+				<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="c0408dcd-d7fa-415f-ad34-fbd342977b2a" expression="#[payload]" is="#[MunitTools::notNullValue()]" />
+			</munit:validation>
+		</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\accounts\(accountId)\funCards\(funCardId):mobile-api-v1-configTest" doc:id="2335135b-5809-4337-85fe-be596ce07a0b" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Get Funcard By Id" doc:id="2fa7891c-6101-4a5e-8ac7-e36fc6af035c" processor="play-process-api:getfuncard">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="GetFunCard" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="1f35872d-2c7c-4858-b9cd-9e2417bdba70" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-funcard-by-id-sapi-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="32dc3d19-01e6-4bfb-9450-ac3ee711116b" >
+				<munit:attributes value='#[&#10;		{&#10;			uriParams: {&#10;					"accountId" : "F0F17DD4-A2C4-4E35-9229-5315AF08C713",&#10;					"funCardId" : "1E8A6861-1BB0-4AB7-AB78-106B775BEC31"&#10;			}&#10;		}&#10;]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="F0F17DD4-A2C4-4E35-9229-5315AF08C713" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\accounts\(accountId)\funCards\(funCardId):mobile-api-v1-config" doc:id="b5293125-8c45-4708-adf3-8daad39821f9" name="get:\accounts\(accountId)\funCards\(funCardId):mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="044b11ab-8ece-490d-b717-57c66a80b5ce" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\accounts\(accountId)\funCards\(funCardId)\history:mobile-api-v1-configTest" doc:id="9e09c0dc-bd23-45e4-aa2a-6105421ae64a" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Get Funcard History" doc:id="eec98658-1df3-4643-8070-b718c6fec656" processor="play-process-api:getfuncardhistory">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="GetFunCardHistory" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="ea747d15-b3b9-4854-a779-b39e678767ee" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-funcard-history-sapi-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="a95b9ac1-56b2-477c-bad9-92faf4de7910" >
+				<munit:attributes value='#[&#10;		{&#10;			uriParams: {&#10;					"accountId" : "F0F17DD4-A2C4-4E35-9229-5315AF08C713",&#10;					"funCardId" : "1E8A6861-1BB0-4AB7-AB78-106B775BEC31"&#10;			}&#10;		}&#10;]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="F0F17DD4-A2C4-4E35-9229-5315AF08C713" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\accounts\(accountId)\funCards\(funCardId)\history:mobile-api-v1-config" doc:id="d1db86cc-73ea-4f34-a84f-86d36c561259" name="get:\accounts\(accountId)\funCards\(funCardId)\history:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="7ee53aa7-a5e0-46cc-913b-83661b49d07b" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\accounts\(accountId)\orders\(centerId)\carts\(cartId):mobile-api-v1-configTest" doc:id="207fb074-5b37-49f9-9f87-f72629f6c156" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Get A Cart" doc:id="5f8a77fe-5a11-4914-83d7-3969758a638a" processor="customer-order-proc-api:getacart">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="GetACart" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="68877831-0ab8-4ae8-87c0-cdef3490a2cd" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-a-cart-sapi-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="52405977-ea69-45d8-b273-da42dea123fb" >
+				<munit:attributes value='#[&#10;		{&#10;			uriParams: {&#10;					"accountId" : "F0F17DD4-A2C4-4E35-9229-5315AF08C713",&#10;					"centerId" : "PLA",&#10;					"cartId" : "DC3B2584-9C7C-4517-9E05-35A0937F038E"&#10;			}&#10;		}&#10;]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="F0F17DD4-A2C4-4E35-9229-5315AF08C713" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\accounts\(accountId)\orders\(centerId)\carts\(cartId):mobile-api-v1-config" doc:id="48bdf70d-e0fe-41b7-8494-77992fbb11d6" name="get:\accounts\(accountId)\orders\(centerId)\carts\(cartId):mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="f2a1c330-9874-43d8-85be-a311c763b238" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\accounts\(accountId)\preference:mobile-api-v1-configTest" doc:id="162dc08f-d569-438d-a2dc-9e4bb60ea277" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Get Account Preference" doc:id="bee00545-a614-4d45-9407-5b4ac48a2fd3" processor="customer-account-process-api:getaccountpreferences">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="GetAccountPreferences" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="5ab46517-8dee-4e7a-8278-ea8e26460432" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-account-preference-sapi-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="e5595e3c-03eb-49e7-aae4-b3ab7ad19d59" >
+				<munit:attributes value='#[&#10;		{&#10;			uriParams: {&#10;					"accountId" : "F0F17DD4-A2C4-4E35-9229-5315AF08C713"&#10;			}&#10;		}&#10;]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="F0F17DD4-A2C4-4E35-9229-5315AF08C713" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\accounts\(accountId)\preference:mobile-api-v1-config" doc:id="30559366-66da-451c-945e-fb2e5380f8cb" name="get:\accounts\(accountId)\preference:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="2fbfc7d9-9685-4221-87d0-8a9868ae06b8" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\accounts\(accountId)\promotions:mobile-api-v1-configTest" doc:id="7fef1969-2b52-40c5-8765-e8b9fab0426f" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Get Active Promotion For Account" doc:id="2b0e8823-bbe9-45f5-bb9a-190209632829" processor="play-process-api:getactivepromotionsforaccount">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="GetActivePromotionsForAccount" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="5f6869d5-480f-4c23-9672-186c4f0aedc9" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-promotion-sapi-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="13392c3d-3880-44a6-9ada-9c3adab3c982" >
+				<munit:attributes value='#[&#10;		{&#10;			uriParams: {&#10;					"accountId" : "F0F17DD4-A2C4-4E35-9229-5315AF08C713"&#10;			}&#10;		}&#10;]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="F0F17DD4-A2C4-4E35-9229-5315AF08C713" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\accounts\(accountId)\promotions:mobile-api-v1-config" doc:id="3fdd3164-b405-44fe-a4b3-82680f6f9c41" name="get:\accounts\(accountId)\promotions:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="9288f15d-36b5-4db7-8d31-08704fb6d3e9" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\accounts\(accountId)\promotions\(promotionId):mobile-api-v1-configTest" doc:id="860a29f0-bbea-4990-abed-f1ec9a3c54d3" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Get Promotion By Id" doc:id="ae312b58-8d15-4ef3-88f9-f60f162b3b15" processor="play-process-api:getpromotionbyid">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="GetPromotionById" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="acf3d1ce-54b3-4011-914c-1f051849bbf6" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-promotion-by-id-sapi-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="54b84fa9-4346-46bd-ac2b-c44e8cfaf5cc" >
+				<munit:attributes value='#[&#10;		{&#10;			uriParams: {&#10;					"accountId" : "F0F17DD4-A2C4-4E35-9229-5315AF08C713",&#10;					"promotionId" : "1"&#10;			}&#10;		}&#10;]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="F0F17DD4-A2C4-4E35-9229-5315AF08C713" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\accounts\(accountId)\promotions\(promotionId):mobile-api-v1-config" doc:id="0dfce799-963b-434a-a39d-c81ddabac411" name="get:\accounts\(accountId)\promotions\(promotionId):mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="ce457f1c-ae1f-430f-a36f-a42ba71a519c" expression="#[payload]" is="#[MunitTools::notNullValue()]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\accounts\(accountId)\promotions\redemptions:mobile-api-v1-configTest" doc:id="a3d767c8-4043-4a49-82cd-a5bb59e5b00f" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Get Promotion Redemption" doc:id="f8373689-2ff3-4d81-9d5d-ea28786d7c16" processor="play-process-api:getpromotionredemptionsforaccount">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="GetPromotionRedemptionsForAccount" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="f219392e-52fa-4df9-bbef-e9dd816facfc" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-promotion-redemption-sapi-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="f46ae76f-46b9-44d7-a3c4-87ef9a3c5ebd" >
+				<munit:attributes value='#[&#10;		{&#10;			uriParams: {&#10;					"accountId" : "F0F17DD4-A2C4-4E35-9229-5315AF08C713"&#10;			}&#10;		}&#10;]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="F0F17DD4-A2C4-4E35-9229-5315AF08C713" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\accounts\(accountId)\promotions\redemptions:mobile-api-v1-config" doc:id="571056b5-36c7-4306-8e7a-6ec0c1682f0a" name="get:\accounts\(accountId)\promotions\redemptions:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="5a4ddce8-9d97-469d-b70e-5c832a85157d" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\centers:mobile-api-v1-configTest" doc:id="5961f054-7b9b-4d4f-8218-792e08c45771" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Get Centes List" doc:id="e05876f7-2e00-4ac1-806b-c4cb74e96874" processor="center-process-api:getcenterslist">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="GetCentersList" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="09720349-3ad2-4c3f-83f5-3a514a25e853" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-centers-sapi-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="87a935bc-42ea-45b4-a336-cadbf4674e0e" >
+				<munit:attributes value="#[headers : {'client_Id': 'abc'}]" />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\centers:mobile-api-v1-config" doc:id="39fc5bc6-6c18-4499-92cb-2526edf70471" name="get:\centers:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="8488371f-ed83-4e1a-b82b-d702cc637604" expression="#[payload]" is="#[MunitTools::notNullValue()]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\centers\(centerId):mobile-api-v1-configTest" doc:id="e6531827-827c-465b-beb9-2ac72d9540ba" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Center By Center Id" doc:id="b52ee1ba-5ac2-439d-aa9e-c5a26e4c5472" processor="center-process-api:getcenteritem">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="GetCenterItem" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="162b6af3-c9fc-431b-85f0-334b05a24d49" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-center-by-centerId-sapi-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="94e03b54-637d-4cec-8d90-1417cad1e2a7" >
+				<munit:attributes value='#[{uriParams: {"centerId" : "PLA"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\centers\(centerId):mobile-api-v1-config" doc:id="a9cb2bc4-08fd-4a31-a625-60ed438b0b55" name="get:\centers\(centerId):mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="9d81cc56-7589-4e54-b8f1-378ba729b5e2" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\centers\(centerId)\hours:mobile-api-v1-configTest" doc:id="5a3fe1f4-0cb8-4718-8e95-1feccb689ea7" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Get Center Hours" doc:id="da7fafb2-8817-41d5-9102-650a532f342d" processor="center-process-api:get-hours-by-center-id">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Get hours by center id" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="9a5c2b4c-f5cb-46ad-8089-49dbbadbf7c9" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-center-hours-sapi-res.json')]" mediaType="application/json" />
+					<munit-tools:attributes value='#[{uriParams: {"centerId" : "PLA"}}]' />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="ae7a1e0b-20d4-4321-bca6-c0f8ed7b233d" >
+				<munit:attributes value='#[{uriParams: {"centerId" : "PLA"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\centers\(centerId)\hours:mobile-api-v1-config" doc:id="4d6e0ddf-433e-4d7b-aaa3-7c3a8de2f9d4" name="get:\centers\(centerId)\hours:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="93f36af6-5e74-4e8a-83f7-e4753f2bf5aa" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\centers\(centerId)\venues:mobile-api-v1-configTest" doc:id="3208f1d0-1ea1-4224-86c2-76872a1727fc" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Get Center Venues" doc:id="161f2a72-df0a-43eb-a1a4-a3325cb08ddc" processor="center-process-api:get-venues-by-center-id">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Get venues by center id" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="1e9d4f58-3ceb-4c64-ad8f-0673e76be569" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-center-venue-sapi-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="94e54485-ffeb-4b84-8882-eafbb367a9d4" >
+				<munit:attributes value='#[{uriParams: "centerId" : "PLA"}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\centers\(centerId)\venues:mobile-api-v1-config" doc:id="3bc16c0f-646d-4598-a125-05912df76bf5" name="get:\centers\(centerId)\venues:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="6c0be3df-c9e7-4276-85b4-0c28a8ddde54" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-patch:\accounts\(accountId):application\json:mobile-api-v1-configTest" doc:id="396a1314-e62b-47a4-928d-4603f994a441" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Patch Account Profile" doc:id="1ee393c1-61ef-4c52-9e47-684a329bd89b" processor="customer-account-process-api:updateaccount">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="UpdateAccount" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="deecdee9-4098-487d-a671-252e7f9bb53c" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/request/patch-account-profile-req.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="2ab2fd47-6e4a-47c6-9c74-3acbe2f33beb" >
+				<munit:attributes value='#[uriParams: {"accountId" : "abc"}]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="abc" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to patch:\accounts\(accountId):application\json:mobile-api-v1-config" doc:id="9702006d-7f32-4ef5-9869-7a494ffb58f1" name="patch:\accounts\(accountId):application\json:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that code is 200" doc:id="cd69dc3f-97c4-4870-b409-a8733ec58228" expression="#[payload.code]" is="#[MunitTools::equalTo(200)]"/>
+			<munit-tools:assert-that doc:name="Assert that Status is success" doc:id="9d34682c-ea32-47d0-9452-81a3c64382ab" expression="#[payload.status]" is="#[MunitTools::equalTo('Success')]"/>
+			<munit-tools:assert-that doc:name="Assert message" doc:id="8410f3c2-758e-4f48-9c01-d42b68e1dfbd" expression="#[payload.message]" is="#[MunitTools::equalTo('Account profile updated successfully')]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-post:\accounts\(accountId)\funCards:application\json:mobile-api-v1-configTest" doc:id="4ef20572-4f61-4788-b0a7-ac54b7553d03" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Add Funcard" doc:id="986db818-3ba0-42eb-8c31-db07527e1207" processor="play-process-api:addfuncard">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="AddFunCard" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="3c31e59f-8e5e-46d8-a3ce-3bdff6b68e4c" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/request/post-add-funCard-req.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="13dc427a-1691-412f-93e3-57a8404745c4" >
+				<munit:payload value="#[MunitTools::getResourceAsString('mock/request/post-add-funCard-req.json')]" mediaType="application/json" />
+				<munit:attributes value='#[{uriParams: {"accountId" : "abc"}}]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="abc" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to post:\accounts\(accountId)\funCards:application\json:mobile-api-v1-config" doc:id="aee6e9c1-2a51-4ba8-8a37-09ad1b550deb" name="post:\accounts\(accountId)\funCards:application\json:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that Code is 201" doc:id="69ef65e0-d9d6-471d-a711-d28dfb58562e" is="#[MunitTools::equalTo(201)]" expression="#[payload.code]"/>
+			<munit-tools:assert-that doc:name="Assert that status is Success" doc:id="23767968-07e6-49db-b2cd-24f67066392e" is="#[MunitTools::equalTo('Success')]" expression="#[payload.status]"/>
+			<munit-tools:assert-that doc:name="Assert message" doc:id="c6641d39-a6ad-449b-8182-76023484ad24" is="#[MunitTools::equalTo('funCard added to the account')]" expression="#[payload.message]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-patch:\accounts\(accountId)\funCards\(funCardId):application\json:mobile-api-v1-configTest" doc:id="fe031288-7ba8-4432-9d8c-b41302ab8360" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Update Funcard Field" doc:id="0b68f6a7-d001-4cfa-8958-38b266e13820" processor="play-process-api:updatefuncardfield">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="UpdateFunCardField" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="c2e53c5d-bf13-4916-a830-21a53a22d1c4" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/patch-update-funcard-sapi-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="b24d4270-4f46-4a4f-9d70-fc37d5a6269f" >
+				<munit:payload value="#[MunitTools::getResourceAsString('mock/request/patch-update-funcard-req.json')]" mediaType="application/json" />
+				<munit:attributes value='#[{uriParams: {"accountId" : "abc", "funCardId" : "123"}}]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="abc" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to patch:\accounts\(accountId)\funCards\(funCardId):application\json:mobile-api-v1-config" doc:id="7f157648-d0e6-4545-bace-1075010f4c29" name="patch:\accounts\(accountId)\funCards\(funCardId):application\json:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that code is 200" doc:id="e6621782-7d45-439b-9c85-5c8ba5a47336" is="#[MunitTools::equalTo(200)]" expression="#[payload.code]"/>
+			<munit-tools:assert-that doc:name="Assert that status is Success" doc:id="95643d83-1337-4d94-9edf-3825c0c6eba3" is="#[MunitTools::equalTo('Success')]" expression="#[payload.status]"/>
+			<munit-tools:assert-that doc:name="Assert message" doc:id="2102b218-b8e3-4747-a0dd-37aeebcda89a" is="#[MunitTools::equalTo('FunCard updated successfully')]" expression="#[payload.message]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-delete:\accounts\(accountId)\funCards\(funCardId):mobile-api-v1-configTest" doc:id="f394f61e-9565-4715-9f4c-eeaf0dc6e5f7" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Remove Funcard" doc:id="df017d63-d513-4030-991c-6b305acc0242" processor="play-process-api:removefuncard">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="RemoveFunCard" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="c30fe52c-f6d3-4019-a206-cf3344bd2740" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="c0758b5c-6825-44cb-b1b9-45f34dc1c66b" >
+				<munit:attributes value='#[{uriParams: {"accountId" : "abc", "funCardId" : "123"}}]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="abc" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow Ref todelete:\accounts\(accountId)\funCards\(funCardId):mobile-api-v1-config" doc:id="8f994149-dc0c-4f32-9d7f-80494f111b22" name="delete:\accounts\(accountId)\funCards\(funCardId):mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:assert-that doc:name="Assert that httpStatus is 204" doc:id="c0f0822e-b190-4c5e-903c-e67913d6b4c1" expression="#[vars.httpStatus]" is="#[MunitTools::equalTo(204)]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-post:\accounts\(accountId)\funCards\(funCardId)\value:application\json:mobile-api-v1-configTest" doc:id="6e0414c5-311b-4aa4-943a-268aef108f7f" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Post FunCard Value" doc:id="61269919-2e0f-4328-897d-1926b44bcb63" processor="play-process-api:funcardrevalue">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="FunCardRevalue" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="37dc0f7b-3ada-4d37-b776-311e70460fee" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/post-funcard-revalue-sapi-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="134a0125-5760-41f1-9609-132fa8ce054a" >
+				<munit:payload value="#[MunitTools::getResourceAsString('mock/request/post-funcard-revalue-req.json')]" mediaType="application/json" />
+				<munit:attributes value='#[{uriParams: {"accountId" : "abc", "funCardId" : "123"}}]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="abc" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to post:\accounts\(accountId)\funCards\(funCardId)\value:application\json:mobile-api-v1-config" doc:id="98dec4ec-0f55-44b0-b59f-8a2e8f552060" name="post:\accounts\(accountId)\funCards\(funCardId)\value:application\json:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="aa35234d-f6e8-425c-8c31-fb5fa4d4b644" expression="#[payload]" is="#[MunitTools::notNullValue()]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-post:\accounts\(accountId)\orders\(centerId)\carts:application\json:mobile-api-v1-configTest" doc:id="51bbe730-51eb-4c40-99e8-7b0cea6db4a1" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Create a Cart" doc:id="1e3c1aee-7347-422f-9227-776dc5f99202" processor="customer-order-proc-api:createacart">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="CreateACart" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="3bb7e3bd-cfda-4e6c-babe-d302568b2404" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/post-create-a-cart-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="b0962f51-5da3-4937-8370-d011a0f78909" >
+				<munit:payload value="#[MunitTools::getResourceAsString('mock/request/post-create-a-cart-req.json')]" mediaType="application/json" />
+				<munit:attributes value='#[{uriParams: {"accountId" : "abc", "centerId" : "PLA"}}]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="abc" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to post:\accounts\(accountId)\orders\(centerId)\carts:application\json:mobile-api-v1-config" doc:id="a2bbca64-1151-4c0e-94d2-17823cd906b3" name="post:\accounts\(accountId)\orders\(centerId)\carts:application\json:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="ec03df44-dfcc-446c-bdce-ebe4c41802af" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-put:\accounts\(accountId)\orders\(centerId)\carts\(cartId):application\json:mobile-api-v1-configTest" doc:id="2dbf5e1f-9d2a-48ab-bf51-c6a422da7816" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Update A Cart" doc:id="4d128b56-c82d-43d0-9a04-58a3aae87287" processor="customer-order-proc-api:updateacart">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="UpdateACart" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="49aca38e-c90b-472c-8f61-33cfb9d2a66a" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="180226f1-7e1c-4d9f-aa62-9e68bc88626a" >
+				<munit:payload value="#[MunitTools::getResourceAsString('mock/request/put-update-cart-req.json')]" mediaType="application/json" />
+				<munit:attributes value='#[{uriParams: {"accountId" : "abc", "centerId" : "PLA", "cartId" : "opk"}}]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="abc" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to put:\accounts\(accountId)\orders\(centerId)\carts\(cartId):application\json:mobile-api-v1-config" doc:id="12ae462e-1af8-4dce-b588-6a0115ee5f83" name="put:\accounts\(accountId)\orders\(centerId)\carts\(cartId):application\json:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that code is 200" doc:id="e3268688-6b40-48cf-a619-b2134859e025" is="#[MunitTools::equalTo(200)]" expression="#[payload.code]"/>
+			<munit-tools:assert-that doc:name="Assert that status is Success" doc:id="0c06de98-59d1-40ac-aef2-085243fa2246" is="#[MunitTools::equalTo('Success')]" expression="#[payload.status]"/>
+			<munit-tools:assert-that doc:name="Assert message" doc:id="a122aa63-fdd8-4df7-b750-00e3678a578a" is="#[MunitTools::equalTo('The resource was successfully updated.')]" expression="#[payload.message]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-delete:\accounts\(accountId)\orders\(centerId)\carts\(cartId):mobile-api-v1-configTest" doc:id="410ba36a-443b-4031-85ea-952d34581338" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock delete a cart" doc:id="4b40bea0-6aba-468a-ab16-2e58e0e86f3d" processor="customer-order-proc-api:deleteacart">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="DeleteACart" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="3c0a9195-dd7b-4683-942b-0a7561a2c7f7" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="705f0ca8-01bd-42f2-a73e-9074c1f5f108" >
+				<munit:attributes value='#[{uriParams: {"accountId" : "abc", "centerId" : "PLA", "cartId" : "opk"}}]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="abc" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to delete:\accounts\(accountId)\orders\(centerId)\carts\(cartId):mobile-api-v1-config" doc:id="fa0e0c5b-6160-40bb-bbd2-beb6743ecd7b" name="delete:\accounts\(accountId)\orders\(centerId)\carts\(cartId):mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that code is 204" doc:id="57576969-2809-4af5-8979-bdacde00f31f" is="#[MunitTools::equalTo(204)]" expression="#[payload.code]"/>
+			<munit-tools:assert-that doc:name="Assert that status is Success" doc:id="55f3786c-107a-4a52-a942-ee065e4d3553" is="#[MunitTools::equalTo('No Content')]" expression="#[payload.status]"/>
+			<munit-tools:assert-that doc:name="Assert message" doc:id="7f9fff01-80c2-47cc-b766-388d0dd366a7" is="#[MunitTools::equalTo('Resource deleted successfully.')]" expression="#[payload.message]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-post:\orders\(centerId)\carts\(cartId)\items:application\json:mobile-api-v1-configTest" doc:id="4eadcc52-5762-4bf8-9672-e546b3053a13" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Add Cart Line Items" doc:id="d461cfdb-0808-4019-8197-3bf208ee593e" processor="customer-order-proc-api:addcartlineitem">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="AddCartLineItem" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="6095ea97-14c1-46bd-ae07-d92289e7fba1" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/post-add-cart-line-items-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="9608d669-be31-49f8-b00a-caf9a423e964" >
+				<munit:payload value="#[MunitTools::getResourceAsString('mock/response/post-add-cart-line-items-res.json')]" mediaType="application/json" />
+				<munit:attributes value='#[{uriParams: {"centerId" : "PLA", "cartId" : "1234"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to post:\orders\(centerId)\carts\(cartId)\items:application\json:mobile-api-v1-config" doc:id="bb21fafa-75cf-4af6-ae27-b835de132c18" name="post:\orders\(centerId)\carts\(cartId)\items:application\json:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="74ef02b2-1469-4a99-a31c-25a8fa1c9993" expression="#[payload]" is="#[MunitTools::notNullValue()]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-put:\orders\(centerId)\carts\(cartId)\items\(cartItemId):application\json:mobile-api-v1-configTest" doc:id="dd8d850c-9187-440a-9bbb-886d3dd04137" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Update Cart Line Item Type" doc:id="fdc71577-3942-4880-826a-7b1c6eeb0c53" processor="customer-order-proc-api:updatecartlineitemtype">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="UpdateCartLineItemType" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="2c41ca4f-ca8d-4ae5-8d36-b713209d60b4" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/put-update-cart-line-item-type-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="97ec4571-ba3e-4188-95d0-ac69650e0366" >
+				<munit:payload value="#[MunitTools::getResourceAsString('mock/request/put-update-cart-item-type-req.json')]" mediaType="application/json" />
+				<munit:attributes value='#[{uriParams: {"centerId" : "PLA", "cartId" : "1234", "cartItemId": "abc"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to put:\orders\(centerId)\carts\(cartId)\items\(cartItemId):application\json:mobile-api-v1-config" doc:id="01a66075-96ea-477e-9726-cc602ca7e5ea" name="put:\orders\(centerId)\carts\(cartId)\items\(cartItemId):application\json:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="9beec05d-c6b5-4ec0-be3f-be0a11ee215f" expression="#[payload]" is="#[MunitTools::notNullValue()]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-delete:\orders\(centerId)\carts\(cartId)\items\(cartItemId):mobile-api-v1-configTest" doc:id="2221b0cf-b091-4465-b9c5-5ede46885e4c" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Delete Cart Line Item" doc:id="55dc1d2f-feab-49fe-99f4-b4f6167e7ceb" processor="customer-order-proc-api:deletecartlineitem">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="DeleteCartLineItem" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="ea1bd02a-5743-4bbd-a1a2-f7a27dec4b9b" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="8023b5bb-cdf1-4817-901c-28f251eb733c" >
+				<munit:attributes value='#[{uriParams: {"centerId" : "PLA", "cartId" : "1234", "cartItemId": "abc"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to delete:\orders\(centerId)\carts\(cartId)\items\(cartItemId):mobile-api-v1-config" doc:id="31380f37-29dd-483b-b57c-34dc9ca63828" name="delete:\orders\(centerId)\carts\(cartId)\items\(cartItemId):mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that code is 204" doc:id="ed29d1c3-4aaf-4dad-b53f-3481b9df7110" is="#[MunitTools::equalTo(204)]" expression="#[payload.code]"/>
+			<munit-tools:assert-that doc:name='Assert that status is "No Content"' doc:id="077958ec-12a7-4fab-9ac1-d14995f46b5e" is="#[MunitTools::equalTo('No Content')]" expression="#[payload.status]"/>
+			<munit-tools:assert-that doc:name="Assert message" doc:id="2c879f6e-ed08-4812-98af-2b6d7c7cc778" is="#[MunitTools::equalTo('Cart item abc removed successfully.')]" expression="#[payload.message]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-patch:\accounts\(accountId)\preference:application\json:mobile-api-v1-configTest" doc:id="f9d41971-5130-4ec3-9d0e-b10723914388" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Patch Account Preference" doc:id="06ca7148-6612-4083-a016-ee02f1638f22" processor="customer-account-process-api:updateaccountpreferences">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="UpdateAccountPreferences" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="3cabdc10-902e-42c8-a95d-2a35255bb0e1" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="ef1f1896-a325-4b0b-9651-a97dc42cbd30" >
+				<munit:payload value="#[MunitTools::getResourceAsString('mock/request/patch-account-preference-req.json')]" mediaType="application/json" />
+				<munit:attributes value='#[{uriParams: {"accountId" : "abc"}}]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="abc" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to patch:\accounts\(accountId)\preference:application\json:mobile-api-v1-config" doc:id="2ac8e105-22ee-4d8b-86fa-b83434d58884" name="patch:\accounts\(accountId)\preference:application\json:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that code is 200" doc:id="9ecf9eee-1838-4bec-9e6b-80facd64892a" is="#[MunitTools::equalTo(200)]" expression="#[payload.code]"/>
+			<munit-tools:assert-that doc:name="Assert that status is Success" doc:id="67ed262a-d82c-47e9-8f30-ae846bc0c565" is="#[MunitTools::equalTo('Success')]" expression="#[payload.status]"/>
+			<munit-tools:assert-that doc:name="Assert message" doc:id="d4d5a8e6-d5f2-4bf8-a0e4-9035c2b04800" is="#[MunitTools::equalTo('Account preference updated successfully')]" expression="#[payload.message]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-post:\events\packages\bookings:application\json:mobile-api-v1-configTest" doc:id="91d9794f-9e34-4df9-a77e-77901dede9a5" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Create Event Package Cart Item" doc:id="faa99807-4651-4a7d-98e2-c47864492baf" processor="booking-proc-api:create-event-booking-cart">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Create Event Booking Cart" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="21811509-28c9-4912-98f8-0e09d15378b8" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/post-create-event-package-cart-item-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="a4c69852-6f43-42dd-b9c3-97841973795a" >
+				<munit:payload value="#[MunitTools::getResourceAsString('mock/request/post-create-event-package-cart-item-req.json')]" mediaType="application/json" />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to post:\events\packages\bookings:application\json:mobile-api-v1-config" doc:id="86591b83-87f6-4b4c-b1d4-34456f246222" name="post:\events\packages\bookings:application\json:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="a7cb9da1-97ef-447e-9ccd-af356c2b91a1" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-delete:\events\packages\bookings:application\json:mobile-api-v1-configTest" doc:id="59a0f182-c81d-4e12-ba0a-5a998a8cdc6b" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Delete Event Booking" doc:id="9f08236d-ab42-4163-9c37-5c9200490ee9" processor="booking-proc-api:cancel-event-booking">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Cancel Event Booking" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="e7774136-13c9-4fcf-8642-15a4a5178ceb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="174e10ab-7bd4-4a7f-ad97-cfd2d3580c98" >
+				<munit:payload value="#[MunitTools::getResourceAsString('mock/request/delete-event-booking-req.json')]" mediaType="application/json" />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to delete:\events\packages\bookings:application\json:mobile-api-v1-config" doc:id="57cad85a-33d5-4921-87e9-31511d78a642" name="delete:\events\packages\bookings:application\json:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that status is OK" doc:id="90f2a38f-95af-4359-9ca2-415264af6edd" expression="#[payload.status]" is="#[MunitTools::equalTo('OK')]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-post:\events\quotes:application\json:mobile-api-v1-configTest" doc:id="4c2e043b-32b1-4474-b4ee-631c0d492806" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Create Event Package Quote" doc:id="78b24213-0bbb-4288-b381-9dfc5c537d96" processor="booking-proc-api:create-event-package-quote">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Create Event Package Quote" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="db208e90-39fe-44e2-9850-71c0cf5b3984" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="ffd785d9-5a8b-4aad-a828-bde139c8e0ff" >
+				<munit:payload value="#[MunitTools::getResourceAsString('mock/request/post-create-event-package-quote-req.json')]" mediaType="application/json" />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to post:\events\quotes:application\json:mobile-api-v1-config" doc:id="1b679fef-8adc-4d31-b5c6-bccd50028071" name="post:\events\quotes:application\json:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="20118bee-c925-45df-8b7e-cf6ae3d563ce" expression="#[payload]" is="#[MunitTools::notNullValue()]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-post:\orders\(centerId)\carts:application\json:mobile-api-v1-configTest" doc:id="367df7fa-fb7b-4229-ad69-3deed624bd33" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Create A Cart" doc:id="f86eb9ec-452c-4ae2-948f-adb910315cdd" processor="customer-order-proc-api:createacart">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="CreateACart" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="3bb7e3bd-cfda-4e6c-babe-d302568b2404" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/post-create-a-cart-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="765b6883-0a5d-4dfb-bfa0-6f3ad32c10f5" >
+				<munit:payload value="#[MunitTools::getResourceAsString('mock/request/post-create-a-cart-req.json')]" mediaType="application/json" />
+				<munit:attributes value='#[{urlParams: {"centerId" : "PLA"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to post:\orders\(centerId)\carts:application\json:mobile-api-v1-config" doc:id="d6291b32-0318-4777-860b-2de1c2edadb6" name="post:\orders\(centerId)\carts:application\json:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is null" doc:id="a7e05ad6-013d-4141-84f3-ff136173a62d" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\events\(eventId):mobile-api-v1-configTest" doc:id="e7c2fd02-0ad1-4800-85fa-7eacf206bf7d" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Get Event List" doc:id="fa4cd210-1b2f-45ad-9342-fbb7e23451b7" processor="booking-proc-api:get-event-by-id">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Get Event By Id" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="9d0ae689-4a47-4a5b-be6c-4614ac41a0a3" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-event-Item-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="1e67c224-840a-4839-9500-ec54eaafd4d5" >
+				<munit:attributes value='#[{uriParams: {"eventId" : "345564-1"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\events\(eventId):mobile-api-v1-config" doc:id="84aa81f2-1f90-4b3d-a2ae-9f19d43d5bc5" name="get:\events\(eventId):mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="2128598f-64df-4339-9b34-9d5c9b0127f2" expression="#[payload]" is="#[MunitTools::notNullValue()]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\events\packages\(packageCode)\activities:mobile-api-v1-configTest" doc:id="eac5a986-f2da-43df-855a-bf846b529249" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Get Event Activities" doc:id="08e0de79-45ed-41f2-b03a-ecbd62d95149" processor="booking-proc-api:get-event-package-menu-options">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Get Event Package Menu Options" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="badde4d5-439d-4466-87e0-e1a7c6b768c5" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-event-activities-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="2c1bb612-9be5-4427-a541-b04b08f0613e" >
+				<munit:attributes value='#[{uriParams: {"packageCode" : "ltt6MWBkZKSIpy4W829Tt3sixYv6ikoEOORh_Gjq1quIKpGOnPXdiooEZQzz22S9"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\events\packages\(packageCode)\activities:mobile-api-v1-config" doc:id="fe71ab5e-c823-4512-8612-fbd6447abc47" name="get:\events\packages\(packageCode)\activities:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="acc630c8-1a98-41bb-9c14-c13960ae78df" is="#[MunitTools::notNullValue()]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\events\packages\(packageCode)\availabilities:mobile-api-v1-configTest" doc:id="2a7ce512-2fb2-4c6f-a7b2-95e59ef34166" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Event Availabilities" doc:id="bf6b65e2-2ff0-49ce-b38e-eab1af3b8072" processor="booking-proc-api:get-event-package-availabilities">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Get Event Package Availabilities" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="994b98e7-3c80-4e70-ba41-408722df3b8e" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-event-availabilities-sapi-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="69988863-b05c-4b60-8b34-e5d7fe6f4c80" >
+				<munit:attributes value='#[{uriParams: {"packageCode" : "ltt6MWBkZKSIpy4W829Tt3sixYv6ikoEOORh_Gjq1quIKpGOnPXdiooEZQzz22S9"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\events\packages\(packageCode)\availabilities:mobile-api-v1-config" doc:id="44d014f8-3c15-4923-8686-879508f67c0c" name="get:\events\packages\(packageCode)\availabilities:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="76ee16f9-939c-44dd-b35e-bd6d429c25c0" is="#[MunitTools::equalTo(read(MunitTools::getResourceAsString('mock/response/get-event-availabilities-res.json'), &quot;application/json&quot;))]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-post:\reservations:application\json:mobile-api-v1-configTest" doc:id="083e47ed-799d-4add-a5aa-ced828a79dfb" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Post Create Cart Reservation" doc:id="ed1a5914-f19a-468d-984c-74ebdaa9e5fd" processor="booking-proc-api:createbook-reservation">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Create/Book Reservation" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="9a2f7ccf-dc25-479f-a025-a85ac1919ecd" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/post-create-cart-reservation-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="1b91e4b4-9579-4e00-bd0d-a3115567ba5d" >
+				<munit:payload value="#[MunitTools::getResourceAsString('mock/request/post-create-cart-reservation-req.json')]" mediaType="application/json" />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to post:\reservations:application\json:mobile-api-v1-config" doc:id="5383c267-faf3-4b5e-a4c7-232d2d90debb" name="post:\reservations:application\json:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="412b9e3a-b750-4190-ae38-6839ec9214d3" is="#[MunitTools::equalTo(read(MunitTools::getResourceAsString('mock/response/post-create-cart-reservation-res.json'), &quot;application/json&quot;))]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\reservations\(reservationId):mobile-api-v1-configTest" doc:id="af94e264-3685-462d-948f-4b92633b2b49" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Get Reservation By Id" doc:id="f2407caa-e34e-4c97-938a-72b390e98fa2" processor="booking-proc-api:get-reservation-by-id">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Get Reservation by Id" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="47f51d6e-4dd1-41e3-b90c-1308e18e6542" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-reservation-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="f820fe4d-765b-42e6-be56-94cce2a38b14" >
+				<munit:attributes value='#[{uriParams: {"reservationId" : "2f1342ae-64cb-427e-a0a7-fff580cd17d9"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\reservations\(reservationId):mobile-api-v1-config" doc:id="311dfdb0-2975-41c1-a367-0b8c8aea5fa4" name="get:\reservations\(reservationId):mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="36642a9a-52bd-4911-bacf-1448643362a9" expression="#[payload]" is="#[MunitTools::equalTo(read(MunitTools::getResourceAsString('mock/response/get-reservation-res.json'), &quot;application/json&quot;))]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\reservations\add-ons:mobile-api-v1-configTest" doc:id="75fb508b-25e3-476b-bde3-0cf8c5d39f7e" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Get Reservation Addons" doc:id="68c5bb06-5408-424c-94ed-ffd1dabf301c" processor="booking-proc-api:get-reservation-add-ons">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Get Reservation Add Ons" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="04d208a9-8f39-4acf-8077-248d6ada51cd" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-reservation-add-ons-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="88959e2a-a3b1-404c-959a-6a14c63303d4" >
+				<munit:attributes value='#[{queryParams: {"reservationCode" : "rfzlZuQCZrm3v8YG8c8+9TyFVQOA59nsUaaHK4s2VIUI3ysJ6+0mu/WFiPLLvUqsgBWZgFvH9Lb/pJnbF7Ej0jf/p3ZU9v97OOURDtJjVTAUzOE7B553AJLcvKZl2LjI/jwIQOoI/wABHoHnNkUrdq5kld7luVxaqKl70NNZLrEFY9MQKxBPY2ZRnqqEdgrnFMw1tZQ7CJ5UXbFiMQyUVMXfDgFusecdxeF4FMhqnXvIPPT6BOCN367DCLmmUEiOJsZMpa0AXFlgTclS9ZcHJHfSTUsl9xpbIteDt3DLWnupZi4URtUR9J+IxobbfxQu"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\reservations\add-ons:mobile-api-v1-config" doc:id="c8653690-61b4-4bbd-a373-e292fda996e7" name="get:\reservations\add-ons:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="990b0efb-9c78-4e02-a38d-ad728f474438" expression="#[payload]" is="#[MunitTools::equalTo(read(MunitTools::getResourceAsString('mock/response/get-reservation-add-ons-res.json'), &quot;application/json&quot;))]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\reservations\availabilities:mobile-api-v1-configTest" doc:id="019ba11b-aa72-4da1-b011-1d3cb4406b12" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Get Reservation Availabilities" doc:id="d67228c1-15cc-46cc-ad23-c11c9c508d82" processor="booking-proc-api:get-reservations-availability">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Get Reservations Availability" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="583e3fac-071a-4e47-907c-4a991a125eeb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-reservation-availabilities-sapi-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="f0053d4a-b56b-4cd0-8af1-c9dd03a978a5" >
+				<munit:attributes value='#[
+	{
+		queryParams: {
+			"centerId" : "PLA",
+			"reservationDate" : "20200124",
+			"partySize" :  6,
+			"requests" : "Bowling 3 Hours"
+		}
+	}
+]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\reservations\availabilities:mobile-api-v1-config" doc:id="e0559079-f44e-41fa-9542-86561c6c7878" name="get:\reservations\availabilities:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="d82e9db8-04d2-4e94-8f75-05607ffeeaa0" expression="#[payload]" is="#[MunitTools::equalTo(read(MunitTools::getResourceAsString('mock/response/get-reservation-availabilities-res.json'), &quot;application/json&quot;))]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\reservations\options:mobile-api-v1-configTest" doc:id="002e6ebd-25d8-4822-ad23-6cfd7372301e" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Get Reservation Options" doc:id="a8804f48-f747-4cb0-af8b-e9303250f232" processor="booking-proc-api:get-reservation-options">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Get Reservation Options" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="ff0131fb-ef4a-4edf-a4a3-1514388f67be" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-reservation-options-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="c8ac7c1b-22ac-4815-954f-861c32e00e4c" >
+				<munit:attributes value='#[{queryParams: "centerId" : "PLA"}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\reservations\options:mobile-api-v1-config" doc:id="56f9bf99-97d1-4012-865f-7575008fce03" name="get:\reservations\options:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="eb683c20-cf81-482f-83c7-28a29a2ac002" expression="#[payload]" is="#[MunitTools::equalTo(read(MunitTools::getResourceAsString('mock/response/get-reservation-options-res.json'), &quot;application/json&quot;))]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-mobile-api-v1-mainTest-failure-BadRequest" doc:id="f86a1ab9-815d-4d3f-ae90-0c2b03a57b4c" description="Test" expectedErrorType="APIKIT:BAD_REQUEST">
+		<munit:behavior>
+			<munit-tools:mock-when doc:name="Mock when apikit:router" doc:id="913828ae-5254-4eb6-9a07-1faeb97be39a" processor="apikit:router">
+								<munit-tools:with-attributes>
+					<munit-tools:with-attribute whereValue="mobile-api-v1-config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return>
+					<munit-tools:error typeId="APIKIT:BAD_REQUEST" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<flow-ref doc:name="Flow-ref to mobile-api-v1-main" doc:id="e4f682a8-b26c-4bfe-a89e-f24c1b49f6f4" name="mobile-api-v1-main" />
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:assert-equals doc:name="Assert equals 400" doc:id="cc85a700-e3ea-4e82-8422-966712b40589" actual="#[httpStatus]" expected="#[400]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-mobile-api-v1-mainTest-Failure-APIKIT:NOT_FOUND" doc:id="189b05df-400b-4cc5-8e4b-e739a1529927" description="Test" expectedErrorType="APIKIT:NOT_FOUND">
+			<munit:behavior>
+				<munit-tools:mock-when doc:name="Mock when apikit:router" doc:id="4f8dd40b-e9ee-4edc-abaa-37c1042a085c" processor="apikit:router">
+					<munit-tools:with-attributes>
+						<munit-tools:with-attribute whereValue="mobile-api-v1-config" attributeName="config-ref" />
+					</munit-tools:with-attributes>
+				<munit-tools:then-return>
+					<munit-tools:error typeId="APIKIT:NOT_FOUND" />
+				</munit-tools:then-return>
+				</munit-tools:mock-when>
+			</munit:behavior>
+			<munit:execution>
+				<flow-ref doc:name="Flow-ref to mobile-api-v1-main" doc:id="d4788417-107d-45f6-af0d-6d723545a116" name="mobile-api-v1-main" />
+			</munit:execution>
+			<munit:validation>
+				<munit-tools:assert-equals doc:name="Assert equals 404" doc:id="e05919b8-ff6a-455d-9c4f-bad0ee229f13" actual="#[httpStatus]" expected="#[404]" />
+			</munit:validation>
+		</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-mobile-api-v1-mainTest-Failure-APIKIT:METHOD_NOT_ALLOWED" doc:id="197ee825-663c-40f5-9827-0e0c1a833f8b" description="Test" expectedErrorType="APIKIT:METHOD_NOT_ALLOWED">
+			<munit:behavior>
+				<munit-tools:mock-when doc:name="Mock when apikit:router" doc:id="3231b799-51fb-4382-b784-eacd4fe3e344" processor="apikit:router">
+					<munit-tools:with-attributes>
+						<munit-tools:with-attribute whereValue="mobile-api-v1-config" attributeName="config-ref" />
+					</munit-tools:with-attributes>
+				<munit-tools:then-return>
+					<munit-tools:error typeId="APIKIT:METHOD_NOT_ALLOWED" />
+				</munit-tools:then-return>
+				</munit-tools:mock-when>
+			</munit:behavior>
+			<munit:execution>
+				<flow-ref doc:name="Flow-ref to mobile-api-v1-main" doc:id="8f8b3332-41d6-4f0b-901f-47e7c421fc56" name="mobile-api-v1-main" />
+			</munit:execution>
+			<munit:validation>
+				<munit-tools:assert-equals doc:name="Assert equals 405" doc:id="fb9f39b1-569b-440d-b4d2-9a43446252ef" actual="#[httpStatus]" expected="#[405]" />
+			</munit:validation>
+		</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-mobile-api-v1-mainTest-Failure-APIKIT:NOT_ACCEPTABLE" doc:id="8be7175e-dcb8-44fb-953a-267cda1ba06b" description="Test" expectedErrorType="APIKIT:NOT_ACCEPTABLE">
+			<munit:behavior>
+				<munit-tools:mock-when doc:name="Mock when apikit:router" doc:id="65aa796b-d2d1-4220-878e-ebc3540fe1c5" processor="apikit:router">
+					<munit-tools:with-attributes>
+						<munit-tools:with-attribute whereValue="mobile-api-v1-config" attributeName="config-ref" />
+					</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_ACCEPTABLE" />
+				</munit-tools:then-return>
+				</munit-tools:mock-when>
+			</munit:behavior>
+			<munit:execution>
+				<flow-ref doc:name="Flow-ref to mobile-api-v1-main" doc:id="2b07a492-61aa-45df-b8cb-4750cd47fede" name="mobile-api-v1-main" />
+			</munit:execution>
+			<munit:validation>
+				<munit-tools:assert-equals doc:name="Assert equals 406" doc:id="e8f26222-cbfa-4a4e-8327-63af806231ca" actual="#[httpStatus]" expected="#[406]" />
+			</munit:validation>
+		</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-mobile-api-v1-mainTest-Failure-APIKIT:UNSUPPORTED_MEDIA_TYPE" doc:id="53ade9b0-e12d-4df7-a285-629d2edc0896" description="Test" expectedErrorType="APIKIT:UNSUPPORTED_MEDIA_TYPE">
+			<munit:behavior>
+				<munit-tools:mock-when doc:name="Mock when apikit:router" doc:id="6235e8f1-51c8-498e-ac7d-1d476e47f322" processor="apikit:router">
+					<munit-tools:with-attributes>
+						<munit-tools:with-attribute whereValue="mobile-api-v1-config" attributeName="config-ref" />
+					</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:UNSUPPORTED_MEDIA_TYPE" />
+				</munit-tools:then-return>
+				</munit-tools:mock-when>
+			</munit:behavior>
+			<munit:execution>
+				<flow-ref doc:name="Flow-ref to mobile-api-v1-main" doc:id="7b617381-6475-48a5-aa71-dd158b9b94f0" name="mobile-api-v1-main" />
+			</munit:execution>
+			<munit:validation>
+				<munit-tools:assert-equals doc:name="Assert equals 415" doc:id="fce82774-36b3-40b4-bfb2-48e5d2ff25a4" actual="#[httpStatus]" expected="#[415]" />
+			</munit:validation>
+		</munit:test>
+		
+		<munit:test name="mobile-api-v1-test-suite-mobile-api-v1-mainTest-Failure-APIKIT:NOT_IMPLEMENTED" doc:id="8a7b5d16-7902-4482-bf53-3e7e938acf81" description="Test" expectedErrorType="APIKIT:NOT_IMPLEMENTED">
+			<munit:behavior>
+				<munit-tools:mock-when doc:name="Mock when apikit:router" doc:id="95267c8b-f3c1-41b2-9b0f-9e107acaaa24" processor="apikit:router">
+					<munit-tools:with-attributes>
+						<munit-tools:with-attribute whereValue="mobile-api-v1-config" attributeName="config-ref" />
+					</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:error typeId="APIKIT:NOT_IMPLEMENTED" />
+				</munit-tools:then-return>
+				</munit-tools:mock-when>
+			</munit:behavior>
+			<munit:execution>
+				<flow-ref doc:name="Flow-ref to mobile-api-v1-main" doc:id="b6f3bd3a-48ce-4c93-b6c4-3e57fb5c4a93" name="mobile-api-v1-main" />
+			</munit:execution>
+		<munit:validation>
+			<munit-tools:assert-equals doc:name="Assert equals 501" doc:id="13de6aed-a8d0-426c-ab3e-18449f804a98" actual="#[httpStatus]" expected="#[501]" />
+			</munit:validation>
+		</munit:test>
+		<munit:test name="mobile-api-v1-test-suite-get:\events\packages\(packageCode):mobile-api-v1-configTest" doc:id="24252596-de7b-4b21-8756-411a6bd0afef" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock Get Package By Code" doc:id="7e876137-a837-4a39-a6c3-fbd9c15c420d" processor="booking-proc-api:get-event-package-menu-options">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Get Event Package Menu Options" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="36908197-38b7-4558-b544-284d2cc17ca2" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-packages-by-code-sapi-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="55d6ab2c-8889-463a-8785-846c3d2b9aae" >
+				<munit:attributes value='#[{uriParams: {"packageCode" : "ltt6MWBkZKSIpy4W829Tt3sixYv6ikoEOORh_Gjq1quIKpGOnPXdiooEZQzz22S9"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\events\packages\(packageCode):mobile-api-v1-config" doc:id="518b2a98-58af-4b9f-9754-eec8fde8b1d6" name="get:\events\packages\(packageCode):mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="65be45ba-59f7-4716-a5fe-82fe69802e14" is="#[MunitTools::equalTo(read(MunitTools::getResourceAsString('mock/response/get-packages-by-code-res.json'), &quot;application/json&quot;))]" expression="#[payload]"/>
+		</munit:validation>
+	</munit:test>
+	
+	<munit:test name="mobile-api-v1-test-suite-post:\eventLeads:application\json:mobile-api-v1-configTest" doc:id="04711c99-5843-4e91-82ed-d86eac42895a" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when create event lead" doc:id="0804d0b6-1433-4011-a4f0-69f0b3e16504" processor="booking-proc-api:create-event-lead">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Create event lead" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="14bb7404-b32c-4b98-b380-dd104eaae06a" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/post-create-event-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="22056269-fd7f-4f55-85ca-f6933f7a170b">
+				<munit:payload value="#[MunitTools::getResourceAsString('mock/request/post-create-event.json')]" mediaType="application/json" />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to post:\eventLeads:application\json:mobile-api-v1-config" doc:id="fc16b748-f434-4d7b-85ad-5d85d71666b7" name="post:\eventLeads:application\json:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="d8fd06d3-b821-405b-8510-10deef61a829" is="#[MunitTools::equalTo(read(MunitTools::getResourceAsString('mock/response/post-create-event-res.json'), &quot;application/json&quot;))]" expression="#[payload]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-post:\contacts:application\json:mobile-api-v1-configTest" doc:id="973e809c-eaf3-4e22-979e-d497d200e4c7" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when contacts" doc:id="cdbcf37f-e507-4ff8-aea1-8420770aa856" processor="http:request" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="CreateContactRequest" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="51e37210-e7e2-460a-9f6f-12d98530f237" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/post-create-contact-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="2271f2f8-765f-4b07-8609-7547f6caa600">
+				<munit:payload value="#[MunitTools::getResourceAsString('mock/request/post-create-contact.json')]" mediaType="application/json" />
+				<munit:variables >
+					<munit:variable key="authSource" value="0oa11otylIn7s8Grq1d6" encoding="UTF-8" mediaType="application/java" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to post:\contacts:application\json:mobile-api-v1-config" doc:id="4f403503-774d-4f7b-931d-ba87a58f63de" name="post:\contacts:application\json:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="e284918d-0b10-4b41-b72e-2d0747faa51f" expression="#[payload]" is="#[MunitTools::equalTo(read(MunitTools::getResourceAsString('mock/response/post-create-contact-res.json'), &quot;application/json&quot;))]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-post:\accounts\contacts:application\json:mobile-api-v1-configTest" doc:id="c6fb0a03-d3f8-4382-9b41-257c40de33fd" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when contacts" doc:id="cb230d80-79c8-4127-ae91-f2df3f7736ea" processor="http:request" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="51e37210-e7e2-460a-9f6f-12d98530f237" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/post-create-contact-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="28b0e557-a249-4296-82b1-d165a31f0c96">
+				<munit:payload value="#[MunitTools::getResourceAsString('mock/request/post-create-contact.json')]" mediaType="application/json" />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to post:\accounts\contacts:application\json:mobile-api-v1-config" doc:id="9eabb1ba-b7f5-4ef7-abe8-d7a81ab59e6d" name="post:\accounts\contacts:application\json:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="75858adc-207d-4241-a051-468da02e806a" expression="#[payload]" is="#[MunitTools::equalTo(read(MunitTools::getResourceAsString('mock/response/post-create-contact-res.json'), &quot;application/json&quot;))]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\eventLeads\(id):mobile-api-v1-configTest" doc:id="470af794-d5c6-43a8-af66-c082cb8e65d6" description="Test">
+		<munit:behavior>
+			<munit-tools:mock-when doc:name="Mock when getEventById" doc:id="89d1a8cb-261e-45ae-9386-fe786db1c0c2" processor="booking-proc-api:get-event-lead-by-id">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Get event lead by id" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="5e85e352-319d-428e-b10d-b7a377fb5b9a" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return>
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-eventLeads-by-id.json')]" mediaType="application/json" encoding="UTF-8" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution>
+			<munit:set-event doc:name="Set Event" doc:id="494216b8-865e-41e2-b851-15c22b534bcc">
+				<munit:attributes value='#[{uriParams: {"id" : "ec376764-c7ca-455f-9177-641cc09455c425"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\eventLeads\(id):mobile-api-v1-config" doc:id="68928ff8-fd6b-4169-849d-a5700af12ab6" name="get:\eventLeads\(id):mobile-api-v1-config" />
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="df72d86a-c360-41df-a7d7-adc037ec3f33" expression="#[payload]" is="#[MunitTools::equalTo(read(MunitTools::getResourceAsString('mock/response/get-eventLeads-by-id.json'), &quot;application/json&quot;))]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-post:\orders\(centerId)\carts\(cartId)\redirect-urls:mobile-api-v1-configTest" doc:id="22d28520-4f4e-46a2-a49f-b875161378e7" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when " doc:id="bccc6aad-863f-48db-a268-1ab55de2914f" processor="customer-order-proc-api:createcartredirecturl" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="CreateCartRedirectURL" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="534e9ec2-e286-46ab-9a2f-15dd7371df00" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/post-redirecturls-res.json')]" mediaType="application/json" encoding="UTF-8" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="0623ac39-35ba-4a14-862d-54348d9e4393">
+				<munit:attributes value='#[{uriParams: {"centerId" : "PLA",&#10;"cartId":"95074599-5849-4ad3-82f4-450b325fc4bb"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to post:\orders\(centerId)\carts\(cartId)\redirect-urls:mobile-api-v1-config" doc:id="1baa2e1a-4160-49ec-a92e-292a2ca877ae" name="post:\orders\(centerId)\carts\(cartId)\redirect-urls:mobile-api-v1-config"/>
+		</munit:execution>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\funCards\(funcardNumber)\balance:mobile-api-v1-configTest" doc:id="a96ce467-777a-45f2-a0b9-e7b36a07c802" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="bae980b1-461a-499e-b77f-36e1744d1d86" processor="http:request">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="GET" attributeName="method" />
+					<munit-tools:with-attribute whereValue="GetFUNcardBalanceRequest" attributeName="doc:name" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-funcard-balance.json')]" mediaType="application/json" encoding="UTF-8" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="d17e0cdb-6fde-4015-8055-e486fe784070">
+				<munit:attributes value='#[{uriParams: {"funcardNumber" : "0700000031320212"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\funCards\(funcardNumber)\balance:mobile-api-v1-config" doc:id="f9376c3a-b093-496c-aadf-d33ede61d531" name="get:\funCards\(funcardNumber)\balance:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="75d1cc46-21f1-4c19-83fe-dadb74ff4350" expression="#[payload]" is="#[MunitTools::notNullValue()]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\centers\(centerId)\rental-events:mobile-api-v1-configTest" doc:id="e29480c2-17eb-4e1a-b6b8-665656daf3ed" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="e48db026-c671-46bd-bb96-78faded94a7a" processor="center-process-api:get-rental-events-by-center-id">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Get rental events by center id" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="e2a73068-9f6f-464f-baef-c8f6f572edfb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-rentalevents-res.json')]" mediaType="application/json" encoding="UTF-8" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="76b67d44-ae55-4b4c-be0f-3c5d16e20695" >
+				<munit:attributes value='#[{uriParams: {"centerId" : "PLA"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\centers\(centerId)\rental-events:mobile-api-v1-config" doc:id="d7373065-3f3e-4feb-8ae3-3279f64a1e49" name="get:\centers\(centerId)\rental-events:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="070dc4f7-2648-4661-a62a-3e03e21f87d1" expression="#[payload]" is="#[MunitTools::notNullValue()]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\orders\(centerId)\carts\(cartId):mobile-api-v1-configTest" doc:id="86245bef-f881-470e-9350-54f5ce21ebd9" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when guestCartResources" doc:id="66696d31-19f6-4709-9fa2-2c8bdf345c48" processor="customer-order-proc-api:getacart" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="GetACart" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="68877831-0ab8-4ae8-87c0-cdef3490a2cd" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-cart-resources-res.json')]" mediaType="application/json" encoding="UTF-8" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="36d5b2df-445c-4536-bbc6-fc42d3d018e5">
+				<munit:attributes value='#[{uriParams: {"centerId" : "FRS",&#10;"cartId":"95074599-5849-4ad3-82f4-450b325fc4bb"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\orders\(centerId)\carts\(cartId):mobile-api-v1-config" doc:id="920e801a-5c23-4ee9-9104-a01693fc6120" name="get:\orders\(centerId)\carts\(cartId):mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="ba36dd64-b190-4c48-a4ac-4bdcb99191a9" expression="#[payload]" is="#[MunitTools::notNullValue()]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-delete:\orders\(centerId)\carts\(cartId):mobile-api-v1-configTest" doc:id="9890b92c-263b-47ba-8a64-c943e4f373b9" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when guestCartResources" doc:id="524061fe-da89-4d98-9cb8-5d65b78bcb13" processor="customer-order-proc-api:deleteacart" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="DeleteACart" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="3c0a9195-dd7b-4683-942b-0a7561a2c7f7" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-cart-res.json')]" mediaType="application/json" encoding="UTF-8" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="179a5ac2-b00e-411d-abb9-c377d05a4979">
+				<munit:attributes value='#[{uriParams: {"centerId" : "FRS",&#10;"cartId":"95074599-5849-4ad3-82f4-450b325fc4bb"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to delete:\orders\(centerId)\carts\(cartId):mobile-api-v1-config" doc:id="f2ad4bca-dd0b-489c-9b00-7ee3b3abc449" name="delete:\orders\(centerId)\carts\(cartId):mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="e55dafbc-cf6f-437d-ad56-deb04322695a" expression="#[payload]" is="#[MunitTools::notNullValue()]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-put:\orders\(centerId)\carts\(cartId):application\json:mobile-api-v1-configTest" doc:id="7c13d396-c90b-4ac5-9587-9477a4334f08" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when CartResources" doc:id="f21c647a-bfd4-4e6b-b162-33efef2368fe" processor="customer-order-proc-api:updateacart" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="UpdateACart" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="49aca38e-c90b-472c-8f61-33cfb9d2a66a" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-cart-resources-res.json')]" mediaType="application/json" encoding="UTF-8" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="3caffc59-802b-4ee4-adc2-132e55d80508">
+				<munit:attributes value='#[{uriParams: {"centerId" : "FRS",&#10;"cartId":"95074599-5849-4ad3-82f4-450b325fc4bb",&#10;"accountId":"95074599-5849-4ad3-82f4-450b325fc4bb"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to put:\orders\(centerId)\carts\(cartId):application\json:mobile-api-v1-config" doc:id="7a902740-c3a4-4fa6-acaa-7f77d80e6d6a" name="put:\orders\(centerId)\carts\(cartId):application\json:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="83328ee6-db75-4cf3-bf42-eed8aede1a1f" expression="#[payload]" is="#[MunitTools::notNullValue()]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-put:\accounts\(accountId)\orders\(centerId)\carts\(cartId)\items\(cartItemId):application\json:mobile-api-v1-configTest" doc:id="0afbe9b6-cf3c-4e2d-9a91-4d2520d39b56" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when CartResources" doc:id="2096b256-2e34-405a-8577-a29a9a27f213" processor="customer-order-proc-api:updatecartlineitemtype" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="UpdateCartLineItemType" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="2c41ca4f-ca8d-4ae5-8d36-b713209d60b4" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-cart-lineitem-res.json')]" mediaType="application/json" encoding="UTF-8" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="bf91fc28-e18d-4acd-95f6-fd673ea31476">
+				<munit:attributes value='#[{uriParams: {"centerId" : "FRS",&#10;"cartId":"95074599-5849-4ad3-82f4-450b325fc4bb",&#10;"accountId":"95074599-5849-4ad3-82f4-450b325fc4bb",&#10;"cartItemId":"f4886446-b698-40af-80ba-c8135d32693e"}}]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="95074599-5849-4ad3-82f4-450b325fc4bb" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to put:\accounts\(accountId)\orders\(centerId)\carts\(cartId)\items\(cartItemId):application\json:mobile-api-v1-config" doc:id="0496ad75-6599-4855-95c8-ded4cb78a94a" name="put:\accounts\(accountId)\orders\(centerId)\carts\(cartId)\items\(cartItemId):application\json:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="82d6b08f-8585-463e-8e58-b0f2b55a0d00" expression="#[payload]" is="#[MunitTools::notNullValue()]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-put:\accounts\(accountId)\funCards\(funCardId)\status:application\json:mobile-api-v1-configTest" doc:id="e0a3f4a1-f604-4ccb-8b96-8f6b27a7c35a" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when FunCardDinnerBell" doc:id="c150224f-a23e-40a3-a1d1-00f6d7b6071f" processor="http:request" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="PUT" attributeName="method" />
+					<munit-tools:with-attribute whereValue="DinnerBellRequest" attributeName="doc:name" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/put-funcard-status-res.json')]" mediaType="application/json" encoding="UTF-8" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="b694da5b-858b-4d36-9037-8943fe233dc9">
+				<munit:attributes value='#[{uriParams: {&#10;"funcardId":"88b3d380-3f17-482d-8b99-3774305a9a76",&#10;"accountId":"88b3d380-3f17-482d-8b99-3774305a9a76"}}]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="88b3d380-3f17-482d-8b99-3774305a9a76" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to put:\accounts\(accountId)\funCards\(funCardId)\status:application\json:mobile-api-v1-config" doc:id="7a625c63-fc1f-4248-a0c5-56259cd26feb" name="put:\accounts\(accountId)\funCards\(funCardId)\status:application\json:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="c8134be2-0fc0-41cd-b781-c2c1bd8d1eb7" expression="#[payload]" is="#[MunitTools::notNullValue()]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-delete:\accounts\(accountId)\orders\(centerId)\carts\(cartId)\items\(cartItemId):mobile-api-v1-configTest" doc:id="79a17e68-e2db-41ec-8440-24a5736e6cba" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when CartResources" doc:id="9b34f133-90b6-419c-8951-7dd71b959d33" processor="customer-order-proc-api:deletecartlineitem" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="DeleteCartLineItem" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="ea1bd02a-5743-4bbd-a1a2-f7a27dec4b9b" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/delete-cart-lineitem-res.json')]" mediaType="application/json" encoding="UTF-8" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="87f18200-5cac-43e2-93f4-4793cc6e0012">
+				<munit:attributes value='#[{uriParams: {"centerId" : "FRS",&#10;"cartId":"95074599-5849-4ad3-82f4-450b325fc4bb",&#10;"accountId":"95074599-5849-4ad3-82f4-450b325fc4bb",&#10;"cartItemId":"f4886446-b698-40af-80ba-c8135d32693e"}}]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="95074599-5849-4ad3-82f4-450b325fc4bb" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to delete:\accounts\(accountId)\orders\(centerId)\carts\(cartId)\items\(cartItemId):mobile-api-v1-config" doc:id="f37714fd-2847-4418-b683-e2646b2f7824" name="delete:\accounts\(accountId)\orders\(centerId)\carts\(cartId)\items\(cartItemId):mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="918961ba-d500-470c-b2b0-a38e15c151de" expression="#[payload]" is="#[MunitTools::notNullValue()]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\promotions\(promotionId):mobile-api-v1-configTest" doc:id="b973ab20-8460-4f1e-934e-f5670bfda880" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when promotions" doc:id="7088133f-d326-46a3-a69c-18b6ee3c7085" processor="play-process-api:getpromotionbyid" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="GetPromotionById" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="Play_Process_API_Config" attributeName="config-ref" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-promotionId-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="0034dade-9f30-47a3-b3de-adcb48c2976a">
+				<munit:attributes value='#[{uriParams: {"promotionId" : "1"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\promotions\(promotionId):mobile-api-v1-config" doc:id="f607ddf4-1c02-4707-a44f-03673b71ad3c" name="get:\promotions\(promotionId):mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="121cee9c-828b-41ca-b858-675a4db156af" expression="#[payload]" is="#[MunitTools::notNullValue()]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\promotions:mobile-api-v1-configTest" doc:id="9fdc65b0-809f-44a0-a400-53dff81814a9" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when promotions" doc:id="bc628e71-2904-4eea-b966-a19fff6fcaf3" processor="play-process-api:getactivepromotions" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="GetActivePromotions" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="286d49f2-dfb9-42bc-8d65-c8226fdb60c3" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-promotions-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="065b28aa-2b5c-4356-b93d-112b7a2fe5a0">
+				<munit:attributes value='#[{queryParams: {"centerId" : "PLA"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\promotions:mobile-api-v1-config" doc:id="32aa92d3-382b-4d94-a221-c3460bda3b6c" name="get:\promotions:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="e4bd7c51-2035-437e-a9cd-2275adb71c42" expression="#[payload]" is="#[MunitTools::notNullValue()]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-post:\accounts\(accountId)\orders\(centerId)\carts\(cartId)\items:application\json:mobile-api-v1-configTest" doc:id="bf0252bb-859e-4ed4-aadc-7956ecd1e89c" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when " doc:id="d62c7c66-577b-40c1-ae72-5cc2c18ce7b5" processor="customer-order-proc-api:addcartlineitem">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="AddCartLineItem" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="6095ea97-14c1-46bd-ae07-d92289e7fba1" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/post-cart-line-items-res.json')]" mediaType="application/json" encoding="UTF-8" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="6f9a24ca-f50f-4ab7-b911-2f6ec67ff973" >
+				<munit:attributes value='#[{"uriParams": {&#10;"accountId": "88b3d380-3f17-482d-8b99-3774305a9a76",&#10;"centerId": "PLA",&#10;"cartId":"95074599-5849-4ad3-82f4-450b325fc4bb"&#10;}}]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="88b3d380-3f17-482d-8b99-3774305a9a76" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to post:\accounts\(accountId)\orders\(centerId)\carts\(cartId)\items:application\json:mobile-api-v1-config" doc:id="9b9a452a-faf1-4564-9cbf-1ee2a0339cc1" name="post:\accounts\(accountId)\orders\(centerId)\carts\(cartId)\items:application\json:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation>
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="92b43d7a-0346-4c52-977e-02f04bd66b0c" expression="#[payload]" is="#[MunitTools::notNullValue()]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\events\packages\(packageCode)\extras:mobile-api-v1-configTest" doc:id="90ba0e96-f76d-440a-8f7c-a7fb64fb1a87" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when Package (extras)" doc:id="123e61f3-0c1f-4abb-8f42-ce312740bf81" processor="booking-proc-api:get-event-package-menu-options" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Get Event Package Menu Options" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="badde4d5-439d-4466-87e0-e1a7c6b768c5" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-events-packages-extras-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="1f5df9df-41df-4867-ad5f-a724a2dbe8e9">
+				<munit:attributes value='#[{uriParams: {"packageCode" : "ltt6MWBkZKSIpy4W829Tt3sixYv6ikoEOORh_Gjq1quIKpGOnPXdiooEZQzz22S9"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\events\packages\(packageCode)\extras:mobile-api-v1-config" doc:id="30d2cc57-db93-4d0c-87e5-ce544cbbb3a6" name="get:\events\packages\(packageCode)\extras:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="6233def5-394f-469f-95b3-c7b52952185f" expression="#[payload]" is="#[MunitTools::notNullValue()]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\events\packages\(packageCode)\menu:mobile-api-v1-configTest" doc:id="849a1e14-2ec9-40f3-a5ac-f92a4d46d970" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when Package (menu)" doc:id="e919dc02-98c4-472b-9f9f-d4d883cabfc5" processor="booking-proc-api:get-event-package-menu-options" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Get Event Package Menu Options" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="badde4d5-439d-4466-87e0-e1a7c6b768c5" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-events-packages-extras-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="0148c5c3-049b-4038-ac98-b85114110423">
+				<munit:attributes value='#[{uriParams: {"packageCode" : "ltt6MWBkZKSIpy4W829Tt3sixYv6ikoEOORh_Gjq1quIKpGOnPXdiooEZQzz22S9"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\events\packages\(packageCode)\menu:mobile-api-v1-config" doc:id="9e18e4fd-b0f7-4bc6-962a-d4d68bab6fce" name="get:\events\packages\(packageCode)\menu:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="d561d088-4a6b-483c-b731-67f6b0b594f0" expression="#[payload]" is="#[MunitTools::notNullValue()]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\events\packages\options:mobile-api-v1-configTest" doc:id="a322877a-e2ab-4bb8-ab0d-943602874eaf" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when Package (options)" doc:id="f1a45125-960f-4060-ba7b-f75f6315338e" processor="booking-proc-api:get-event-package-fields" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="f3b3627f-fa0f-419c-b769-02a1001ca4e3" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-events-packages-options-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="d0bdcda1-d907-4f51-990d-90d225f9dded">
+				<munit:attributes value='#[{queryParams: {"centerId" : "PLA"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\events\packages\options:mobile-api-v1-config" doc:id="313cfb70-fe2f-4cb7-9dfc-ff52ed92f7d4" name="get:\events\packages\options:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="6af6e1aa-5578-4b14-ad01-9ba644b863ad" expression="#[payload]" is="#[MunitTools::notNullValue()]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\events\packages:mobile-api-v1-configTest" doc:id="f76d66fa-b991-42f9-a909-cd8a95f9a268" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when Package" doc:id="3e79e18a-6d3c-4974-932d-52cc7d85e633" processor="booking-proc-api:get-packages" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Get Packages" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="e63ce463-7f30-4a46-8538-ec5c5e24d055" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-events-packages-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="ee079f17-7f1c-48f7-885a-8b35779b15e3">
+				<munit:attributes value='#[{queryParams: {"centerId" : "PLA"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\events\packages:mobile-api-v1-config" doc:id="2960569c-7cab-4bf9-9dca-ba7067e93456" name="get:\events\packages:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="4b0099f6-0f2f-44ed-b0b7-50f1f44b9b9c" expression="#[payload]" is="#[MunitTools::notNullValue()]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\events:mobile-api-v1-configTest" doc:id="14bcced6-97df-458f-972b-d6ebe413f39f" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when events" doc:id="38720349-f103-44e5-bdc5-20aadf72dc13" processor="booking-proc-api:get-events-by-selected-criteria" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="18173240-b208-4152-9ea6-03c0c66d2762" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-events-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="0454ec72-fe70-4cfd-931e-1ccfdd4bfe0a">
+				<munit:attributes value='#[{queryParams: {"centerId" : "PLA"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\events:mobile-api-v1-config" doc:id="14d600fa-99e2-4c25-a9fe-95ed7b2084b4" name="get:\events:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="144ee068-fef6-4ced-971d-ba4aa437d110" expression="#[payload]" is="#[MunitTools::notNullValue()]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-post:\sso\jwt:application\x-www-form-urlencoded:mobile-api-v1-configTest" doc:id="947804bf-df84-4052-be65-53507f970ceb" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when JWT" doc:id="40d456a5-467f-4588-b93d-7b0d474a2563" processor="play-process-api:create-jwt">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Create jwt" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="2477b1d2-0bc5-444f-b7da-926a60606376" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/post-jwt-res.json')]" mediaType="application/json" encoding="UTF-8" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="06460dea-8d93-4fbd-ad36-6174bd28d90d">
+				<munit:payload value="#[MunitTools::getResourceAsString('mock/request/post-jwt-req.json')]" encoding="UTF-8" mediaType="application/x-www-form-urlencoded" />
+				<munit:attributes value='#[{queryParams: {"platform" : "ios"}}]' mediaType="application/json" />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to post:\sso\jwt:application\x-www-form-urlencoded:mobile-api-v1-config" doc:id="141d2559-f707-4a53-a842-a6aadf60b92a" name="post:\sso\jwt:application\x-www-form-urlencoded:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="d6fe398e-5602-4eb0-95bd-046f490f5815" expression="#[payload]" is="#[MunitTools::equalTo(read(MunitTools::getResourceAsString('mock/response/post-jwt-res.json'), &quot;application/json&quot;))]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\eventLeads:mobile-api-v1-configTest" doc:id="23085a49-bb96-47c9-b9d6-b34fac4d942d" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when events leads" doc:id="8af52db3-d783-4e32-a81f-3517c05a2e98" processor="booking-proc-api:get-event-leads" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Get event leads" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="ba7e5439-3217-41d8-a17d-20ad255300ac" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-events-res.json')]" mediaType="application/json" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="67de0082-adf5-4310-8e12-9ac7b8f44c5a">
+				<munit:attributes value='#[{queryParams: {"centerId" : "PLA"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\eventLeads:mobile-api-v1-config" doc:id="9991cd48-8b52-466b-97d6-025ca979d824" name="get:\eventLeads:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert payload" doc:id="255d71a7-e7c0-4f8d-bfe5-7403970dfadb" expression="#[payload]" is="#[MunitTools::notNullValue()]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\accounts\(accountId)\reservations\(reservationId):mobile-api-v1-configTest" doc:id="e554de3f-3871-4a89-b91a-bbfa63ca4fb5" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when get-reservation-by-account-id-reservationId" doc:id="2731ca6f-7299-4c0b-a049-767585f626ee" processor="customer-account-process-api:get-reservation-by-account-id-reservation-id">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Get reservation by account id reservation id" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="b991fae6-a095-4d3f-b937-16dc942404ff" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-reservation-by accounId.json')]" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="e43d800b-27af-4b7a-9d72-39e956ca947a" >
+				<munit:attributes value='#[{uriParams: {"accountId" : "88b3d380-3f17-482d-8b99-3774305a9a76","reservationId":"3774305a9a764577bmkd73n"},queryParams:{"reservationDateStart&#10;" : "20210301","centerId":"PLA"}}]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="88b3d380-3f17-482d-8b99-3774305a9a76" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\accounts\(accountId)\reservations\(reservationId):mobile-api-v1-config" doc:id="73b08aa3-c277-489f-aa1d-3a0f88055b24" name="get:\accounts\(accountId)\reservations\(reservationId):mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="7717e70b-ec66-4d8d-8b42-040d472c2d62" expression="#[payload]" is="#[MunitTools::notNullValue()]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\accounts\(accountId)\reservations:mobile-api-v1-configTest" doc:id="acdfe6fb-7ad3-4915-8fac-28c818665463" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when get-reservations-by-account-id" doc:id="722d0321-6d97-42a1-ad27-e282c879b414" processor="customer-account-process-api:get-reservations-by-account-id" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Get reservations by account id" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="dd027135-e398-4c2d-89d1-b4d9c60529a5" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-reservation-by accounId.json')]" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="029d4309-08dd-4249-b296-d5d3a2c6eeef">
+				<munit:attributes value='#[{uriParams: {"accountId" : "88b3d380-3f17-482d-8b99-3774305a9a76"},queryParams:{"reservationDateStart&#10;" : "20210301","reservationDateStart" : "20210301","centerId":"PLA"}}]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="88b3d380-3f17-482d-8b99-3774305a9a76" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\accounts\(accountId)\reservations:mobile-api-v1-config" doc:id="1e54f5a9-96c8-4309-a61f-c130c6752457" name="get:\accounts\(accountId)\reservations:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="b43c25b5-3ef9-430d-8975-08cffce34bfb" expression="#[payload]" is="#[MunitTools::notNullValue()]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\accounts\(accountId)\eventLeads:mobile-api-v1-configTest" doc:id="acd1c7ac-e4f2-4003-80ff-40297dda7ecb" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when get-event-lead-list" doc:id="47144028-f454-445e-bc83-d985d605c689" processor="customer-account-process-api:get-event-lead-list" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Get Event Lead List" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="a6da4d4c-386e-4481-b54c-c241ebf113c5" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-eventLead-res.json')]" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="54b8f7a6-ef06-4207-b961-164678907b80">
+				<munit:attributes value='#[{uriParams: {"accountId" : "88b3d380-3f17-482d-8b99-3774305a9a76"},queryParams:{"eventLeadDateStart" : "20210101","eventLeadDateEnd" : "20210101","centerId":"PLA"}}]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="88b3d380-3f17-482d-8b99-3774305a9a76" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\accounts\(accountId)\eventLeads:mobile-api-v1-config" doc:id="033f0c46-a6c3-4661-b523-84a0c7913ae9" name="get:\accounts\(accountId)\eventLeads:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="5070628c-ddb1-4877-82e1-69e7ea8ce01b" expression="#[payload]" is="#[MunitTools::notNullValue()]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\accounts\(accountId)\eventLeads\(eventLeadId):mobile-api-v1-configTest" doc:id="263951e6-99b6-4832-96c3-6421ead28a19" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when get-event-lead-by-account-id-and-event-lead-id" doc:id="5e2427bc-9d4c-4792-90d2-9fc4c516ddf6" processor="customer-account-process-api:get-event-lead-by-account-id-and-event-lead-id" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Get Event Lead By Account Id and Event Lead Id" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="738c640f-8cfe-4ea9-a976-64ef52f7ed7b" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-eventLead-res.json')]" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="5c4ae0e3-6efc-49e8-9ddf-d35e10e7e425">
+				<munit:attributes value='#[{uriParams: {"accountId" : "88b3d380-3f17-482d-8b99-3774305a9a76","eventLeadId":"8b99-3774305a9a76"},queryParams:{"centerId":"PLA"}}]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="88b3d380-3f17-482d-8b99-3774305a9a76" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\accounts\(accountId)\eventLeads\(eventLeadId):mobile-api-v1-config" doc:id="fd6a5089-9cc0-4680-a853-e2562d11ac57" name="get:\accounts\(accountId)\eventLeads\(eventLeadId):mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="84840fc8-bb5b-4aa2-8152-bc09d3203b96" expression="#[payload]" is="#[MunitTools::notNullValue()]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\accounts\(accountId)\events:mobile-api-v1-configTest" doc:id="1c9df6ab-8aaf-478b-af63-58bffccab8b1" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when get-event-list" doc:id="0459233d-c90f-4b00-a17b-24c2d518f2f2" processor="customer-account-process-api:get-event-list" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Get Event List" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="25a49b43-4bcd-4359-9855-27973f992aa0" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-event-list-res.json')]" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="9a1adbc8-7565-4785-a608-afdd2869bca3">
+				<munit:attributes value='#[{uriParams: {"accountId" : "88b3d380-3f17-482d-8b99-3774305a9a76","eventId":"425492-1"},queryParams:{"eventDateStart" : "20210101","eventDateEnd":"20210101","centerId":"PLA"}}]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="88b3d380-3f17-482d-8b99-3774305a9a76" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\accounts\(accountId)\events:mobile-api-v1-config" doc:id="abf7b3f3-dbff-43cf-9c60-9fae3a1485fc" name="get:\accounts\(accountId)\events:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="56d71c59-62f4-469c-835f-cbfa704f1e7e" expression="#[payload]" is="#[MunitTools::notNullValue()]" />
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\accounts\(accountId)\events\(eventId):mobile-api-v1-configTest" doc:id="61a0364f-048d-4a8c-80e4-62ab9e10a7ba" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when get-event-by-event-id-and-account-id" doc:id="a1f5a544-5174-48fa-b34d-ca50ec0d83a9" processor="customer-account-process-api:get-event-by-event-id-and-account-id" >
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Get Event By Event Id and Account Id" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="6583d731-c1fb-4311-9cb8-778ec79b9beb" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-event-res.json')]" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="9131f12b-8d84-4789-9e10-b852edb441f7">
+				<munit:attributes value='#[{uriParams: {"accountId" : "88b3d380-3f17-482d-8b99-3774305a9a76","eventId":"380722-1"},queryParams:{"centerId":"PLA"}}]' />
+				<munit:variables >
+					<munit:variable key="authAccountId" value="88b3d380-3f17-482d-8b99-3774305a9a76" />
+				</munit:variables>
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\accounts\(accountId)\events\(eventId):mobile-api-v1-config" doc:id="b5355381-f889-4930-b312-74e81511edf7" name="get:\accounts\(accountId)\events\(eventId):mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that payload is not null" doc:id="0a2afe68-e5e2-4746-9746-c055688c0d76" expression="#[payload]" is="#[MunitTools::notNullValue()]"/>
+		</munit:validation>
+	</munit:test>
+	<munit:test name="mobile-api-v1-test-suite-get:\centers\(centerId)\products:mobile-api-v1-configTest" doc:id="406ba358-a923-4cfc-a903-8c748e91e519" description="Test">
+		<munit:behavior >
+			<munit-tools:mock-when doc:name="Mock when" doc:id="533e019e-2005-47c3-9198-47f2c0b2f5af" processor="center-process-api:get-center-products">
+				<munit-tools:with-attributes >
+					<munit-tools:with-attribute whereValue="Get Center Products" attributeName="doc:name" />
+					<munit-tools:with-attribute whereValue="6c545989-d373-44e0-ad84-7f0f8c33dbaf" attributeName="doc:id" />
+				</munit-tools:with-attributes>
+				<munit-tools:then-return >
+					<munit-tools:payload value="#[MunitTools::getResourceAsString('mock/response/get-center-products-res.json')]" />
+				</munit-tools:then-return>
+			</munit-tools:mock-when>
+		</munit:behavior>
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="360b8870-77de-4eb6-92c7-509e2fdd15c5">
+				<munit:attributes value='#[{uriParams: {"centerId" : "PLA"}}]' />
+			</munit:set-event>
+			<flow-ref doc:name="Flow-ref to get:\centers\(centerId)\products:mobile-api-v1-config" doc:id="307730ae-9e9d-471b-a457-e4957f52141d" name="get:\centers\(centerId)\products:mobile-api-v1-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="b6464197-7896-45a9-a84c-d49685936286" expression="#[payload]" is="#[MunitTools::notNullValue()]"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>

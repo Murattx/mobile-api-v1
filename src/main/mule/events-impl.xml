@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:booking-proc-api="http://www.mulesoft.org/schema/mule/booking-proc-api" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/booking-proc-api http://www.mulesoft.org/schema/mule/booking-proc-api/current/mule-booking-proc-api.xsd">
+	<flow name="getEventByEventId" doc:id="ccd8adf3-94ae-4bc7-b520-3ddfae409831" >
+		<booking-proc-api:get-event-by-id doc:name="Get Event By Id" doc:id="9d0ae689-4a47-4a5b-be6c-4614ac41a0a3" config-ref="Booking_proc_api_Config" event-id="#[vars.eventId]"/>
+	</flow>
+	<flow name="getPackagesActivities" doc:id="61fcb88f-8a54-4468-b6ea-0c7c07b0494a" >
+		<booking-proc-api:get-event-package-menu-options doc:name="Get Event Package Menu Options" doc:id="badde4d5-439d-4466-87e0-e1a7c6b768c5" config-ref="Booking_proc_api_Config" package-code="#[vars.packageCode]" request-streaming-mode="AUTO"/>
+	</flow>
+	<flow name="getPackagesAvailabilities" doc:id="0a9afd68-4b22-4794-b97d-5c5049746278" >
+		<booking-proc-api:get-event-package-availabilities doc:name="Get Event Package Availabilities" doc:id="994b98e7-3c80-4e70-ba41-408722df3b8e" config-ref="Booking_proc_api_Config" package-code="#[vars.packageCode]" center-id="#[vars.centerId]" package-date="#[vars.packageDate]" attendance="#[vars.attendance]" selected-functions="#[vars.selectedFunctions]" desired-start-time-from="#[vars.desiredStartTimeFrom]" desired-start-time-to="#[vars.desiredStartTimeTo]"/>
+	</flow>
+	<flow name="getPackagesByPackageCode" doc:id="394453b5-fdad-4aec-b077-665f5c21dead" >
+		<booking-proc-api:get-event-package-menu-options doc:name="Get Event Package Menu Options" doc:id="36908197-38b7-4558-b544-284d2cc17ca2" config-ref="Booking_proc_api_Config" package-code="#[vars.packageCode]"/>
+	</flow>
+	<flow name="getPackagesOptions" doc:id="d351629c-a672-4a1b-a6c4-64adf98ed5d9" >
+		<booking-proc-api:get-event-package-fields doc:name="Get Event Package Fields" doc:id="f3b3627f-fa0f-419c-b769-02a1001ca4e3" config-ref="Booking_proc_api_Config" center-id="#[vars.centerId]"/>
+	</flow>
+	<flow name="getPackagesList" doc:id="a9a03bc1-dcb4-4218-a274-a41b4fb2d2af" >
+		<booking-proc-api:get-packages doc:name="Get Packages" doc:id="e63ce463-7f30-4a46-8538-ec5c5e24d055" config-ref="Booking_proc_api_Config" center-id="#[vars.centerId]" start-date="#[vars.startDate]" event-package-type="#[vars.packageType]"/>
+	</flow>
+	<flow name="getEventsList" doc:id="6a14001c-16f6-4c29-bd6d-ec1a5513fa12" >
+		<booking-proc-api:get-events-by-selected-criteria doc:name="Get Events By Selected Criteria" doc:id="18173240-b208-4152-9ea6-03c0c66d2762" config-ref="Booking_proc_api_Config" center-id="#[vars.centerId]" start-date="#[vars.startDate]" event-type="#[vars.eventType]" event-sub-type="#[vars.eventSubType]"/>
+	</flow>
+	<flow name="postEventBooking" doc:id="05f4e087-246c-45e0-8048-e9a7158e9fa7" >
+		<booking-proc-api:create-event-booking-cart doc:name="Create Event Booking Cart" doc:id="21811509-28c9-4912-98f8-0e09d15378b8" config-ref="Booking_proc_api_Config"/>
+	</flow>
+	<flow name="postEventQuote" doc:id="6d906b16-c1e1-436c-bf4f-6ede1e13bb69" >
+		<booking-proc-api:create-event-package-quote doc:name="Create Event Package Quote" doc:id="db208e90-39fe-44e2-9850-71c0cf5b3984" config-ref="Booking_proc_api_Config"/>
+	</flow>
+	<flow name="deleteEventBooking" doc:id="60e23015-97e6-4554-a0f5-47716101f6ea" >
+		<booking-proc-api:cancel-event-booking doc:name="Cancel Event Booking" doc:id="e7774136-13c9-4fcf-8642-15a4a5178ceb" config-ref="Booking_proc_api_Config"/>
+	</flow>
+	<flow name="getEventLeads" doc:id="a2c410fa-0eaf-466a-b241-b946ee39cfc0" >
+		<booking-proc-api:get-event-leads doc:name="Get event leads" doc:id="ba7e5439-3217-41d8-a17d-20ad255300ac" config-ref="Booking_proc_api_Config" center-id="#[attributes.queryParams.centerId]" creation-date='#[attributes.queryParams.creationDate]' event-date='#[attributes.queryParams.eventDate]' last-updated-date-time="#[attributes.queryParams.lastUpdatedDateTime]" limit='#[attributes.queryParams.limit]' offset='#[attributes.queryParams.offset]'/>
+	</flow>
+	<flow name="CreateEventLeads" doc:id="f4a74446-5024-4045-a748-014fec179d0c" >
+		<booking-proc-api:create-event-lead doc:name="Create event lead" doc:id="14bb7404-b32c-4b98-b380-dd104eaae06a" config-ref="Booking_proc_api_Config" center-id="#[payload.centerId]" limit-contacts-to-site="#[attributes.queryParams.limitContactsToSite default true]"/>
+	</flow>
+	<flow name="getEventLeadsbyId" doc:id="b85907b1-1a04-48a1-8659-b31b70215e2c" >
+		<booking-proc-api:get-event-lead-by-id doc:name="Get event lead by id" doc:id="5e85e352-319d-428e-b10d-b7a377fb5b9a" config-ref="Booking_proc_api_Config" id="#[attributes.uriParams.id]" center-id="#[attributes.queryParams.centerId]"/>
+	</flow>
+</mule>

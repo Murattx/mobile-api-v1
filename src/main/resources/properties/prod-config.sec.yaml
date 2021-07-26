@@ -1,0 +1,73 @@
+mobile_api:
+  host: "![qdhI08AeInY=]"
+  port: "![Ug4Lnud/YAg=]"
+  protocol: "![GzZD1kqw5RE=]"
+  basepath: "![t/CsLYXNcCw=]"
+  request_timeout: "![452+5r9DuWg=]"
+  key_alias: "![sPqIFCkZ0UA=]"
+  key_pass: "![BtnHnWBfYAoAFYMbsFqxjQ==]"
+  store_pass: "![BtnHnWBfYAoAFYMbsFqxjQ==]"
+  api_id: "![6ePfLNug7Rc/yAi0nLIkgA==]"
+
+center_proc:
+  client_id: "![kV/EUsH2oMgxLU1OpamTuHn8wvqcuBVf]"
+  client_secret: "![qh/21i7Ot/woKCtS1YaCCHUTJ5aKdMbnQuy/1zmnrtJd3wIWaMmIQrjI4TAmW6oP]"
+  host: "![LNOQ0zHXjLd/V9jlwqFwc3spPsNizUZR]"
+  port: "![bsVX75QqIvA=]"
+  protocol: "![GzZD1kqw5RE=]"
+  basepath: "![trla6ttEU7f9SLOwCQO5I5ro0FpK26YG]"
+  request_timeout: "![rZGPS9RUs0Q=]"
+
+play_proc:
+  client_id: "![kV/EUsH2oMgxLU1OpamTuHn8wvqcuBVf]"
+  client_secret: "![qh/21i7Ot/woKCtS1YaCCHUTJ5aKdMbnQuy/1zmnrtJd3wIWaMmIQrjI4TAmW6oP]"
+  host: "![LNOQ0zHXjLd/V9jlwqFwc3spPsNizUZR]"
+  port: "![bsVX75QqIvA=]"
+  protocol: "![GzZD1kqw5RE=]"
+  basepath: "![czHK+bcl6JbjwQiVA1C2PoCdtt8p1spY]"
+  request_timeout: "![452+5r9DuWg=]"
+  dinnerBellPath: "![T1UKY4CNGLyBe/jhpGNrhbJuEI3+/U6k+YzuU7GMT2gJ0Bqg28E2YeNjSyRG+vl1EZ5jgsbMiXU=]"
+  funcardBalancePath: "![sID1XrwTmwrTufEun4rBnFSGEnBsBKL9LRrToYySK026mkKmulWwwg==]"
+
+customer_proc:
+  client_id: "![kV/EUsH2oMgxLU1OpamTuHn8wvqcuBVf]"
+  client_secret: "![qh/21i7Ot/woKCtS1YaCCHUTJ5aKdMbnQuy/1zmnrtJd3wIWaMmIQrjI4TAmW6oP]"
+  host: "![LNOQ0zHXjLd/V9jlwqFwc3spPsNizUZR]"
+  port: "![bsVX75QqIvA=]"
+  protocol: "![GzZD1kqw5RE=]"
+  basepath: "![VuMCt27ubvji3ZzHSJ6RdaTouDaLe3UV]"
+  request_timeout: "![452+5r9DuWg=]"
+
+booking_proc:
+  client_id: "![kV/EUsH2oMgxLU1OpamTuHn8wvqcuBVf]"
+  client_secret: "![qh/21i7Ot/woKCtS1YaCCHUTJ5aKdMbnQuy/1zmnrtJd3wIWaMmIQrjI4TAmW6oP]"
+  host: "![LNOQ0zHXjLd/V9jlwqFwc3spPsNizUZR]"
+  port: "![bsVX75QqIvA=]"
+  protocol: "![GzZD1kqw5RE=]"
+  basepath: "![PlhrX4NxEeLyfY7ROZ494UJ4XW0ldV0I]"
+  request_timeout: "![452+5r9DuWg=]"
+
+order_proc:
+  client_id: "![kV/EUsH2oMgxLU1OpamTuHn8wvqcuBVf]"
+  client_secret: "![qh/21i7Ot/woKCtS1YaCCHUTJ5aKdMbnQuy/1zmnrtJd3wIWaMmIQrjI4TAmW6oP]"
+  host: "![LNOQ0zHXjLd/V9jlwqFwc3spPsNizUZR]"
+  port: "![bsVX75QqIvA=]"
+  protocol: "![GzZD1kqw5RE=]"
+  basepath: "![0EuNeQXr5GwNBuPUBy+b34OctB6wUbCz]"
+  request_timeout: "![rZGPS9RUs0Q=]"
+
+#switch to toggle for OIDC policy test
+authentication_test:
+  enabled: "false"  
+
+clientid:
+  andriod:
+    id: "![9JzaJWFSqBJ0tKN7ecm/75fJMNomm/0J]"
+    value: "![tqJS/VKPw2TBqKth7jHwWj9PnQo9DThDVMfcwFNc7OE=]"
+
+  ios:
+    id: "![ErdLEpePZpgpOVw3dVXZIGdo9NUw28N3]"
+    value: "![tqJS/VKPw2SRcPlHReqsZJeWz3I5qFaSO63ra3PHO+s=]"
+  web:
+    id: "![7D/NE0R4hFo3rHYba5zO7ZH37Zs+9AOR]"
+    value: "![tqJS/VKPw2Q+iu0W4d9YDgFEMMsc/x7Iu8cfBf4OjU8=]"

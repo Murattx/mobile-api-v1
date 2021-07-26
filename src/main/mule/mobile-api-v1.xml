@@ -1,0 +1,1773 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:api-gateway="http://www.mulesoft.org/schema/mule/api-gateway" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:play-process-api="http://www.mulesoft.org/schema/mule/play-process-api" xmlns:tls="http://www.mulesoft.org/schema/mule/tls" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd  http://www.mulesoft.org/schema/mule/api-gateway http://www.mulesoft.org/schema/mule/api-gateway/current/mule-api-gateway.xsd http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/current/mule-tls.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/play-process-api http://www.mulesoft.org/schema/mule/play-process-api/current/mule-play-process-api.xsd">
+    <flow name="mobile-api-v1-main">
+        <http:listener config-ref="mobile-api-v1-httpListenerConfig" path="${secure::mobile_api.basepath}">
+            <http:response statusCode="#[vars.httpStatus default 200]">
+                <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
+            </http:response>
+            <http:error-response statusCode="#[vars.httpStatus default 500]">
+                <http:body><![CDATA[#[payload]]]></http:body>
+                <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
+            </http:error-response>
+        </http:listener>
+        <flow-ref doc:name="Pre-Set-Variables-Sub-Flow_Reference" doc:id="3e5b4eb2-582d-4908-9ae4-a7bcdc864756" name="Pre-Set-Variables-Sub-Flow" />
+        <apikit:router config-ref="mobile-api-v1-config" />
+        <error-handler>
+            <on-error-propagate type="APIKIT:BAD_REQUEST, PLAY-PROCESS-API:BAD_REQUEST, CUSTOMER-ACCOUNT-PROCESS-API:BAD_REQUEST" enableNotifications="true" logException="true">
+                <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+                    <ee:message>
+                        <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  "code": 400,
+  "status": "Bad request",
+  "message": "The request could not be understood by the server.",
+  "transactionId": vars.correlationId,
+  "timestamp": now()
+}]]></ee:set-payload>
+                    </ee:message>
+                    <ee:variables>
+                        <ee:set-variable variableName="httpStatus"><![CDATA[400]]></ee:set-variable>
+                    </ee:variables>
+                </ee:transform>
+            </on-error-propagate>
+            <on-error-propagate type="APIKIT:NOT_FOUND, CENTER-PROCESS-API:NOT_FOUND, CUSTOMER-ACCOUNT-PROCESS-API:NOT_FOUND,CUSTOMER-ORDER-PROC-API:NOT_FOUND" enableNotifications="true" logException="true">
+                <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+                    <ee:message>
+                        <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  "code": 404,
+  "status": "Not Found",
+  "message": "Requested resource was not found.",
+  "transactionId": vars.correlationId,
+  "timestamp": now()
+}]]></ee:set-payload>
+                    </ee:message>
+                    <ee:variables>
+                        <ee:set-variable variableName="httpStatus"><![CDATA[404]]></ee:set-variable>
+                    </ee:variables>
+                </ee:transform>
+            </on-error-propagate>
+            <on-error-propagate type="APIKIT:METHOD_NOT_ALLOWED">
+                <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+                    <ee:message>
+                        <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  "code": 405,
+  "status": "Method Not Allowed",
+  "message": "The request method is not allowed for this resource.",
+  "transactionId": vars.correlationId,
+  "timestamp": now()
+}]]></ee:set-payload>
+                    </ee:message>
+                    <ee:variables>
+                        <ee:set-variable variableName="httpStatus"><![CDATA[405]]></ee:set-variable>
+                    </ee:variables>
+                </ee:transform>
+            </on-error-propagate>
+            <on-error-propagate type="APIKIT:NOT_ACCEPTABLE">
+                <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+                    <ee:message>
+                        <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  "code": 406,
+  "status": "Not Acceptable",
+  "message": "Response content is not acceptable for this resource.",
+  "transactionId": vars.correlationId,
+  "timestamp": now()
+}]]></ee:set-payload>
+                    </ee:message>
+                    <ee:variables>
+                        <ee:set-variable variableName="httpStatus"><![CDATA[406]]></ee:set-variable>
+                    </ee:variables>
+                </ee:transform>
+            </on-error-propagate>
+            <on-error-propagate type="APIKIT:UNSUPPORTED_MEDIA_TYPE">
+                <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+                    <ee:message>
+                        <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  "code": 415,
+  "status": "Unsupported Media Type",
+  "message": "Request is in a format not supported by the requested resource.",
+  "transactionId": vars.correlationId,
+  "timestamp": now()
+}]]></ee:set-payload>
+                    </ee:message>
+                    <ee:variables>
+                        <ee:set-variable variableName="httpStatus"><![CDATA[415]]></ee:set-variable>
+                    </ee:variables>
+                </ee:transform>
+            </on-error-propagate>
+            <on-error-propagate type="APIKIT:NOT_IMPLEMENTED">
+                <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+                    <ee:message>
+                        <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  "code": 501,
+  "status": "Not Implemented",
+  "message": "Server does not recognize the request method.",
+  "transactionId": vars.correlationId,
+  "timestamp": now()
+}]]></ee:set-payload>
+                    </ee:message>
+                    <ee:variables>
+                        <ee:set-variable variableName="httpStatus"><![CDATA[501]]></ee:set-variable>
+                    </ee:variables>
+                </ee:transform>
+            </on-error-propagate>
+            <on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="d205ca3e-e0bc-4c4f-a36d-9296d6c676d0" type="AUTHCHECK:FORBIDDEN">
+                <ee:transform doc:name="Transform Message" doc:id="ec394c04-0663-4786-964b-097c1df30ddd">
+                    <ee:message>
+                        <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  "code": 403,
+  "status": "Forbidden",
+  "message": "Not authorized to access this resource",
+  "transactionId": vars.correlationId,
+  "timestamp": now()
+}]]></ee:set-payload>
+                    </ee:message>
+                    <ee:variables>
+                        <ee:set-variable variableName="httpStatus"><![CDATA[403]]></ee:set-variable>
+                    </ee:variables>
+                </ee:transform>
+            </on-error-propagate>
+            <on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="1762ee12-56e8-46d8-9f03-cd813fb850ef" type="ANY">
+                <ee:transform doc:name="Transform Message" doc:id="9de2bb5d-ba82-43d6-a03a-832eda6e23ad">
+                    <ee:message>
+                        <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  "code": error.errorMessage.attributes.statusCode default 500,
+  "status": if (!isEmpty(error.errorType)) "ERROR- " ++ error.errorType.namespace ++ ':' ++ error.errorType.identifier else "Internal Server Error",
+  "message":(if(error != null and error.errorMessage != null and !isEmpty(error.errorMessage.payload.message))
+	  (error.description replace /(.*'https:\/\/.*\')/ with ("")  
+	  			++ " - " ++ error.errorMessage.payload.message 
+	  ) else if (!isEmpty(error.description)) (
+	  	error.description replace /(.*'https:\/\/.*\' )/ with ("")
+	  ) else ("The server encountered an unexpected condition.")),
+  "transactionId": vars.correlationId,
+  "timestamp": now()
+}]]></ee:set-payload>
+                    </ee:message>
+                    <ee:variables>
+                        <ee:set-variable variableName="httpStatus"><![CDATA[error.exception.errorMessage.typedAttributes.statusCode default 500]]></ee:set-variable>
+                    </ee:variables>
+                </ee:transform>
+            </on-error-propagate>
+        </error-handler>
+    </flow>
+    <flow name="mobile-api-v1-console">
+        <http:listener config-ref="mobile-api-v1-httpListenerConfig" path="/console/*">
+            <http:response statusCode="#[vars.httpStatus default 200]">
+                <http:headers>#[vars.outboundHeaders default {}]</http:headers>
+            </http:response>
+            <http:error-response statusCode="#[vars.httpStatus default 500]">
+                <http:body>#[payload]</http:body>
+                <http:headers>#[vars.outboundHeaders default {}]</http:headers>
+            </http:error-response>
+        </http:listener>
+        <apikit:console config-ref="mobile-api-v1-config" />
+        <error-handler>
+            <on-error-propagate type="APIKIT:NOT_FOUND">
+                <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+                    <ee:message>
+                        <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{message: "Resource not found"}]]></ee:set-payload>
+                    </ee:message>
+                    <ee:variables>
+                        <ee:set-variable variableName="httpStatus">404</ee:set-variable>
+                    </ee:variables>
+                </ee:transform>
+            </on-error-propagate>
+        </error-handler>
+    </flow>
+    <flow name="put:\orders\(centerId)\carts\(cartId)\items\(cartItemId):application\json:mobile-api-v1-config">
+        <flow-ref doc:name="putUpdateCartLineItem Flow Reference" doc:id="fdb1345e-8329-4f86-8aac-f9640f6a0a29" name="putUpdateCartLineItem" />
+    </flow>
+    <flow name="put:\orders\(centerId)\carts\(cartId):application\json:mobile-api-v1-config">
+        <flow-ref doc:name="putUpdateCart Flow Reference" doc:id="fddbb8f1-1c0d-4356-9a7c-2166b62e4072" name="putUpdateCart" />
+    </flow>
+    <flow name="delete:\orders\(centerId)\carts\(cartId)\items\(cartItemId):mobile-api-v1-config">
+        <flow-ref doc:name="deleteCartLineItem Flow Reference" doc:id="980390d9-8513-4b9a-94fc-28cda335b8ab" name="deleteCartLineItem" />
+    </flow>
+    <flow name="delete:\orders\(centerId)\carts\(cartId):mobile-api-v1-config">
+        <flow-ref doc:name="deleteDeleteACart Flow Reference" doc:id="f562161e-0639-4f41-8d84-e170f43a79fd" name="deleteDeleteACart" />
+    </flow>
+    <flow name="delete:\accounts\(accountId)\funCards\(funCardId):mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="2bba8d05-a82d-4901-ae2c-c8519d7bb084" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="deleteFunCard Flow Reference" doc:id="8202d264-a51b-409d-ae1d-e6a022cc1984" name="deleteFunCard" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[{
+  code: 204,
+  status: "No Content",
+  message: "Resource deleted successfully.",
+  timestamp: now()
+}]]></ee:set-payload>
+            </ee:message>
+            <ee:variables>
+                <ee:set-variable variableName="httpStatus"><![CDATA[%dw 2.0
+output application/java
+---
+204]]></ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+    </flow>
+    <flow name="patch:\accounts\(accountId)\preference:application\json:mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="e970732b-b8f1-4638-9fd8-8a319d0473b6" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="patchUpdateAccountPrefs Flow Reference" doc:id="4b1f86d3-3750-4dbb-9c5e-775e976197c6" name="patchUpdateAccountPrefs" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  code: 200,
+  status: "Success",
+  message: "Account preference updated successfully",
+  timestamp: now()
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="patch:\accounts\(accountId):application\json:mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="261eeb3b-c6ff-4282-a847-defd7422644c" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="patchUpdateAccount Flow Reference" doc:id="dada47d1-f758-4d03-9927-d6ef10803ed2" name="patchUpdateAccount" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  code: 200,
+  status: "Success",
+  message: "Account profile updated successfully",
+  timestamp: now()
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="patch:\accounts\(accountId)\funCards\(funCardId):application\json:mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="949e4beb-bd73-45f2-a9af-e16267eb5c92" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="patchFunCard Flow Reference" doc:id="8bc10835-702f-4142-b681-35a84ccf4846" name="patchFunCard" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  code: 200,
+  status: "Success",
+  message: "FunCard updated successfully",
+  timestamp: now()
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\accounts:mobile-api-v1-config">
+        <choice doc:name="Choice" doc:id="8edafbe2-4664-43ee-9d97-43e79a3304f5">
+            <when expression="#[!isEmpty(vars.authEmail) or !isEmpty(vars.authAccountId) or !isEmpty(vars.authUserName) or (Mule::p(&quot;authentication_test.enabled&quot;) as Boolean)]">
+                <flow-ref doc:name="getAccountList Flow Reference" doc:id="e2a49d39-58b1-403d-9b50-feb25c483b03" name="getAccountList" />
+            </when>
+            <otherwise>
+                <raise-error doc:name="AUTHCHECK Raise error" doc:id="5eb2461f-7389-4e9c-9798-b687a814a2b6" type="AUTHCHECK:FORBIDDEN" description="Resource Forbidden" />
+            </otherwise>
+        </choice>
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  metadata: {
+    resource: payload.metadata.resource,
+    recordCount: payload.metadata.recordCount,
+    (offset: payload.metadata.offset) if (payload.metadata.offset?),
+    (limit: payload.metadata.limit) if (payload.metadata.limit?)
+  },
+  accounts: payload.accounts map ( account, indexOfAccount ) -> {
+      accountId: account.accountId,
+      idpUid: account.idpUid,
+      customerId: account.customerId,
+      (username: account.username) if (account.username?),
+      email: account.email,
+      (title: account.title) if (account.title?),
+      firstName: account.firstName,
+      (middleName: account.middleName) if (account.middleName?),
+      lastName: account.lastName,
+      (gender: account.gender) if (account.gender?),
+      (birthday: account.birthday) if (account.birthday?),
+      (language: account.language) if (account.language?),
+      emailVerified: account.emailVerified,
+      phone1: account.phone1,
+      phone1IsMobile: account.phone1IsMobile,
+      (phone2: account.phone2) if (account.phone2?),
+      (phone2IsMobile: account.phone2IsMobile) if (account.phone2IsMobile?),
+      (addressLine1: account.addressLine1) if (account.addressLine1?),
+      (addressLine2: account.addressLine2) if (account.addressLine2?),
+      (city: account.city) if (account.city?),
+      (state: account.state) if (account.state?),
+      (zipCode: account.zipCode) if (account.zipCode?),
+      (country: account.country) if (account.country?),
+      (facebookId: account.facebookId) if (account.facebookId?),
+      (instagramId: account.instagramId) if (account.instagramId?),
+      (twitterId: account.twitterId) if (account.twitterId?),
+      createdTimestamp: account.createdTimestamp,
+      createdBy: account.createdBy,
+      lastUpdatedTimestamp: account.lastUpdatedTimestamp,
+      lastUpdatedBy: account.lastUpdatedBy,
+      scopes: account.scopes,
+      (claims: account.claims) if (account.claims?),
+      status: account.status,
+      (preferredCenterId: account.preferredCenterId) if (account.preferredCenterId?),
+      (timezone: account.timezone) if (account.timezone?),
+      (personalBarcode: account.personalBarcode) if (account.personalBarcode?)
+    }
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\accounts\(accountId)\preference:mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="7539ae93-4f9a-4be9-a6d6-ce75d01ce989" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="getAccountPrefs Flow Reference" doc:id="d905df50-67ef-400f-b7c6-ffbd2455ae59" name="getAccountPrefs" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  accountId: payload.accountId,
+  (smsOptIn: payload.smsOptIn) if (payload.smsOptIn?),
+  (emailOptIn: payload.emailOptIn) if (payload.emailOptIn?),
+  (pushNotificationOptIn: payload.pushNotificationOptIn) if (payload.pushNotificationOptIn?),
+  (socialOptIn: payload.socialOptIn) if (payload.socialOptIn?),
+  (favoriteVenue: payload.favoriteVenue) if (payload.favoriteVenue?),
+  (favoriteArcadeGame: payload.favoriteArcadeGame) if (payload.favoriteArcadeGame?)
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\accounts\(accountId):mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="68d736bd-3685-4a9f-ae5a-182a7935285b" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="getAccountByAccountId Flow Reference" doc:id="efe6c4a9-f35f-49a5-bbeb-4a2a68f0b58a" name="getAccountByAccountId" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+	accountId: payload.accountId,
+    idpUid: payload.idpUid,
+    customerId: payload.customerId,
+    (username: payload.username) if (payload.username?),
+    email: payload.email,
+    (title: payload.title) if (payload.title?),
+    firstName: payload.firstName,
+    (middleName: payload.middleName) if (payload.middleName?),
+    lastName: payload.lastName,
+    (gender: payload.gender) if (payload.gender?),
+    (birthday: payload.birthday) if (payload.birthday?),
+    (language: payload.language) if (payload.language?),
+    emailVerified: payload.emailVerified,
+    phone1: payload.phone1,
+    phone1IsMobile: payload.phone1IsMobile,
+    (phone2: payload.phone2) if (payload.phone2?),
+    (phone2IsMobile: payload.phone2IsMobile) if (payload.phone2IsMobile?),
+    (addressLine1: payload.addressLine1) if (payload.addressLine1?),
+    (addressLine2: payload.addressLine2) if (payload.addressLine2?),
+    (city: payload.city) if (payload.city?),
+    (state: payload.state) if (payload.state?),
+    (zipCode: payload.zipCode) if (payload.zipCode?),
+    (country: payload.country) if (payload.country?),
+    (facebookId: payload.facebookId) if (payload.facebookId?),
+    (instagramId: payload.instagramId) if (payload.instagramId?),
+    (twitterId: payload.twitterId) if (payload.twitterId?),
+    createdTimestamp: payload.createdTimestamp,
+    createdBy: payload.createdBy,
+    lastUpdatedTimestamp: payload.lastUpdatedTimestamp,
+    lastUpdatedBy: payload.lastUpdatedBy,
+    scopes: payload.scopes,
+    (claims: payload.claims) if (payload.claims?),
+    status: payload.status,
+    (preferredCenterId: payload.preferredCenterId) if (payload.preferredCenterId?),
+    (timezone: payload.timezone) if (payload.timezone?),
+    (personalBarcode: payload.personalBarcode) if (payload.personalBarcode?)
+    
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\reservations\(reservationId):mobile-api-v1-config">
+        <ee:transform doc:name="GetReqParams">
+            <ee:variables>
+                <ee:set-variable variableName="reservationId">attributes.uriParams.'reservationId'</ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+        <flow-ref doc:name="getReservationById Flow Reference" doc:id="3ea9dfd9-73f8-4c0e-a13f-89c150a4e578" name="get-reservation-by-Id-Flow" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+import * from dw::core::Strings
+output application/json indent=false
+---
+payload mapObject (value, key, index) -> {
+	(camelize(key as String) replace "UuId" with "Uuid"): (value)
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\reservations\add-ons:mobile-api-v1-config">
+        <flow-ref doc:name="getReservationAddOnFlowReference" doc:id="59ee4ff3-512c-4c54-b490-1f34832e4f1f" name="get-reservation-addOn-flow" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+	partyMix: payload.partyMix map ( mixItem, indexOfItem ) -> {
+		partyMixType: mixItem.partyMixType,
+		perPersonPrice: mixItem.perPersonPrice
+	},
+  	perAssetPrice: payload.perAssetPrice,
+  	reservationServices: payload.reservationServices map ( service, indexOfService ) -> {
+  		serviceItemPriceId: service.serviceItemPriceId,
+		name: service.name,
+      	description: service.description,
+      	price: service.price,
+      	pricingModel: service.pricingModel,
+      	quantity: service.quantity,
+      	quantityEditable: service.quantityEditable	
+  	}
+  	
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\reservations\availabilities:mobile-api-v1-config">
+        <flow-ref doc:name="Flow ref toget-reservation-availabilities-flow" doc:id="4f421e82-d650-4dcc-9089-b32344d761fc" name="get-reservation-availabilities-flow" />
+        <ee:transform doc:name="DW map as Set Response" doc:id="1acccdf3-fe72-429c-b9b5-f8b385ead3cb">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+	"metadata": {
+    	"resource": "reservation/availability",
+    	"recordCount": sizeOf(payload)
+  	},
+  	"reservationAvailabilities": payload map ( availability, indexOfAvail ) ->
+		{
+			"availability": availability.availability,
+			"reservationStartTime": availability.reservationStartTime,
+    		"reservations": availability.reservations map ( reservation, indexOfRes ) ->
+    			{
+    				"reservationCode": reservation.reservationCode,
+    				"startTime": reservation.startTime,
+    				"endTime": reservation.endTime,
+    				"partySize": reservation.partySize,
+    				"assetNames": reservation.assetNames,
+    				"attributes": reservation.attributes,
+    				"activityType": reservation.activityType,
+    				"centerName": reservation.centerName,
+    				"centerId": reservation.centerId,
+    				"centerUuId": reservation.centerUuId,
+    				"servicePeriod": reservation.servicePeriode,
+   					"pricingSummary": reservation.pricingSummary
+				}
+		}
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\reservations\options:mobile-api-v1-config">
+        <flow-ref doc:name="FLow ref to get-reservation-options-flow" doc:id="9e6e8aa0-22ea-4029-bc39-490fcba6cc1a" name="get-reservation-options-flow" />
+        <ee:transform doc:name="DW map as Set Response" doc:id="0ca439e3-5044-4649-9e96-9aa75db31bc5">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+import * from dw::core::Strings
+output application/json indent=false
+---
+payload mapObject (value, key, index) -> {
+	(camelize(key as String) replace "UuId" with "Uuid"): (value)
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\orders\(centerId)\carts\(cartId):mobile-api-v1-config">
+        <flow-ref doc:name="guestGetCartByCartIdFlowReference" doc:id="88857064-34cb-4c89-9562-ac90619c6621" name="getCartByCartId" />
+    </flow>
+    <flow name="get:\centers\(centerId):mobile-api-v1-config">
+        <flow-ref doc:name="getCenterByCenterIdFlowReference" doc:id="663251d3-9966-4b52-8738-993a182515de" name="getCenterByCenterId" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+	centerId: payload.centerId,
+	centerKey: payload.centerKey,
+	centerName: payload.centerName,
+	centerCode: payload.centerCode,
+	centerLongName: payload.centerLongName,
+	centerGroup: payload.centerGroup,
+	centerDescription: payload.centerDescription,
+	yearEstablished: payload.yearEstablished,
+	qubicaCenterId: payload.qubicaCenterId,
+	googlePlaceId: payload.googlePlaceId,
+	locationId: payload.locationId,
+	enabled: payload.enabled,
+	latitude: payload.latitude,
+	longitude: payload.longitude,
+	timezone: payload.timezone,
+	timeZoneUtcOffset: payload.timeZoneUtcOffset,
+	address: payload.address,
+	city: payload.city,
+	state: payload.state,
+	zipcode: payload.zipcode,
+	telephone: payload.telephone,
+	emails: payload.emails map ( email , indexOfEmail ) -> email,
+	(additionalHoursText: payload.additionalHoursText) if(payload.additionalHoursText?),
+	websiteUrl: payload.websiteUrl,
+	paymentOptions: payload.paymentOptions map ( paymentOption , indexOfPaymentOption ) -> paymentOption,
+	paymentGatewayId: payload.paymentGatewayId,
+	paymentAPILoginId: payload.paymentAPILoginId,
+	ecommStoreHash: payload.ecommStoreHash,
+	ecommStoreId: payload.ecommStoreId,
+	intercardTaxRate: payload.intercardTaxRate,
+	taxRate: payload.taxRate,
+	serviceCharge: payload.serviceCharge,
+	logo: {
+		image: {
+			alternateText: payload.logo.image.alternateText,
+			width: payload.logo.image.width,
+			thumbnails: payload.logo.image.thumbnails map ( thumbnail , indexOfThumbnail ) -> {
+				width: thumbnail.width,
+				url: thumbnail.url,
+				height: thumbnail.height
+			},
+			url: payload.logo.image.url,
+			height: payload.logo.image.height
+		},
+		clickthroughUrl: payload.logo.clickthroughUrl,
+		description: payload.logo.description
+	},
+	featuredMessage: {
+		description: payload.featuredMessage.description,
+		url: payload.featuredMessage.url
+	},
+	facebookInfo: {
+		facebookCoverPhoto: {
+			width: payload.facebookInfo.facebookCoverPhoto.width,
+			thumbnails: payload.facebookInfo.facebookCoverPhoto.thumbnails map ( thumbnail , indexOfThumbnail ) -> {
+				width: thumbnail.width,
+				url: thumbnail.url,
+				height: thumbnail.height
+			},
+			url: payload.facebookInfo.facebookCoverPhoto.url,
+			height: payload.facebookInfo.facebookCoverPhoto.height
+		},
+		facebookPageUrl: payload.facebookInfo.facebookPageUrl,
+		facebookVanityUrl: payload.facebookInfo.facebookVanityUrl,
+		facebookProfilePhoto: {
+			width: payload.facebookInfo.facebookProfilePhoto.width,
+			thumbnails: payload.facebookInfo.facebookProfilePhoto.thumbnails map ( thumbnail , indexOfThumbnail ) -> {
+				width: thumbnail.width,
+				url: thumbnail.url,
+				height: thumbnail.height
+			},
+			url: payload.facebookInfo.facebookProfilePhoto.url,
+			height: payload.facebookInfo.facebookProfilePhoto.height
+		},
+		facebookStoreId: payload.facebookInfo.facebookStoreId,
+		facebookParentPageId: payload.facebookInfo.facebookParentPageId,
+		facebookName: payload.facebookInfo.facebookName
+	},
+	googleInfo: {
+		googleAttributes: {
+			welcomesFamilies: payload.googleInfo.googleAttributes.welcomesFamilies,
+			hasWheelchairAccessibleRestroom: payload.googleInfo.googleAttributes.hasWheelchairAccessibleRestroom,
+			hasWheelchairAccessibleEntrance: payload.googleInfo.googleAttributes.hasWheelchairAccessibleEntrance,
+			wifi: payload.googleInfo.googleAttributes.wifi,
+			hasRestaurant: payload.googleInfo.googleAttributes.hasRestaurant,
+			hasLivePerformances: payload.googleInfo.googleAttributes.hasLivePerformances,
+			hasWheelchairAccessibleParking: payload.googleInfo.googleAttributes.hasWheelchairAccessibleParking,
+			hasRestroom: payload.googleInfo.googleAttributes.hasRestroom,
+			hasWheelchairAccessibleElevator: payload.googleInfo.googleAttributes.hasWheelchairAccessibleElevator,
+			welcomesChildren: payload.googleInfo.googleAttributes.welcomesChildren
+		},
+		googleWebsiteOverride: payload.googleInfo.googleWebsiteOverride,
+		googleCoverPhoto: {
+			sourceUrl: payload.googleInfo.googleCoverPhoto.sourceUrl,
+			width: payload.googleInfo.googleCoverPhoto.width,
+			url: payload.googleInfo.googleCoverPhoto.url,
+			height: payload.googleInfo.googleCoverPhoto.height
+		},
+		googleProfilePhoto: {
+			width: payload.googleInfo.googleProfilePhoto.width,
+			url: payload.googleInfo.googleProfilePhoto.url,
+			height: payload.googleInfo.googleProfilePhoto.height
+		}
+	},
+	reviewGenerationUrl: payload.reviewGenerationUrl,
+	firstPartyReviewPage: payload.firstPartyReviewPage,
+	(venues: {
+		hasBowl: payload.venues.hasBowl,
+		hasLaserTag: payload.venues.hasLaserTag,
+		hasBilliards: payload.venues.hasBilliards,
+		hasGolf: payload.venues.hasGolf,
+		hasKaraoke: payload.venues.hasKaraoke,
+		hasBESX: payload.venues.hasBESX,
+		hasEM: payload.venues.hasEM,
+		hasTablets: payload.venues.hasTablets,
+		hasGravity: payload.venues.hasGravity,
+	    hasRockClimbing: payload.venues.hasRockClimbing,
+		numberOfLanes: payload.venues.numberOfLanes,
+		numberOfVests: payload.venues.numberOfVests,
+		numberOfPoolTables: payload.venues.numberOfPoolTables,
+		numberOfGames: payload.venues.numberOfGames,
+		numberOfReaders: payload.venues.numberOfReaders,
+		numberOfTellers: payload.venues.numberOfTellers,
+		numberOfRooms: payload.venues.numberOfRooms,
+		headcountEnabled: payload.venues.headcountEnabled,
+		qubicaEnabled: payload.venues.qubicaEnabled
+		
+	}) if (payload.venues?),
+	(hours: payload.hours) if (payload.hours?),
+	(rentalEvents: payload.rentalEvents map ( rentalEvent , indexOfRentalEvent ) -> {
+		eventNumber: rentalEvent.eventNumber,
+		eventType: rentalEvent.eventType,
+		eventSubType: rentalEvent.eventSubType,
+		eventName: rentalEvent.eventName,
+		startDate: rentalEvent.startDate,
+		startTime: rentalEvent.startTime,
+		endTime: rentalEvent.endTime as String
+		
+	}) if (payload.rentalEvents?)
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\centers\(centerId)\hours:mobile-api-v1-config">
+        <flow-ref doc:name="getCenterByCenterIdHoursFlowReference" doc:id="c52b25f3-0b64-44fe-a8cd-a9f5e27cb4d5" name="getCenterByCenterIdHours" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+payload mapObject (value, key, index) -> {
+	(key as String): (value)
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\centers\(centerId)\venues:mobile-api-v1-config">
+        <flow-ref doc:name="getCenterByCenterIdVenuesFlowReference" doc:id="91b2a42c-3c50-4353-af7b-1f76ef994af8" name="getCenterByCenterIdVenues" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+	hasBowl: payload.hasBowl,
+	hasLaserTag: payload.hasLaserTag,
+	hasBilliards: payload.hasBilliards,
+	hasGolf: payload.hasGolf,
+	hasKaraoke: payload.hasKaraoke,
+	hasBESX: payload.hasBESX,
+	hasEM: payload.hasEM,
+	hasTablets: payload.hasTablets,
+	hasGravity: payload.hasGravity,
+	hasRockClimbing: payload.hasRockClimbing,
+	numberOfLanes: payload.numberOfLanes,
+	numberOfVests: payload.numberOfVests,
+	numberOfPoolTables: payload.numberOfPoolTables,
+	numberOfGames: payload.numberOfGames,
+	numberOfReaders: payload.numberOfReaders,
+	numberOfTellers: payload.numberOfTellers,
+	numberOfRooms: payload.numberOfRooms,
+	headcountEnabled: payload.headcountEnabled,
+	qubicaEnabled: payload.qubicaEnabled
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\centers:mobile-api-v1-config">
+        <flow-ref doc:name="getCentersListFlowReference" doc:id="602c1ae2-0121-4925-b9c5-a5464dad7933" name="getCentersList" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+	metadata: {
+		resource: payload.metadata.resource,
+		recordCount: payload.metadata.recordCount,
+	},
+	centers: payload.centers map ( center , indexOfCenter ) -> {
+		reviewGenerationUrl: center.reviewGenerationUrl,
+		yearEstablished: center.yearEstablished,
+		ecommStoreHash: center.ecommStoreHash,
+		city: center.city,
+		timezone: center.timezone,
+		latitude: center.latitude,
+		timeZoneUtcOffset: center.timeZoneUtcOffset,
+		centerLongName: center.centerLongName,
+		enabled: center.enabled,
+		qubicaCenterId: center.qubicaCenterId,
+		emails: center.emails map ( email , indexOfEmail ) -> email,
+		(additionalHoursText: center.additionalHoursText) if(center.additionalHoursText?),
+		paymentAPILoginId: center.paymentAPILoginId,
+		serviceCharge: center.serviceCharge,
+		websiteUrl: center.websiteUrl,
+		paymentOptions: center.paymentOptions map ( paymentOption , indexOfPaymentOption ) -> paymentOption,
+		locationId: center.locationId,
+		centerDescription: center.centerDescription,
+		centerCode: center.centerCode,
+		logo: {
+			image: {
+				alternateText: center.logo.image.alternateText,
+				width: center.logo.image.width,
+				thumbnails: center.logo.image.thumbnails map ( thumbnail , indexOfThumbnail ) -> {
+					width: thumbnail.width,
+					url: thumbnail.url,
+					height: thumbnail.height
+				},
+				url: center.logo.image.url,
+				height: center.logo.image.height
+			},
+			clickthroughUrl: center.logo.clickthroughUrl,
+			description: center.logo.description
+		},
+		facebookInfo: {
+			facebookCoverPhoto: {
+				width: center.facebookInfo.facebookCoverPhoto.width,
+				thumbnails: center.facebookInfo.facebookCoverPhoto.thumbnails map ( thumbnail , indexOfThumbnail ) -> {
+					width: thumbnail.width,
+					url: thumbnail.url,
+					height: thumbnail.height
+				},
+				url: center.facebookInfo.facebookCoverPhoto.url,
+				height: center.facebookInfo.facebookCoverPhoto.height
+			},
+			facebookPageUrl: center.facebookInfo.facebookPageUrl,
+			facebookVanityUrl: center.facebookInfo.facebookVanityUrl,
+			facebookProfilePhoto: {
+				width: center.facebookInfo.facebookProfilePhoto.width,
+				thumbnails: center.facebookInfo.facebookProfilePhoto.thumbnails map ( thumbnail , indexOfThumbnail ) -> {
+					width: thumbnail.width,
+					url: thumbnail.url,
+					height: thumbnail.height
+				},
+				url: center.facebookInfo.facebookProfilePhoto.url,
+				height: center.facebookInfo.facebookProfilePhoto.height
+			},
+			facebookStoreId: center.facebookInfo.facebookStoreId,
+			facebookParentPageId: center.facebookInfo.facebookParentPageId,
+			facebookName: center.facebookInfo.facebookName
+		},
+		state: center.state,
+		featuredMessage: center.featuredMessage,
+		longitude: center.longitude,
+		ecommStoreId: center.ecommStoreId,
+		centerId: center.centerId,
+		address: center.address,
+		googlePlaceId: center.googlePlaceId,
+		telephone: center.telephone,
+		firstPartyReviewPage: center.firstPartyReviewPage,
+		zipcode: center.zipcode,
+		intercardTaxRate: center.intercardTaxRate,
+		paymentGatewayId: center.paymentGatewayId,
+		taxRate: center.taxRate,
+		centerKey: center.centerKey,
+		centerGroup: center.centerGroup,
+		googleInfo: {
+			googleAttributes: {
+				welcomesFamilies: center.googleInfo.googleAttributes.welcomesFamilies,
+				hasWheelchairAccessibleRestroom: center.googleInfo.googleAttributes.hasWheelchairAccessibleRestroom,
+				hasWheelchairAccessibleEntrance: center.googleInfo.googleAttributes.hasWheelchairAccessibleEntrance,
+				wifi: center.googleInfo.googleAttributes.wifi,
+				hasRestaurant: center.googleInfo.googleAttributes.hasRestaurant,
+				hasLivePerformances: center.googleInfo.googleAttributes.hasLivePerformances,
+				hasWheelchairAccessibleParking: center.googleInfo.googleAttributes.hasWheelchairAccessibleParking,
+				hasRestroom: center.googleInfo.googleAttributes.hasRestroom,
+				hasWheelchairAccessibleElevator: center.googleInfo.googleAttributes.hasWheelchairAccessibleElevator,
+				welcomesChildren: center.googleInfo.googleAttributes.welcomesChildren
+			},
+			googleWebsiteOverride: center.googleInfo.googleWebsiteOverride,
+			googleCoverPhoto: {
+				sourceUrl: center.googleInfo.googleCoverPhoto.sourceUrl,
+				width: center.googleInfo.googleCoverPhoto.width,
+				url: center.googleInfo.googleCoverPhoto.url,
+				height: center.googleInfo.googleCoverPhoto.height
+			},
+			googleProfilePhoto: {
+				width: center.googleInfo.googleProfilePhoto.width,
+				url: center.googleInfo.googleProfilePhoto.url,
+				height: center.googleInfo.googleProfilePhoto.height
+			}
+		},
+		centerName: center.centerName
+	}
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\centers\(centerId)\rental-events:mobile-api-v1-config">
+        <flow-ref doc:name="getCenterByCenterIdRentalEventsFlowReference" doc:id="b8a9a577-3b1a-4942-acd1-a3b5e64ce690" name="getCenterByCenterIdRentalEvents" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+payload map ( payload01 , indexOfPayload01 ) -> {
+	eventNumber: payload01.eventNumber,
+	eventType: payload01.eventType,
+	eventSubType: payload01.eventSubType,
+	eventName: payload01.eventName,
+	startDate: payload01.startDate,
+	startTime: payload01.startTime,
+	endTime: payload01.endTime
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\funCards\(funcardNumber)\balance:mobile-api-v1-config">
+        <flow-ref doc:name="getFunCardBalanceFlowReference" doc:id="758ac06b-c387-48b4-8b81-86b53f344f01" name="getFunCardBalance" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  funCardNumber: payload.funCardNumber,
+  (funCardPin: payload.funCardPin) if (payload.funCardPin?),
+  statusText: payload.statusText,
+  status: payload.status,
+  cashBalance: payload.cashBalance,
+  (funCardCredit: payload.funCardCredit) if (payload.funCardCredit?),
+  bonusCashBalance: payload.bonusCashBalance,
+  pointBalance: payload.pointBalance,
+  tokenBalance: payload.tokenBalance,
+  tokenBonusBalance: payload.tokenBonusBalance,
+  firstUsed: payload.firstUsed,
+  lastUsed: payload.lastUsed,
+  todateCashIn: payload.todateCashIn,
+  todayCashIn: payload.todayCashIn,
+  blockedAccess: payload.blockedAccess,
+  timePlayStartTime: payload.timePlayStartTime,
+  timePlayEndTime: payload.timePlayEndTime
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\accounts\(accountId)\funCards\(funCardId)\history:mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="df8d08a2-b4cb-4015-a3b6-f67d4c3c2172" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="getFunCardHistory Flow Reference" doc:id="8bf5dd21-9e51-43f5-b9d2-b6044ae6db12" name="getFunCardHistory" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  funCardId: payload.funCardId,
+  funCardNumber: payload.funCardNumber,
+  funCardName: payload.funCardName,
+  member: payload.member,
+  groupID: payload.groupID,
+  statusText: payload.statusText,
+  status: payload.status,
+  cashBalance: payload.cashBalance,
+  (funCardCredit: payload.funCardCredit) if (payload.funCardCredit?),
+  bonusCashBalance: payload.bonusCashBalance,
+  pointBalance: payload.pointBalance,
+  tokenBalance: payload.tokenBalance,
+  tokenBonusBalance: payload.tokenBonusBalance,
+  firstUsedTimestamp: payload.firstUsedTimestamp,
+  lastUsedTimestamp: payload.lastUsedTimestamp,
+  todateCashIn: payload.todateCashIn,
+  todaysCashIn: payload.todaysCashIn,
+  blockedAccess: payload.blockedAccess,
+  discountRate: payload.discountRate,
+  timePlayStartTime: payload.timePlayStartTime,
+  timePlayEndTime: payload.timePlayEndTime,
+  timePlayDuration: payload.timePlayDuration,
+  customerPicture: payload.customerPicture,
+  cardRegistered: payload.cardRegistered,
+  transactions: payload.transactions map ( transaction, indexOfTransaction ) -> {
+  	device: transaction.device,
+    cash: transaction.cash,
+    bonusCash: transaction.bonusCash,
+    points: transaction.points,
+    tokens: transaction.tokens,
+    tokenBonus: transaction.tokenBonus,
+    transType: transaction.transType,
+    timestamp: transaction.timestamp,
+    employee: transaction.employee,
+    location: transaction.location,
+    handPays: transaction.handPays,
+    winnings: transaction.winnings,
+    bets: transaction.bets,
+    billsIn: transaction.billsIn
+  },
+  gateTransactions: payload.gateTransactions,
+  productsTransactions: payload.productsTransactions,
+  redemptionTransactions: payload.redemptionTransactions map ( redemptionTran, indeOfRedemtion ) -> {
+      debits: redemptionTran.debits,
+      tickets: redemptionTran.tickets,
+      delltroncisTicket: redemptionTran.delltroncisTicket,
+      lenderAccount: redemptionTran.lenderAccount,
+      pointsBorrowed: redemptionTran.pointsBorrowed,
+      pointsComped: redemptionTran.pointsComped,
+      device: redemptionTran.device,
+      product: redemptionTran.product,
+      quantity: redemptionTran.quantity,
+      employee: redemptionTran.employee,
+      timestamp: redemptionTran.timestamp,
+      location: redemptionTran.location
+  }
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\accounts\(accountId)\funCards:mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="a417b77b-7614-48a6-b602-ac5feab588c8" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="getFunCards Flow Reference" doc:id="44b92a1c-cde1-44ac-9376-acfdca3cfdcc" name="getFunCardsList" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+	metadata: {
+		resource: payload.metadata.resource,
+		recordCount: payload.metadata.recordCount
+	},
+	funCards: payload.funCards map ( funCard , indexOfFunCard ) -> {
+		funCardId: funCard.funCardId,
+		funCardNumber: funCard.funCardNumber,
+		funCardPin: funCard.funCardPin,
+		funCardName: funCard.funCardName,
+		statusText: funCard.statusText,
+		status: funCard.status,
+		cashBalance: funCard.cashBalance,
+		(funCardCredit: funCard.funCardCredit) if (funCard.funCardCredit?),
+		bonusCashBalance: funCard.bonusCashBalance,
+		pointBalance: funCard.pointBalance,
+		tokenBalance: funCard.tokenBalance,
+		tokenBonusBalance: funCard.tokenBonusBalance,
+		firstUsed: funCard.firstUsedTimestamp as DateTime default null,
+		lastUsed: funCard.lastUsedTimestamp as DateTime default null,
+		todateCashIn: funCard.todateCashIn,
+		todayCashIn: funCard.todaysCashIn,
+		blockedAccess: funCard.blockedAccess,
+		timePlayStartTime:funCard.timePlayStartTime as DateTime default null,
+		timePlayEndTime:funCard.timePlayEndTime as DateTime default null,
+		timePlayDuration: funCard.timePlayDuration,
+		cardCustomizations: funCard.cardCustomizations map ( cardCustomization, indexOfCC ) -> {
+			cardCustomizationId: cardCustomization.cardCustomizationId,
+			customType: cardCustomization.customType,
+			customValue: cardCustomization.customValue
+		}
+	}
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+        <error-handler>
+            <on-error-continue enableNotifications="true" logException="true" doc:name="On Error Continue" doc:id="21e3e8ea-fb0b-42d2-93c5-f0a660c41087" type="HTTP:NOT_FOUND, PLAY-PROCESS-API:NOT_FOUND">
+                <ee:transform doc:name="DW Generate Empty Funcard List Repsonse" doc:id="ac2e6609-74ee-4305-8085-1f4eea807e63">
+                    <ee:message>
+                        <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+    "metadata": {
+        "resource": "account/funCard",
+        "recordCount": 0
+    },
+    "funCards": []
+}]]></ee:set-payload>
+                    </ee:message>
+                </ee:transform>
+            </on-error-continue>
+        </error-handler>
+    </flow>
+    <flow name="get:\accounts\(accountId)\funCards\(funCardId):mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="253b4f25-4b3c-4cae-81eb-15edb301b5ec" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="getFunCardById Flow Reference" doc:id="afd08555-ef12-48cd-afb3-894294f4fb17" name="getFunCardbyId" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+  funCardId: payload.funCardId,
+  funCardNumber: payload.funCardNumber,
+  funCardPin: payload.funCardPin,
+  funCardName: payload.funCardName,
+  statusText: payload.statusText,
+  status: payload.status,
+  cashBalance: payload.cashBalance,
+  (funCardCredit: payload.funCardCredit) if (payload.funCardCredit?),
+  bonusCashBalance: payload.bonusCashBalance,
+  pointBalance: payload.pointBalance,
+  tokenBalance: payload.tokenBalance,
+  tokenBonusBalance: payload.tokenBonusBalance,
+  firstUsed: payload.firstUsedTimestamp as DateTime default null,
+  lastUsed: payload.lastUsedTimestamp as DateTime default null,
+  todateCashIn: payload.todateCashIn,
+  todayCashIn: payload.todaysCashIn,
+  blockedAccess: payload.blockedAccess,
+  timePlayStartTime: payload.timePlayStartTime as DateTime default null,
+  timePlayEndTime: payload.timePlayEndTime as DateTime default null,
+  timePlayDuration: payload.timePlayDuration,
+  cardCustomizations: payload.cardCustomizations map ( cardCustomization, indexOfCC ) -> {
+  	cardCustomizationId: cardCustomization.cardCustomizationId,
+  	customizationType: cardCustomization.customType,
+  	customValue: cardCustomization.customValue
+  }
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="post:\orders\(centerId)\carts\(cartId)\items:application\json:mobile-api-v1-config">
+        <flow-ref doc:name="postAddCartLineItem Flow Reference" doc:id="a98c487e-759e-4d3d-bcb1-2b79d02dba33" name="postAddCartLineItem" />
+    </flow>
+    <flow name="post:\reservations:application\json:mobile-api-v1-config">
+        <flow-ref doc:name="FLow ref to post-create-reservation" doc:id="501bab38-0365-4f14-b91a-f23115572e80" name="post-create-reservation" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+	cartItems: payload.cartItems map ( item, indexOfItem ) -> {
+		productId: item.productId,
+      	sku: item.sku,
+      	optionSelections: item.optionSelections,
+      	name: item.name,
+      	cartItemType: item.cartItemType,
+      	listPrice: item.listPrice,
+      	quantity: item.quantity
+	}
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="post:\orders\(centerId)\carts\(cartId)\redirect-urls:mobile-api-v1-config">
+        <flow-ref doc:name="postCreateCartRedirectUrls Flow Reference" doc:id="6fd0677c-c8c9-44e3-959a-4cc5c9867cb1" name="order-carts-create-cart-redirect-urls-flow" />
+    </flow>
+    <flow name="post:\orders\(centerId)\carts:application\json:mobile-api-v1-config">
+        <flow-ref doc:name="postCreateCart Flow Reference" doc:id="fc202b91-5e7c-4c98-9ba2-5b132f3a7635" name="postCreateCart" />
+    </flow>
+    <flow name="post:\accounts\(accountId)\funCards:application\json:mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="172824b9-7fa1-4dd3-b196-f476bf8be418" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="postFunCards Flow Reference" doc:id="39263fc1-a1f0-4073-803d-9926f7ad7222" name="postFunCards" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  code: 201,
+  status: "Success",
+  message: "funCard added to the account",
+  timestamp: now()
+}]]></ee:set-payload>
+            </ee:message>
+            <ee:variables>
+                <ee:set-variable variableName="httpStatus"><![CDATA[201]]></ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+    </flow>
+    <flow name="post:\accounts\(accountId)\funCards\(funCardId)\value:application\json:mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="7e20ab1b-805b-4d2f-91f7-da9f5c8b854b" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="postFunCardValue Flow Reference" doc:id="f3768ac4-db82-4ca2-8cb6-07bcd9d70ae3" name="postFunCardValue" />
+        <ee:transform doc:name="SetResponse" doc:id="a99217c7-3079-478b-9a59-660f2be369a7">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+	cartItems: payload.cartItems map ( cartItem, indexOfItem ) -> {
+		productId: cartItem.productId,
+		sku: cartItem.sku,
+		optionSelections: cartItem.optionSelections,
+		name: cartItem.name,
+		cartItemType: cartItem.cartItemType,
+		quantity: cartItem.quantity,
+		listPrice: cartItem.listPrice
+	}
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="put:\accounts\(accountId)\orders\(centerId)\carts\(cartId)\items\(cartItemId):application\json:mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="bb4d9422-0914-4b9d-9b77-bded309f26ea" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="putUpdateCartLineItem Flow Reference" doc:id="f71b4431-cede-4771-9db5-c336dd38e035" name="putUpdateCartLineItem" />
+    </flow>
+    <flow name="put:\accounts\(accountId)\orders\(centerId)\carts\(cartId):application\json:mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="a205599a-9547-4fec-8034-3d0a1524cf69" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="putUpdateCart Flow Reference" doc:id="b6e31695-19e4-453b-b4cc-1625aded1877" name="putUpdateCart" />
+    </flow>
+    <flow name="put:\accounts\(accountId)\funCards\(funCardId)\status:application\json:mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="564da64a-2955-477c-9082-0caf0b6c3d60" name="Account-Authz-SubFlow" />
+        <ee:transform doc:name="GetRequestParams">
+            <ee:variables>
+                <ee:set-variable variableName="accountId">attributes.uriParams.'accountId'</ee:set-variable>
+                <ee:set-variable variableName="funCardId">attributes.uriParams.'funCardId'</ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+        <flow-ref doc:name="FunCard Dinner Bell Flow Reference" doc:id="95536a04-91cf-482f-aa05-947375359569" name="putFunCardStatus" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+  code: payload.code,
+  status: payload.status,
+  message: payload.message,
+  timestamp: now()
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="delete:\accounts\(accountId)\orders\(centerId)\carts\(cartId)\items\(cartItemId):mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="79f479f8-6dda-49f3-ad0b-1c472549d7ea" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="deleteCartLineItemFlowReference" doc:id="c0dd0377-086f-4b0f-876d-bb1b6f8af1d6" name="deleteCartLineItem" />
+    </flow>
+    <flow name="delete:\accounts\(accountId)\orders\(centerId)\carts\(cartId):mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="1a575881-5590-40de-8acb-148831abaaa4" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="deleteDeleteACart Flow Reference" doc:id="f562161e-0639-4f41-8d84-e170f43a79fd" name="deleteDeleteACart" />
+    </flow>
+    <flow name="get:\accounts\(accountId)\orders\(centerId)\carts\(cartId):mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="885a3617-dd28-406a-9747-9693b940065e" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="GetCartByCartIdFlowReference" doc:id="0ec7d3d8-be02-4481-8a05-0f85a2680c95" name="getCartByCartId" />
+    </flow>
+    <flow name="get:\accounts\(accountId)\promotions\(promotionId):mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="1ee34ece-6b98-4248-b6ea-07cb36b99831" name="Account-Authz-SubFlow" />
+        <ee:transform doc:name="GetRequestParams">
+            <ee:variables>
+                <ee:set-variable variableName="accountId">attributes.uriParams.'accountId'</ee:set-variable>
+                <ee:set-variable variableName="promotionId">attributes.uriParams.'promotionId'</ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+        <play-process-api:getpromotionbyid doc:name="GetPromotionById" doc:id="acf3d1ce-54b3-4011-914c-1f051849bbf6" config-ref="Play_Process_API_Config" promotion-id="#[vars.promotionId]" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+payload]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\accounts\(accountId)\promotions:mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="786d7c03-9630-44ad-9842-df58b4c2c8d0" name="Account-Authz-SubFlow" />
+        <ee:transform doc:name="GetRequestParams">
+            <ee:variables>
+                <ee:set-variable variableName="accountId">attributes.uriParams.'accountId'</ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+        <play-process-api:getactivepromotionsforaccount doc:name="GetActivePromotionsForAccount" doc:id="5f6869d5-480f-4c23-9672-186c4f0aedc9" config-ref="Play_Process_API_Config" account-id="#[vars.accountId]" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  metadata: {
+    resource: "account/promotion",
+    recordCount: sizeOf(payload)
+  },
+  promotions: payload
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\accounts\(accountId)\promotions\redemptions:mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="a39bcee5-2a6c-45d8-84b7-826c147b278c" name="Account-Authz-SubFlow" />
+        <ee:transform doc:name="GetRequestParams">
+            <ee:variables>
+                <ee:set-variable variableName="accountId">attributes.uriParams.'accountId'</ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+        <play-process-api:getpromotionredemptionsforaccount doc:name="GetPromotionRedemptionsForAccount" doc:id="f219392e-52fa-4df9-bbef-e9dd816facfc" config-ref="Play_Process_API_Config" account-id="#[vars.accountId]" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  metadata: {
+    resource: "account/promotion/redemption",
+    recordCount: sizeOf(payload)
+  },
+  redemptions: payload
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\promotions\(promotionId):mobile-api-v1-config">
+        <ee:transform doc:name="GetRequestParams">
+            <ee:variables>
+                <ee:set-variable variableName="promotionId">attributes.uriParams.'promotionId'</ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+        <play-process-api:getpromotionbyid doc:name="GetPromotionById" doc:id="a75aa105-9655-4d2e-b212-86a5ab66af5d" config-ref="Play_Process_API_Config" promotion-id="#[vars.promotionId]" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+payload]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\promotions:mobile-api-v1-config">
+        <play-process-api:getactivepromotions doc:name="GetActivePromotions" doc:id="286d49f2-dfb9-42bc-8d65-c8226fdb60c3" config-ref="Play_Process_API_Config" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json indent=false
+---
+{
+  metadata: {
+    resource: "promotion",
+    recordCount: sizeOf(payload)
+  },
+  promotions: payload
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="post:\accounts\(accountId)\orders\(centerId)\carts\(cartId)\items:application\json:mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="ae1f9b80-2c0c-43a9-8f99-c2d8b0d0e6cc" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="postAddCartLineItem Flow Reference" doc:id="599f2d69-8a46-4351-be13-5efcfef1cc1a" name="postAddCartLineItem" />
+    </flow>
+    <flow name="post:\accounts\(accountId)\orders\(centerId)\carts\(cartId)\redirect-urls:mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="e4f67b9a-a581-480e-a662-c2cda6289c03" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="postCreateCartRedirectUrls Flow Reference" doc:id="a113cfa1-7b4c-4aa6-9b09-0db1dbe385c1" name="order-carts-create-cart-redirect-urls-flow" />
+    </flow>
+    <flow name="post:\accounts\(accountId)\orders\(centerId)\carts:application\json:mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="0fa060bb-9e34-4dd8-b8a2-7626491b5e7f" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="postCreateCart Flow Reference" doc:id="ddc24c95-30c9-47d8-a3a5-239631feb460" name="postCreateCart" />
+    </flow>
+    <flow name="post:\accounts\(accountId)\orders\(centerId)\carts\(cartId)\promotions:application\json:mobile-api-v1-config">
+        <flow-ref doc:name="customer-implFlow" doc:id="107556b1-751c-4114-b642-d118e6b0b4ad" name="customer-implFlow" />
+    </flow>
+    <flow name="delete:\events\packages\bookings:application\json:mobile-api-v1-config">
+        <flow-ref doc:name="deleteEventBooking" doc:id="b2910164-ce8a-4571-975f-96457ec04a6f" name="deleteEventBooking" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+  status: "OK"
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\events\(eventId):mobile-api-v1-config">
+        <ee:transform doc:name="GetRequestParams">
+            <ee:variables>
+                <ee:set-variable variableName="eventId">attributes.uriParams.'eventId'</ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+        <flow-ref doc:name="getEventByEventId Flow Reference" doc:id="0ee1bffa-5778-4b25-8a6c-13865a7c9cad" name="getEventByEventId" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+  eventNumber: payload.eventNumber,
+  centerId: payload.centerId,
+  centerName: payload.centerName,
+  eventType: payload.eventType,
+  eventSubType: payload.eventSubType,
+  eventName: payload.eventName,
+  guestOfHonor: payload.guestOfHonor,
+  customData: payload.customData,
+  referralType: payload.referralType,
+  lifecycleState: payload.lifecycleState,
+  startDate: payload.startDate,
+  startTime: payload.startTime,
+  endTime: payload.endTime,
+  creationDate: payload.creationDate,
+  verboseStartDate: payload.verboseStartDate,
+  tentativeDate: payload.tentativeDate,
+  actualizedDate: payload.actualizedDate,
+  thankYouDate: payload.thankYouDate,
+  closedDate: payload.closedDate,
+  guaranteedDate: payload.guaranteedDate,
+  definiteDate: payload.definiteDate,
+  dateRange: payload.dateRange,
+  cancelledDate: payload.cancelledDate,
+  lostBusinessReason: payload.lostBusinessReason,
+  lostBusinessComment: payload.lostBusinessComment,
+  estimatedAttendance: payload.estimatedAttendance,
+  attendance: payload.attendance,
+  host: payload.host,
+  bookedFromInternet: payload.bookedFromInternet,
+  totalCharges: payload.totalCharges,
+  totalPaymentReceived: payload.totalPaymentReceived,
+  functionsLocationsName: payload.functionsLocationsName,
+  lastUpdated: payload.lastUpdated
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\events\packages\(packageCode)\activities:mobile-api-v1-config">
+        <ee:transform doc:name="GetRequestParams">
+            <ee:variables>
+                <ee:set-variable variableName="packageCode">attributes.uriParams.'packageCode'</ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+        <flow-ref doc:name="getPackagesActivities Flow Reference" doc:id="1a4dacec-f78c-4469-87bd-dcccb2a0a8fc" name="getPackagesActivities" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+  packageDetails: {
+    functionName: payload.menuOptions[0].functionName,
+    menuName: payload.menuOptions[0].menuName,
+    menuPricingType: payload.menuOptions[0].menuPricingType,
+    addOnMenu: payload.menuOptions[0].addOnMenu,
+    activities: (flatten(payload.menuOptions[0].serviceTypes) filter ((value, index) -> (upper(value."serviceTypeName") == "ACTIVITIES")))[0] mapObject (arrValue, key, indexOfArr) -> {
+        (serviceTypeName: arrValue) if(key as String == 'serviceTypeName'),
+        (maxNumSelections: arrValue) if(key as String == 'maxNumSelections'),
+        (autoAddAllItems: arrValue) if(key as String == 'autoAddAllItems'),
+        (activityItems: arrValue) if(key as String == 'serviceItems')
+    }
+  }
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\events\packages\(packageCode)\availabilities:mobile-api-v1-config">
+        <ee:transform doc:id="2a971920-ed57-41cd-9d4e-12cda84d2b0d" doc:name="GetRequestParams">
+            <ee:variables>
+                <ee:set-variable variableName="packageCode"><![CDATA[attributes.uriParams.'packageCode']]></ee:set-variable>
+                <ee:set-variable variableName="centerId"><![CDATA[attributes.queryParams.centerId]]></ee:set-variable>
+                <ee:set-variable variableName="attendance"><![CDATA[attributes.queryParams.attendance]]></ee:set-variable>
+                <ee:set-variable variableName="selectedFunctions"><![CDATA[attributes.queryParams.selectedFunctions]]></ee:set-variable>
+                <ee:set-variable variableName="packageDate"><![CDATA[attributes.queryParams.packageDate]]></ee:set-variable>
+                <ee:set-variable variableName="desiredStartTimeFrom"><![CDATA[attributes.queryParams.desiredStartTimeFrom]]></ee:set-variable>
+                <ee:set-variable variableName="desiredStartTimeTo"><![CDATA[attributes.queryParams.desiredStartTimeTo]]></ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+        <flow-ref doc:name="getPackagesAvailabilties Flow Reference" doc:id="08360f00-fe0a-4870-bae0-927cd29ebeac" name="getPackagesAvailabilities" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+  metadata: {
+  	resource: "events/packages/availabilities",
+  	recordCount: payload.metadata.recordCount
+  },
+  availabilities: payload.availabilities
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\events\packages\(packageCode):mobile-api-v1-config">
+        <ee:transform doc:name="GetRequestParams">
+            <ee:variables>
+                <ee:set-variable variableName="packageCode">attributes.uriParams.'packageCode'</ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+        <flow-ref doc:name="getPackagesByPackageCode Flow Reference" doc:id="2341058a-a7fa-4b88-814b-4d37d12cee6d" name="getPackagesByPackageCode" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+  metadata: {
+  	resource: "events/packages",
+  	recordCount: payload.metadata.recordCount
+  },
+  packageDetails: payload.menuOptions
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\events\packages\(packageCode)\extras:mobile-api-v1-config">
+        <ee:transform doc:name="GetRequestParams">
+            <ee:variables>
+                <ee:set-variable variableName="packageCode">attributes.uriParams.'packageCode'</ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+        <flow-ref doc:name="getPackagesActivities Flow Reference" doc:id="c0a95d0a-a205-41d3-83c5-0ed9aa387da1" name="getPackagesActivities" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+  packageDetails: {
+    functionName: payload.menuOptions[0].functionName,
+    menuName: payload.menuOptions[0].menuName,
+    menuPricingType: payload.menuOptions[0].menuPricingType,
+    addOnMenu: payload.menuOptions[0].addOnMenu,
+    extras: (flatten(payload.menuOptions[0].serviceTypes) filter ((value, index) -> (upper(value."serviceTypeName") == "EXTRAS")))[0] mapObject (arrValue, key, indexOfArr) -> {
+        (serviceTypeName: arrValue) if(key as String == 'serviceTypeName'),
+        (maxNumSelections: arrValue) if(key as String == 'maxNumSelections'),
+        (autoAddAllItems: arrValue) if(key as String == 'autoAddAllItems'),
+        (extraItems: arrValue) if(key as String == 'serviceItems')
+    }
+  }
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\events\packages\(packageCode)\menu:mobile-api-v1-config">
+        <ee:transform doc:name="GetRequestParams">
+            <ee:variables>
+                <ee:set-variable variableName="packageCode">attributes.uriParams.'packageCode'</ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+        <flow-ref doc:name="getPackagesActivities Flow Reference" doc:id="ba138bbe-7b60-4442-8354-238eef16236d" name="getPackagesActivities" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+  packageDetails: {
+    functionName: payload.menuOptions[0].functionName,
+    menuName: payload.menuOptions[0].menuName,
+    menuPricingType: payload.menuOptions[0].menuPricingType,
+    addOnMenu: payload.menuOptions[0].addOnMenu,
+    menu: (flatten(payload.menuOptions[0].serviceTypes) filter ((value, index) -> (upper(value."serviceTypeName") == "MENU")))[0] mapObject (arrValue, key, indexOfArr) -> {
+        (serviceTypeName: arrValue) if(key as String == 'serviceTypeName'),
+        (maxNumSelections: arrValue) if(key as String == 'maxNumSelections'),
+        (autoAddAllItems: arrValue) if(key as String == 'autoAddAllItems'),
+        (menuItems: arrValue) if(key as String == 'serviceItems')
+    },
+    menuAddOns: (flatten(payload.menuOptions[0].serviceTypes) filter ((value, index) -> (value."serviceTypeName" == "Menu Additions")))[0] 
+    mapObject (arrValue, key, indexOfArr) -> {
+      (serviceTypeName: arrValue) if(key as String == 'serviceTypeName'),
+      (maxNumSelections: arrValue) if(key as String == 'maxNumSelections'),
+        (autoAddAllItems: arrValue) if(key as String == 'autoAddAllItems'),
+        (addOnItems: arrValue) if(key as String == 'serviceItems')
+    }
+  }
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\events\packages\options:mobile-api-v1-config">
+        <ee:transform doc:name="Get" doc:id="be0fb441-2044-4567-acbd-65f4c4937205">
+            <ee:message />
+            <ee:variables>
+                <ee:set-variable variableName="centerId"><![CDATA[attributes.queryParams.centerId]]></ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+        <flow-ref doc:name="Flow Reference" doc:id="612af3a9-1d98-4ff0-a1f9-7304c13fa6c1" name="getPackagesOptions" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+  "siteName": payload.siteName,
+  "siteCode": payload.siteCode,
+  "siteUniqueId": payload.siteUniqueId,
+  "packageTypes": payload.packageTypes,
+  "cancellationReasons": payload.cancellationReasons,
+  "paymentMethods": payload.paymentMethods,
+  "paymentTypes": payload.paymentTypes,
+  "creditCardBrands": payload.creditCardBrands
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\events\packages:mobile-api-v1-config">
+        <ee:transform doc:name="GetRequestParams" doc:id="dc28a5f6-2f6c-4641-abb7-950c09590a20">
+            <ee:message />
+            <ee:variables>
+                <ee:set-variable variableName="centerId"><![CDATA[attributes.queryParams.centerId]]></ee:set-variable>
+                <ee:set-variable variableName="startDate"><![CDATA[attributes.queryParams.startDate]]></ee:set-variable>
+                <ee:set-variable variableName="packageType"><![CDATA[attributes.queryParams.eventPackageType]]></ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+        <flow-ref doc:name="getPackagesList Flow Reference" doc:id="b8ad705b-bc5d-45cb-aed7-af152dac3621" name="getPackagesList" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+  metadata: {
+    resource: "events/packages",
+    recordCount: sizeOf(payload.packages)
+  },
+  "packages": payload.packages map (package, index) -> 
+	{
+        "packageName": package.eventPackageCategoryName,
+        "pricing": package.eventPackages[0].pricingSummary,
+        "subPackages": package.eventPackages map (eventPackage, inx) -> (
+        	eventPackage mapObject (value, key) -> {
+        		(if ((key) as String == "eventPackageName") "packageName" else (key)): (value)
+            }
+        )
+    }
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\events:mobile-api-v1-config">
+        <ee:transform doc:name="Transform Message" doc:id="980691c7-48e2-4421-8667-b00f0c5e6b0f">
+            <ee:message />
+            <ee:variables>
+                <ee:set-variable variableName="startDate"><![CDATA[attributes.queryParams.startDate]]></ee:set-variable>
+                <ee:set-variable variableName="centerId"><![CDATA[attributes.queryParams.centerId]]></ee:set-variable>
+                <ee:set-variable variableName="eventType"><![CDATA[attributes.queryParams.eventType]]></ee:set-variable>
+                <ee:set-variable variableName="eventSubType"><![CDATA[attributes.queryParams.eventSubType]]></ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+        <flow-ref doc:name="getEventsList Flow Reference" doc:id="062b0ffe-2698-4bf0-b200-63e63ccd065d" name="getEventsList" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+  metadata: {
+    resource: "events",
+    recordCount: payload.metadata.recordCount
+  },
+  events: payload.events map ((event, index) ->
+  	{
+  		eventNumber: event.eventNumber,
+	  centerId: event.centerId,
+	  centerName: event.centerName,
+	  eventType: event.eventType,
+	  eventSubType: event.eventSubType,
+	  eventName: event.eventName,
+	  guestOfHonor: event.guestOfHonor,
+	  customData: event.customData,
+	  referralType: event.referralType,
+	  lifecycleState: event.lifecycleState,
+	  startDate: event.startDate,
+	  startTime: event.startTime,
+	  endTime: event.endTime,
+	  creationDate: event.creationDate,
+	  verboseStartDate: event.verboseStartDate,
+	  tentativeDate: event.tentativeDate,
+	  actualizedDate: event.actualizedDate,
+	  thankYouDate: event.thankYouDate,
+	  closedDate: event.closedDate,
+	  guaranteedDate: event.guaranteedDate,
+	  definiteDate: event.definiteDate,
+	  dateRange: event.dateRange,
+	  cancelledDate: event.cancelledDate,
+	  lostBusinessReason: event.lostBusinessReason,
+	  lostBusinessComment: event.lostBusinessComment,
+	  estimatedAttendance: event.estimatedAttendance,
+	  attendance: event.attendance,
+	  host: event.host,
+	  bookedFromInternet: event.bookedFromInternet,
+	  totalCharges: event.totalCharges,
+	  totalPaymentReceived: event.totalPaymentReceived,
+	  functionsLocationsName: event.functionsLocationsName,
+	  lastUpdated: event.lastUpdated
+  	}
+  )
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="post:\events\packages\bookings:application\json:mobile-api-v1-config">
+        <flow-ref doc:name="postEventBooking Flow Reference" doc:id="58d2dda1-f4fb-415b-964b-66f684f7a52d" name="postEventBooking" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+  cartItems: payload.cartItems map ((cartItem, index) ->
+  	{
+  	  productId: cartItem.productId,
+      sku: cartItem.sku,
+      optionSelections: cartItem.optionSelections,
+      name: cartItem.name,
+      cartItemType: cartItem.cartItemType,
+      listPrice: cartItem.listPrice,
+      quantity: cartItem.quantity
+  	}
+  )
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="post:\events\quotes:application\json:mobile-api-v1-config">
+        <flow-ref doc:name="postEventQuote Flow Reference" doc:id="fef683e5-6a1b-48dd-aac4-991842b0a6c6" name="postEventQuote" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+  packageMenuBookingCode: payload.packageMenuBookingCode,
+  charges: payload.charges,
+  discounts: payload.discounts,
+  adjustedCharges: payload.adjustedCharges,
+  feeCharges: payload.feeCharges,
+  taxCharges: payload.taxCharges,
+  total: payload.total
+}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="post:\orders\(centerId)\carts\(cartId)\promotions:application\json:mobile-api-v1-config">
+        <flow-ref doc:name="order-carts-promotionsFlow" doc:id="bda4bee9-8a71-4eba-9c44-49d57f7729da" name="order-carts-promotionsFlow" />
+    </flow>
+    <flow name="post:\sso\jwt:application\x-www-form-urlencoded:mobile-api-v1-config">
+        <flow-ref doc:name="create-zendesk-sso-jwt-flow" doc:id="3eaae2e5-2a28-4fb7-933a-948e32fa0354" name="createZendeskSSOJWTFlow" />
+    </flow>
+    <flow name="get:\eventLeads\(id):mobile-api-v1-config">
+        <ee:transform doc:name="GetRequestParams">
+            <ee:variables>
+                <ee:set-variable variableName="id">attributes.uriParams.'id'</ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+        <flow-ref doc:name="getEventLeadsbyId" doc:id="1f337e42-0fc3-4da4-94bf-4fa1b90b2fec" name="getEventLeadsbyId" />
+        <ee:transform doc:name="SetResponse" doc:id="91ef7760-a463-4cc5-b03c-62bdc61e07c3" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\eventLeads:mobile-api-v1-config">
+        <flow-ref doc:name="getEventLeads" doc:id="378527f8-5ed5-400e-aa5e-4945a443bdd6" name="getEventLeads" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="post:\eventLeads:application\json:mobile-api-v1-config">
+        <ee:transform doc:name="RequestPayload" doc:id="533c801b-ab68-4767-be1d-1b61fc3c17cb">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+      "centerId": payload.centerId,
+      ("ownerFirstName": payload.ownerFirstName) if (payload.ownerFirstName?),
+      ("ownerLastName": payload.ownerLastName) if (payload.ownerLastName?),
+      ("salespersonFirstName": payload.salespersonFirstName) if (payload.salespersonFirstName?),
+      ("salespersonLastName": payload.salespersonLastName) if (payload.salespersonLastName?),
+      "leadName": payload.leadName,
+      "eventType": payload.eventType,
+      "contact" : {
+	    "firstName": payload.contact.firstName,
+      "lastName": payload.contact.lastName,
+      "mobile": payload.contact.mobile,
+      "email": payload.contact.email,
+      "optIn": payload.contact.optIn
+	                },
+      ("eventDate": payload.eventDate) if (payload.eventDate?),
+      ("eventTime": payload.eventTime) if (payload.eventTime?),
+      ("estimatedAttendance": payload.estimatedAttendance) if (payload.estimatedAttendance?),
+      ("budget": payload.budget) if (payload.budget?),
+      ("package": payload.package) if (payload.package?),
+      ("description": payload.description) if (payload.description?),
+      "leadNote": "acceptTerms = " ++ payload.leadNote.acceptTerms default true ++  ", " ++ "multiLocation = " ++ payload.leadNote.multiLocation default null ++ ", " ++ "freeTour = " ++ payload.leadNote.freeTour default null 
+      
+      }]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+        <flow-ref doc:name="CreateEventLeads" doc:id="fe86fede-241a-4e56-80ba-8650f5779162" name="CreateEventLeads" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="SetResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="post:\contacts:application\json:mobile-api-v1-config">
+        <flow-ref doc:name="createContact" doc:id="a83a7fb7-1dbe-479b-8379-95554aa53e31" name="createContact" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="setResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="post:\accounts\contacts:application\json:mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="125301dd-323a-460d-bede-f085c82267ff" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="createContact" doc:id="91a6129c-b4bb-47b2-bf28-3e3252c3a14d" name="createContact" />
+        <ee:transform xsi:schemaLocation="http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd" doc:name="setResponse">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+payload]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="get:\accounts\(accountId)\events\(eventId):mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="0afda1f4-231b-41e9-838d-8a6aa734b863" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="Flow Ref to accounts-event-impl-flow" doc:id="f4fb9606-4f6e-44f3-81d6-9996943b072d" name="accounts-event-impl-flow" />
+    </flow>
+    <flow name="get:\accounts\(accountId)\events:mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="9883c173-eb99-47cf-a46f-2d6063160730" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="Flow Ref to accounts-event-list-impl-flow" doc:id="aa73311f-f19c-46fe-be34-150bfde65a7d" name="accounts-event-list-impl-flow" />
+    </flow>
+    <flow name="get:\accounts\(accountId)\eventLeads\(eventLeadId):mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="780ecc38-f8cf-4d10-b09d-416f6b57f6d8" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="Flow Ref to accounts-event-lead-impl-flow" doc:id="f5cf8876-1eaf-43f6-b837-caeb06d490e0" name="accounts-event-lead-impl-flow" />
+    </flow>
+    <flow name="get:\accounts\(accountId)\eventLeads:mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="f69fa917-95c8-42be-990b-a1ee0e7808f3" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="Flow Ref to accounts-event-lead-list-impl-flow" doc:id="f4238fac-e0b9-4365-8dc7-9ec815029249" name="accounts-event-lead-list-impl-flow" />
+    </flow>
+    <flow name="get:\accounts\(accountId)\reservations:mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="97708bf1-a435-4816-a2a8-134176a03905" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="Flow Ref to accounts-reservation-list-impl-flow" doc:id="8244505b-03a7-43f0-aecb-1a80c2a872d2" name="accounts-reservation-list-impl-flow" />
+    </flow>
+    <flow name="get:\accounts\(accountId)\reservations\(reservationId):mobile-api-v1-config">
+        <flow-ref doc:name="Account Authz Flow Reference" doc:id="1fe9665b-2fa5-4111-9c72-f822b361f729" name="Account-Authz-SubFlow" />
+        <flow-ref doc:name="Flow Ref to accounts-reservation-impl-flow" doc:id="f55f1684-d77a-44da-802a-7e71f931e3fa" name="accounts-reservation-impl-flow" />
+    </flow>
+    <flow name="get:\centers\(centerId)\products:mobile-api-v1-config">
+        <flow-ref doc:name="Flow Reference" doc:id="482c2e74-0ed9-4b9c-bf10-acc812a7b63f" name="get-products-by-ceneterId" />
+    </flow>
+</mule>

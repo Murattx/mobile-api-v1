@@ -1,0 +1,175 @@
+{
+    "packageDetails": {
+        "functionName": "Food Service in Party Street",
+        "menuName": "Birthday Your Way 2",
+        "menuPricingType": "Package Pricing",
+        "addOnMenu": false,
+        "extras": {
+            "serviceTypeName": "Extras",
+            "maxNumSelections": 0,
+            "autoAddAllItems": false,
+            "extraItems": [
+            {
+              "serviceItemCode": "ltt6MWBkZKSIpy4W829Tt2pRAH4Q0haC-J-KtPB9LFC3tXirhXu7DqxesMTfrZpPge9VwRPIVnRRklGS2QQ1uttqNwkATtcGKwiv25qU45N9iG2wKrbyKrES92j2lJkCQ66D26A3eKq3wHvxENGBi0tGRDXJerKIDqDtbVpfmA6ZzOicr9PxKsFDvBlot6dLoqXZ0Qxeu4KtSiMYSudI9A==",
+              "serviceItemDescription": "Goodie Bags (per child)",
+              "quantityEditable": "false",
+              "aLaCartePrice": "$3.50",
+              "addOnPrice": "$3.50",
+              "numberRequired": "1.00",
+              "perNumberOfGuests": "1",
+              "itemNumber": "ADD 101"
+            },
+            {
+              "serviceItemCode": "ltt6MWBkZKSIpy4W829Tt2pRAH4Q0haC-J-KtPB9LFC3tXirhXu7DqxesMTfrZpPge9VwRPIVnRRklGS2QQ1uttqNwkATtcGKwiv25qU45N9iG2wKrbyKrES92j2lJkCQ66D26A3eKq3wHvxENGBi0tGRDXJerKIDqDtbVpfmA77OCAWHaJurbfxHUZ3GccGoqXZ0Qxeu4KtSiMYSudI9A==",
+              "serviceItemDescription": "VR ENTITLE",
+              "quantityEditable": "false",
+              "aLaCartePrice": "$2.00",
+              "addOnPrice": "$2.00",
+              "numberRequired": "1.00",
+              "perNumberOfGuests": "1",
+              "itemNumber": "FUN 2"
+            },
+            {
+              "serviceItemCode": "ltt6MWBkZKSIpy4W829Tt2pRAH4Q0haC-J-KtPB9LFC3tXirhXu7DqxesMTfrZpPge9VwRPIVnRRklGS2QQ1uttqNwkATtcGKwiv25qU45N9iG2wKrbyKrES92j2lJkCQ66D26A3eKq3wHvxENGBi0tGRDXJerKIDqDtbVpfmA7lxVz0Eb3R8xxeea8oBxUNoqXZ0Qxeu4KtSiMYSudI9A==",
+              "serviceItemDescription": "Hi-5 Cards",
+              "quantityEditable": "true",
+              "aLaCartePrice": "$0.00",
+              "addOnPrice": "$0.00",
+              "numberRequired": "1.00",
+              "perNumberOfGuests": "1",
+              "itemNumber": null
+            },
+            {
+              "serviceItemCode": "ltt6MWBkZKSIpy4W829Tt2pRAH4Q0haC-J-KtPB9LFC3tXirhXu7DqxesMTfrZpPge9VwRPIVnRRklGS2QQ1uttqNwkATtcGKwiv25qU45N9iG2wKrbyKrES92j2lJkCQ66D26A3eKq3wHvxENGBi0tGRDXJerKIDqDtbVpfmA5mDj9c8B9i56_BfwGIoASZoqXZ0Qxeu4KtSiMYSudI9A==",
+              "serviceItemDescription": "Bowling Lanes per hour (up to 6 people per lane)",
+              "quantityEditable": "false",
+              "aLaCartePrice": "$36.00",
+              "addOnPrice": "$36.00",
+              "numberRequired": "1.00",
+              "perNumberOfGuests": "6",
+              "itemNumber": null
+            },
+            {
+              "serviceItemCode": "ltt6MWBkZKSIpy4W829Tt2pRAH4Q0haC-J-KtPB9LFC3tXirhXu7DqxesMTfrZpPge9VwRPIVnRRklGS2QQ1uttqNwkATtcGKwiv25qU45N9iG2wKrbyKrES92j2lJkCQ66D26A3eKq3wHvxENGBi0tGRDXJerKIDqDtbVpfmA5z0XWqRlGXUwC9a1li1wA8oqXZ0Qxeu4KtSiMYSudI9A==",
+              "serviceItemDescription": "Bowling Shoes-Adult",
+              "quantityEditable": "false",
+              "aLaCartePrice": "$4.25",
+              "addOnPrice": "$4.25",
+              "numberRequired": "1.00",
+              "perNumberOfGuests": "1",
+              "itemNumber": "BS 100"
+            },
+            {
+              "serviceItemCode": "ltt6MWBkZKSIpy4W829Tt2pRAH4Q0haC-J-KtPB9LFC3tXirhXu7DqxesMTfrZpPge9VwRPIVnRRklGS2QQ1uttqNwkATtcGKwiv25qU45N9iG2wKrbyKrES92j2lJkCQ66D26A3eKq3wHvxENGBi0tGRDXJerKIDqDtbVpfmA7hZRbwSBjQGDr-mRmP2lHnoqXZ0Qxeu4KtSiMYSudI9A==",
+              "serviceItemDescription": "Laser Tag",
+              "quantityEditable": "false",
+              "aLaCartePrice": "$7.00",
+              "addOnPrice": "$7.00",
+              "numberRequired": "1.00",
+              "perNumberOfGuests": "1",
+              "itemNumber": null
+            },
+            {
+              "serviceItemCode": "ltt6MWBkZKSIpy4W829Tt2pRAH4Q0haC-J-KtPB9LFC3tXirhXu7DqxesMTfrZpPge9VwRPIVnRRklGS2QQ1uttqNwkATtcGKwiv25qU45N9iG2wKrbyKrES92j2lJkCQ66D26A3eKq3wHvxENGBi0tGRDXJerKIDqDtbVpfmA5IhkkA9xNCG0U2Vrku5z5UoqXZ0Qxeu4KtSiMYSudI9A==",
+              "serviceItemDescription": "Mini Golf",
+              "quantityEditable": "false",
+              "aLaCartePrice": "$0.00",
+              "addOnPrice": "$0.00",
+              "numberRequired": "1.00",
+              "perNumberOfGuests": "1",
+              "itemNumber": null
+            },
+            {
+              "serviceItemCode": "ltt6MWBkZKSIpy4W829Tt2pRAH4Q0haC-J-KtPB9LFC3tXirhXu7DqxesMTfrZpPge9VwRPIVnRRklGS2QQ1uttqNwkATtcGKwiv25qU45N9iG2wKrbyKrES92j2lJkCQ66D26A3eKq3wHvxENGBi0tGRDXJerKIDqDtbVpfmA4clX6ct9R6V4sC5rPLeyKRoqXZ0Qxeu4KtSiMYSudI9A==",
+              "serviceItemDescription": "Glow Golf",
+              "quantityEditable": "false",
+              "aLaCartePrice": "$7.00",
+              "addOnPrice": "$7.00",
+              "numberRequired": "1.00",
+              "perNumberOfGuests": "1",
+              "itemNumber": null
+            },
+            {
+              "serviceItemCode": "ltt6MWBkZKSIpy4W829Tt2pRAH4Q0haC-J-KtPB9LFC3tXirhXu7DqxesMTfrZpPge9VwRPIVnRRklGS2QQ1uttqNwkATtcGKwiv25qU45N9iG2wKrbyKrES92j2lJkCQ66D26A3eKq3wHvxENGBi0tGRDXJerKIDqDtbVpfmA5Umg4zhvMQvhw5y_rxgZb_oqXZ0Qxeu4KtSiMYSudI9A==",
+              "serviceItemDescription": "Gravity Ropes Course",
+              "quantityEditable": "false",
+              "aLaCartePrice": "$0.00",
+              "addOnPrice": "$0.00",
+              "numberRequired": "1.00",
+              "perNumberOfGuests": "1",
+              "itemNumber": null
+            },
+            {
+              "serviceItemCode": "ltt6MWBkZKSIpy4W829Tt2pRAH4Q0haC-J-KtPB9LFC3tXirhXu7DqxesMTfrZpPge9VwRPIVnRRklGS2QQ1uttqNwkATtcGKwiv25qU45N9iG2wKrbyKrES92j2lJkCQ66D26A3eKq3wHvxENGBixmPAvgKti9yySb_YQyIjQC12zPz1Y5s564Ah8u2W7CRoqXZ0Qxeu4KtSiMYSudI9A==",
+              "serviceItemDescription": "Rock Climbing",
+              "quantityEditable": "false",
+              "aLaCartePrice": "$0.00",
+              "addOnPrice": "$0.00",
+              "numberRequired": "1.00",
+              "perNumberOfGuests": "1",
+              "itemNumber": "RC 100"
+            },
+            {
+              "serviceItemCode": "ltt6MWBkZKSIpy4W829Tt2pRAH4Q0haC-J-KtPB9LFC3tXirhXu7DqxesMTfrZpPge9VwRPIVnRRklGS2QQ1uttqNwkATtcGKwiv25qU45N9iG2wKrbyKrES92j2lJkCQ66D26A3eKq3wHvxENGBixmPAvgKti9yySb_YQyIjQCZzOicr9PxKsFDvBlot6dLoqXZ0Qxeu4KtSiMYSudI9A==",
+              "serviceItemDescription": "Main Event Customized Bowling Pin with Balloon Bouquet",
+              "quantityEditable": "true",
+              "aLaCartePrice": "$15.00",
+              "addOnPrice": "$15.00",
+              "numberRequired": "1.00",
+              "perNumberOfGuests": "0",
+              "itemNumber": null
+            },
+            {
+              "serviceItemCode": "ltt6MWBkZKSIpy4W829Tt2pRAH4Q0haC-J-KtPB9LFC3tXirhXu7DqxesMTfrZpPge9VwRPIVnRRklGS2QQ1uttqNwkATtcGKwiv25qU45N9iG2wKrbyKrES92j2lJkCQ66D26A3eKq3wHvxENGBixmPAvgKti9yySb_YQyIjQD7OCAWHaJurbfxHUZ3GccGoqXZ0Qxeu4KtSiMYSudI9A==",
+              "serviceItemDescription": "Main Event Customized Bowling Pin",
+              "quantityEditable": "true",
+              "aLaCartePrice": "$12.00",
+              "addOnPrice": "$12.00",
+              "numberRequired": "1.00",
+              "perNumberOfGuests": "0",
+              "itemNumber": "ADD 100"
+            },
+            {
+              "serviceItemCode": "ltt6MWBkZKSIpy4W829Tt2pRAH4Q0haC-J-KtPB9LFC3tXirhXu7DqxesMTfrZpPge9VwRPIVnRRklGS2QQ1uttqNwkATtcGKwiv25qU45N9iG2wKrbyKrES92j2lJkCQ66D26A3eKq3wHvxENGBixmPAvgKti9yySb_YQyIjQDlxVz0Eb3R8xxeea8oBxUNoqXZ0Qxeu4KtSiMYSudI9A==",
+              "serviceItemDescription": "$1.00 Birthday Donation",
+              "quantityEditable": "true",
+              "aLaCartePrice": "$1.00",
+              "addOnPrice": "$1.00",
+              "numberRequired": "1.00",
+              "perNumberOfGuests": "1",
+              "itemNumber": "DON100"
+            },
+            {
+              "serviceItemCode": "ltt6MWBkZKSIpy4W829Tt2pRAH4Q0haC-J-KtPB9LFC3tXirhXu7DqxesMTfrZpPge9VwRPIVnRRklGS2QQ1uttqNwkATtcGKwiv25qU45N9iG2wKrbyKrES92j2lJkCQ66D26A3eKq3wHvxENGBixmPAvgKti9yySb_YQyIjQBmDj9c8B9i56_BfwGIoASZoqXZ0Qxeu4KtSiMYSudI9A==",
+              "serviceItemDescription": "$5.00 Birthday Donation",
+              "quantityEditable": "true",
+              "aLaCartePrice": "$5.00",
+              "addOnPrice": "$5.00",
+              "numberRequired": "1.00",
+              "perNumberOfGuests": "1",
+              "itemNumber": "DON101"
+            },
+            {
+              "serviceItemCode": "ltt6MWBkZKSIpy4W829Tt2pRAH4Q0haC-J-KtPB9LFC3tXirhXu7DqxesMTfrZpPge9VwRPIVnRRklGS2QQ1uttqNwkATtcGKwiv25qU45N9iG2wKrbyKrES92j2lJkCQ66D26A3eKq3wHvxENGBixmPAvgKti9yySb_YQyIjQBz0XWqRlGXUwC9a1li1wA8oqXZ0Qxeu4KtSiMYSudI9A==",
+              "serviceItemDescription": "$10.00 Birthday Donation",
+              "quantityEditable": "true",
+              "aLaCartePrice": "$10.00",
+              "addOnPrice": "$10.00",
+              "numberRequired": "1.00",
+              "perNumberOfGuests": "1",
+              "itemNumber": "DON102"
+            },
+            {
+              "serviceItemCode": "ltt6MWBkZKSIpy4W829Tt2pRAH4Q0haC-J-KtPB9LFC3tXirhXu7DqxesMTfrZpPge9VwRPIVnRRklGS2QQ1uttqNwkATtcGKwiv25qU45N9iG2wKrbyKrES92j2lJkCQ66D26A3eKq3wHvxENGBixmPAvgKti9yySb_YQyIjQDhZRbwSBjQGDr-mRmP2lHnoqXZ0Qxeu4KtSiMYSudI9A==",
+              "serviceItemDescription": "$50.00 Birthday Donation",
+              "quantityEditable": "true",
+              "aLaCartePrice": "$50.00",
+              "addOnPrice": "$50.00",
+              "numberRequired": "1.00",
+              "perNumberOfGuests": "1",
+              "itemNumber": "DON104"
+            }
+          ]
+   		}
+	}
+}

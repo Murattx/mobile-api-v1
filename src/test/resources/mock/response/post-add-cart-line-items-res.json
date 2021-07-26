@@ -1,0 +1,48 @@
+{
+  "id": "bf45e359-909f-4ed0-b012-1d3f2d232564",
+  "customerId": "0",
+  "channelId": 1,
+  "email": "",
+  "currency": {
+      "code": "USD"
+  },
+  "taxIncluded": false,
+  "baseAmount": 54,
+  "discountAmount": 0,
+  "cartAmount": 54,
+  "coupons": [],
+  "cartItems": [
+    {
+        "id": "e5fa9c39-2370-4ffe-9be8-15c9ec486fb2",
+        "productId": 77,
+        "sku": "RESERVATION",
+        "optionSelections":[
+          {
+            "optionId": 1,
+            "optionValue": "{\"parameters\":{\"reservationCode\":\"rfzlZuQCZrm3v8YG8c8%2B9Wms/wmjBK1PxtodywQPDgYD79E%2BSS8e064fc5aeU%2B8VfeZ9CcM0tetRDYK1qQ/OiYUBdrniLowyxJEpO2bmfGQUzOE7B553AJLcvKZl2LjI/jwIQOoI/wABHoHnNkUrdq5kld7luVxaqKl70NNZLrEhgkfmMenCVZ1YsFIFzKMFFMw1tZQ7CJ5UXbFiMQyUVMXfDgGusecdxeF4FMhqnXtASuSz66XCApXg8pNC9h%2BSJsZMpa0AXFlgTclS9ZcHJDOZaz3mGLH9ucC83xIS3YypZi4URtUR9J%2BIxoaafxQu\",\"firstName\":\"Peter\",\"lastName\":\"Murgola\",\"email\":\"chishiuanlu@gmail.com\",\"mobilePhone\":\"2145542263\",\"comments\":\"Test booking 2\",\"assetDetails\":[{\"assetName\":\"Lane 1\",\"assetDetailType\":\"Bumpers\",\"description\":\"Need bumpers for kids\"},{\"assetName\":\"Lane 2\",\"assetDetailType\":\"Player\",\"description\":\"Players\"}],\"reservationServices\":[{\"serviceItemPriceId\":\"RrgXL\",\"quantity\":2},{\"serviceItemPriceId\":\"EAyEe\",\"quantity\":2}],\"paymentDate\":\"01/13/2020\",\"paymentAmount\":\"$103\",\"paymentType\":\"Credit Card\",\"paymentMethod\":\"Credit Card External\"}}"
+          }
+        ],
+        "name": "Bowling 1 Hour - Main Event - Frisco",
+        "cartItemType": "RESERVATION",
+        "quantity": 1,
+        "listPrice": 144.00
+    },
+    {
+        "id": "fe101ede-cc30-4d7e-8ba2-35ad6cc2c6b3",
+        "productId": 78,
+        "sku": "RESERVATION-BOWL-SHOES",
+        "optionSelections":[
+          {
+            "optionId": 2,
+            "optionValue": "{\"serviceItemPriceId\":\"g4786\",\"name\":\"Child Shoe Rental for $3.25\",\"price\":3.25,\"pricingModel\":\"Charge Per Quantity\",\"quantity\":2}"
+          }
+        ],
+        "name": "Child Shoe Rental for $3.25",
+        "cartItemType": "RESERVATION-BOWL-SHOES",
+        "quantity": 5,
+        "listPrice": 3.25
+    }
+  ],
+  "createdTime": "2020-08-19T21:46:57+00:00",
+  "updatedTime": "2020-08-19T21:51:25+00:00"
+}

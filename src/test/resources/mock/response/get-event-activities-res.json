@@ -1,0 +1,95 @@
+{
+  "packageDetails": {
+    "functionName": "Food Service in Party Street ",
+    "menuName": "Birthday Your Way 2",
+    "menuPricingType": "Package Pricing",
+    "addOnMenu": "false",
+    "activities": {
+      "serviceTypeName": "Activities",
+      "maxNumSelections": "0",
+      "autoAddAllItems": "false",
+      "activityItems": [
+        {
+          "serviceItemCode": "ltt6MWBkZKSIpy4W829TtxZOcTnVgJ9bL172lgEcXxW3tXirhXu7DqxesMTfrZpP0IATN_LWm22cg9vPG8ASliAFp7hnrDlYbK-tMDqx7bU20UpxEUc5wqV2SeOrnhZbdacz7auW2PhEIbre6drWC_1v_n6n_cw3Bybtcm70HlrlxVz0Eb3R8xxeea8oBxUNoqXZ0Qxeu4KtSiMYSudI9A==",
+          "serviceItemDescription": "Choice of 2 Activities for all Kids",
+          "quantityEditable": "true",
+          "aLaCartePrice": "$0.00",
+          "addOnPrice": "$0.00",
+          "numberRequired": "1.00",
+          "perNumberOfGuests": "1",
+          "itemNumber": null
+        },
+        {
+          "serviceItemCode": "ltt6MWBkZKSIpy4W829TtxZOcTnVgJ9bL172lgEcXxW3tXirhXu7DqxesMTfrZpP0IATN_LWm22cg9vPG8ASliAFp7hnrDlYbK-tMDqx7bU20UpxEUc5wqV2SeOrnhZbdacz7auW2PhEIbre6drWC_1v_n6n_cw3Bybtcm70HlpmDj9c8B9i56_BfwGIoASZoqXZ0Qxeu4KtSiMYSudI9A==",
+          "serviceItemDescription": "Bowling Lanes",
+          "quantityEditable": "false",
+          "aLaCartePrice": "$0.00",
+          "addOnPrice": "$0.00",
+          "numberRequired": "1.00",
+          "perNumberOfGuests": "6",
+          "itemNumber": null
+        },
+        {
+          "serviceItemCode": "ltt6MWBkZKSIpy4W829TtxZOcTnVgJ9bL172lgEcXxW3tXirhXu7DqxesMTfrZpP0IATN_LWm22cg9vPG8ASliAFp7hnrDlYbK-tMDqx7bU20UpxEUc5wqV2SeOrnhZbdacz7auW2PhEIbre6drWC_1v_n6n_cw3Bybtcm70Hlpz0XWqRlGXUwC9a1li1wA8oqXZ0Qxeu4KtSiMYSudI9A==",
+          "serviceItemDescription": "Gravity Ropes",
+          "quantityEditable": "false",
+          "aLaCartePrice": "$0.00",
+          "addOnPrice": "$0.00",
+          "numberRequired": "1.00",
+          "perNumberOfGuests": "1",
+          "itemNumber": "GR 100"
+        },
+        {
+          "serviceItemCode": "ltt6MWBkZKSIpy4W829TtxZOcTnVgJ9bL172lgEcXxW3tXirhXu7DqxesMTfrZpP0IATN_LWm22cg9vPG8ASliAFp7hnrDlYbK-tMDqx7bU20UpxEUc5wqV2SeOrnhZbdacz7auW2PhEIbre6drWC_1v_n6n_cw3Bybtcm70HlrhZRbwSBjQGDr-mRmP2lHnoqXZ0Qxeu4KtSiMYSudI9A==",
+          "serviceItemDescription": "Laser Tag",
+          "quantityEditable": "false",
+          "aLaCartePrice": "$0.00",
+          "addOnPrice": "$0.00",
+          "numberRequired": "1.00",
+          "perNumberOfGuests": "1",
+          "itemNumber": "LT 100"
+        },
+        {
+          "serviceItemCode": "ltt6MWBkZKSIpy4W829TtxZOcTnVgJ9bL172lgEcXxW3tXirhXu7DqxesMTfrZpP0IATN_LWm22cg9vPG8ASliAFp7hnrDlYbK-tMDqx7bU20UpxEUc5wqV2SeOrnhZbdacz7auW2PhEIbre6drWC_1v_n6n_cw3Bybtcm70HlpIhkkA9xNCG0U2Vrku5z5UoqXZ0Qxeu4KtSiMYSudI9A==",
+          "serviceItemDescription": "Mini Golf",
+          "quantityEditable": "false",
+          "aLaCartePrice": "$0.00",
+          "addOnPrice": "$0.00",
+          "numberRequired": "1.00",
+          "perNumberOfGuests": "1",
+          "itemNumber": null
+        },
+        {
+          "serviceItemCode": "ltt6MWBkZKSIpy4W829TtxZOcTnVgJ9bL172lgEcXxW3tXirhXu7DqxesMTfrZpP0IATN_LWm22cg9vPG8ASliAFp7hnrDlYbK-tMDqx7bU20UpxEUc5wqV2SeOrnhZbdacz7auW2PhEIbre6drWC_1v_n6n_cw3Bybtcm70HloclX6ct9R6V4sC5rPLeyKRoqXZ0Qxeu4KtSiMYSudI9A==",
+          "serviceItemDescription": "Karaoke",
+          "quantityEditable": "false",
+          "aLaCartePrice": "$0.00",
+          "addOnPrice": "$0.00",
+          "numberRequired": "1.00",
+          "perNumberOfGuests": "1",
+          "itemNumber": "KA 100"
+        },
+        {
+          "serviceItemCode": "ltt6MWBkZKSIpy4W829TtxZOcTnVgJ9bL172lgEcXxW3tXirhXu7DqxesMTfrZpP0IATN_LWm22cg9vPG8ASliAFp7hnrDlYbK-tMDqx7bU20UpxEUc5wqV2SeOrnhZbdacz7auW2PhEIbre6drWC_1v_n6n_cw3Bybtcm70HlpUmg4zhvMQvhw5y_rxgZb_oqXZ0Qxeu4KtSiMYSudI9A==",
+          "serviceItemDescription": "Rock Climbing",
+          "quantityEditable": "false",
+          "aLaCartePrice": "$0.00",
+          "addOnPrice": "$0.00",
+          "numberRequired": "1.00",
+          "perNumberOfGuests": "1",
+          "itemNumber": "RC 100"
+        },
+        {
+          "serviceItemCode": "ltt6MWBkZKSIpy4W829TtxZOcTnVgJ9bL172lgEcXxW3tXirhXu7DqxesMTfrZpP0IATN_LWm22cg9vPG8ASliAFp7hnrDlYbK-tMDqx7bU20UpxEUc5wqV2SeOrnhZbdacz7auW2PhEIbre6drWC0tGRDXJerKIDqDtbVpfmA612zPz1Y5s564Ah8u2W7CRoqXZ0Qxeu4KtSiMYSudI9A==",
+          "serviceItemDescription": "Bocce Ball",
+          "quantityEditable": "false",
+          "aLaCartePrice": "$0.00",
+          "addOnPrice": "$0.00",
+          "numberRequired": "1.00",
+          "perNumberOfGuests": "1",
+          "itemNumber": null
+        }
+      ]
+    }
+  }
+}
